@@ -3,4 +3,4 @@ cheatsheets
 
 List of cheatsheets
 
-* [VIM](vimsheet.md)
+* [VIM](cheatsheets/vimsheet.md)
