@@ -35,3 +35,32 @@ Like paragraph but selects until a dot.
 * Also, `b` refers to `(` and `B` to `{`, so `viB` selects the content of a
   function
 
+## Autocommands
+It's a way to launch some commands when an event happens. The format is:
+
+`autocmd event pattern command`
+
+For example:
+
+`autocmd BufRead,BufWritePre *.html normal gg=G`
+
+The way to read this is: When BufRead or BufWritePre (when reads a file or
+writes a file) with the pattern *.html, execute a normal command, gg=G, in this
+case it will autoindent all the file from the beginning to the end.
+
+The list of events is in `:help autocmd-events`
+
+Another example, this will comment out a line in a html file with <leader>c
+`au Filetype html nnoremap <leader>c I<!--<esc>A--><esc>`
+
+* augroups
+  It's a way to join some autocommands in a group. Ex:
+
+  ```
+  augroup JavaScript Cmds
+    au Filetype javascript nnoremap <leader>r :!node %<cr>
+    au Filetype javascript nnoremap <leader>c I//<esc>
+  augroup
+  ```
+
+* `autocmd!` deactivates the commands inside a group
