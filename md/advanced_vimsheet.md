@@ -45,7 +45,7 @@ For example:
 `autocmd BufRead,BufWritePre *.html normal gg=G`
 
 The way to read this is: When BufRead or BufWritePre (when reads a file or
-writes a file) with the pattern *.html, execute a normal command, gg=G, in this
+writes a file) with the pattern `*.html`, execute a normal command, gg=G, in this
 case it will autoindent all the file from the beginning to the end.
 
 The list of events is in `:help autocmd-events`
@@ -60,7 +60,10 @@ Another example, this will comment out a line in a html file with <leader>c
   augroup JavaScript Cmds
     au Filetype javascript nnoremap <leader>r :!node %<cr>
     au Filetype javascript nnoremap <leader>c I//<esc>
-  augroup
+  augroup END
   ```
 
 * `autocmd!` deactivates the commands inside a group
+
+## More VIM Settings
+

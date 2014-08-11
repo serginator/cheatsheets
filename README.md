@@ -3,6 +3,11 @@ cheatsheets
 
 List of cheatsheets
 
-* [VIM](cheatsheets/vimsheet.md)
-* [Advanced VIM](cheatsheets/advanced_vimsheet.md)
+### In Markdown
 
+* [VIM](md/vimsheet.md)
+* [Advanced VIM](md/advanced_vimsheet.md)
+
+### Graphical
+
+* [VIM](graphical/vim.gif)

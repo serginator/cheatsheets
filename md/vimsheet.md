@@ -92,3 +92,8 @@
 * `zo` -> open fold; `zc` -> close fold; `zd` -> delete fold; `zO` -> open all
 * in a ({ `zf%` -> fold to closing })
 * `zi` -> fold/unfold every fold
+
+## OmniCompletion
+* `Ctrl+X, Ctrl+O` shows the omnicomplete menu
+* `Ctrl+X, Ctrl+P` complete the keyword
+* `Ctrl+X, Ctrl+L` complete the line
