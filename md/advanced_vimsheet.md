@@ -65,5 +65,17 @@ Another example, this will comment out a line in a html file with <leader>c
 
 * `autocmd!` deactivates the commands inside a group
 
-## More VIM Settings
+## Registers  
+* `:registers` show your registers in the vimrc and the saved ones
+* `"add` adds a deleted line in register "a; `"ap` pastes register a
+* Everything you yenk (yy) is copied also in register 0
+* You can record a macro and it will be saved in a register, so you can
+  edit that register to add or remove anything and save in that register again
+
+## Actions in insert mode
+* `Ctrl+h` backspace; `Ctrl+w` backspace a word; `Ctrl+w` backspace a line
+* `Ctrl+v{X}` writes character X in unicode
+* `Ctrl+o` you can move a line with hjkl.
+* `Ctrl+r{X}` prints register X
+* `Ctrl+r=` to write something that can be evaluated, like a multiplication
 
