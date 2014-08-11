@@ -79,3 +79,27 @@ Another example, this will comment out a line in a html file with <leader>c
 * `Ctrl+r{X}` prints register X
 * `Ctrl+r=` to write something that can be evaluated, like a multiplication
 
+## More in regexp
+* Useful remappings:
+```
+nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v
+```
+
+## More useful stuff
+* `gj` and `gk` moves a visual line, so it's very useful when you have
+  wrapped text
+* `g0` and `g$` moves to the beginning and end of a visual line
+* `gf` opens a file if the word where the cursor lays is the name of a file
+* `r` replaces a letter; `R` enters in replace mode
+* `zz` moves a line to the middle of the window
+* in visual mode, `o` toggles the cursor in opposite corners;
+  `O` toggles the cursor in the same line
+* `.` repeats last change
+* `A;` adds ; to the end of the line
+* `fs` jumps to the next s; `;` jumps to the next one; `,` to the previous
+* `\*` search for what is under the cursor; `#` searchs for the previous
+* `%` in a parenthesys jumps to the ending one
+
