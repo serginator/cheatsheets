@@ -135,4 +135,13 @@ Just create a folder under `.vim` called `ftplugin` and, inside this one,
 one called `javascript.vim`. Put some settings there, and this will be only
 applied to `.js` files. Same with `css.vim`, `html.vim`, etc etc.
 
+## Abbreviations
+It's useful to fix some common problems when writting
+`:abbrev teh the` will fix `teh` with `the`
+`inoreabbrev teh the` will do the same in .vimrc
+`:unabbrev the` gets rid of it
+
+## Status line
+`:set laststatus=2` shows the status line always
+`:set statusline=%f\ \ line:%l/%L\ col:%c\ %p%%\ %y`
 
