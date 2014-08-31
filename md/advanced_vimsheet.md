@@ -103,3 +103,36 @@ vnoremap ? ?\v
 * `\*` search for what is under the cursor; `#` searchs for the previous
 * `%` in a parenthesys jumps to the ending one
 
+## Functions
+Example of function, call with `:call AddHelloToTop()`. The `!` replaces
+the function so you can resource it without errors
+```
+function! AddHelloToTop ()
+    normal HOhello thereA vim user0
+    s/hello there/hi
+    return "we added a message"
+endfunction
+```
+If we add `command! Hello call AddHelloToTop()` we can use `:Hello` or also
+do something like `nnoremap <leader>h :call AddHelloToTop()<cr>` and use `h`
+
+## Better Autocompletion in VIM
+```
+function! InsertTabWrapper()
+    let col = col(".") - 1
+    if !col || getline(".")[col -1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-n>"
+endfunction
+
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-p>
+```
+
+## Language-Specific Settings
+Just create a folder under `.vim` called `ftplugin` and, inside this one,
+one called `javascript.vim`. Put some settings there, and this will be only
+applied to `.js` files. Same with `css.vim`, `html.vim`, etc etc.
+
+
