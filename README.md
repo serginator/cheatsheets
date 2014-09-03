@@ -7,6 +7,7 @@ List of cheatsheets
 
 * [VIM](md/vimsheet.md)
 * [Advanced VIM](md/advanced_vimsheet.md)
+* [Python](md/python.md)
 
 ### Graphical
 
