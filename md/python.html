@@ -1,0 +1,178 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="python">Python</h1>
+<h2 id="print-stuff">Print stuff</h2>
+<pre><code class="lang-python">print(&#39;Hello world&#39;)</code></pre>
+<h2 id="variables">Variables</h2>
+<pre><code class="lang-python">msg = &#39;Hello world&#39;
+print(msg)</code></pre>
+<h2 id="types">Types</h2>
+<pre><code class="lang-python">print(type(msg)) #str
+print(type(5)) #int</code></pre>
+<h2 id="booleans">Booleans</h2>
+<p><code>True</code>, <code>False</code></p>
+<h2 id="if">IF</h2>
+<pre><code class="lang-python">if var == True:
+  # do something
+elif var &lt;= 5 or var &gt;= 10:
+  # do something
+else:
+  # the last thing</code></pre>
+<h2 id="lists">Lists</h2>
+<pre><code class="lang-python">colours = [&#39;Red&#39;, &#39;Green&#39;, &#39;Blue]
+print(&#39;Green&#39; in colours) #prints True
+colours.append(&#39;White&#39;) #adds White
+more_colours = [&#39;Black&#39;, &#39;Yellow&#39;]
+colours.extend(more_colours) #joins lists
+even_more = [&#39;Purple&#39;]
+colours = colours + even_more #joins lists too
+len(colours) #returns the length of the list
+colours = colours + [more_colours] #this will duplicate some
+set(colours) #returns a set which has no duplicates in it</code></pre>
+<h2 id="for">For</h2>
+<pre><code class="lang-python">users = [&#39;Mike&#39;, &#39;John&#39;, &#39;Robert&#39;, &#39;Lucy&#39;, &#39;Vanessa&#39;, &#39;Helen&#39;]
+for user in users:
+  print(user)</code></pre>
+<h2 id="strings">Strings</h2>
+<pre><code class="lang-python">print(&#39;This is a message: &#39; + msg)
+print(&#39;This is a number: &#39; + str(5))
+sentence = &#39;Here is my phrase&#39;
+sentence[0] #first letter
+sentence[16] #last
+sentence[:4] #&#39;Here&#39;
+sentence[-6:] #&#39;phrase&#39;
+sentence[4:6] #&#39;is&#39;
+sentence.split(&#39; &#39;) # [&#39;Here&#39;, &#39;is&#39;, &#39;my&#39;, &#39;phrase&#39;]</code></pre>
+<h2 id="tuples">Tuples</h2>
+<pre><code class="lang-python">user = (&#39;Sergio&#39;, 27)
+user[1] # 27
+extended_user = (&#39;Sergio&#39;, 27, &#39;Developer&#39;) #tuples can be any lenght</code></pre>
+<h2 id="dictionaries">Dictionaries</h2>
+<pre><code class="lang-python">phones = {
+  &#39;Mike&#39;: &#39;123456789&#39;,
+  &#39;Helen&#39;: &#39;666123456&#39;,
+  &#39;Rob&#39;: &#39;612123123&#39;
+}
+phones[&#39;Rob&#39;] #&#39;612123123&#39;
+&#39;Mike&#39; in phones # True
+&#39;123456789&#39; in phones # True
+&#39;Sergio&#39; in phones # False
+del phones[&#39;Helen&#39;] #removes a key:value
+for name in phones: #loop over a dict
+  print(name, phones[name])</code></pre>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>

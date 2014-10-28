@@ -1,0 +1,236 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="vim">VIM</h1>
+<h2 id="modes">Modes</h2>
+<ul>
+<li>Insert Mode: <code>i</code></li>
+<li>Command Mode: by default, or <code>Esc</code> in in Insert mode</li>
+<li>Visual Mode: <code>v</code> -&gt; to select stuff<ul>
+<li>if the cursor is in a bracket or similar, <code>%</code> selects the whole scope</li>
+</ul>
+</li>
+<li>Visual Line: <code>V</code> -&gt; same but per lines</li>
+</ul>
+<h2 id="typical-commands">Typical commands</h2>
+<ul>
+<li>Save: <code>:w &lt;name&gt;</code></li>
+<li>Quit: <code>:q</code></li>
+</ul>
+<h2 id="movement">Movement</h2>
+<ul>
+<li><code>hjkl</code> -&gt; left down up right</li>
+<li><code>w</code> -&gt; word; <code>W</code> -&gt; whole word</li>
+<li><code>b</code> -&gt; word back; <code>B</code> -&gt; whole word back</li>
+<li><code>$</code> -&gt; end of line; <code>^</code> -&gt; beginning of line (without space); <code>0</code> -&gt; beginning of line</li>
+<li><code>gg</code> -&gt; beginning of file; <code>G</code> -&gt; end of file; <code>X + gg</code> -&gt; go to line X;</li>
+<li><code>}</code> -&gt; next paragraph; <code>{</code>-&gt; previous P</li>
+<li><code>f{P}</code> -&gt; jumps to first word that starts with P; <code>F{P}</code> -&gt; the opposite</li>
+<li><code>t{P}</code> -&gt; jumps just before that character; <code>T{P}</code> -&gt; the opposite</li>
+<li><code>Number + command</code> -&gt; repeat X times a command</li>
+<li><code>:{X}</code> -&gt; go to X line</li>
+</ul>
+<h2 id="editing">Editing</h2>
+<ul>
+<li><code>:edit {X}</code> -&gt; Open X file</li>
+<li><code>x</code> -&gt; delete char in cursor</li>
+<li><code>u</code> -&gt; undo</li>
+<li><code>dw</code> -&gt; delete word; <code>db</code> -&gt; delete previous word</li>
+<li><code>dd</code> -&gt; delete line; <code>cc</code> -&gt; delete line and insert mode</li>
+<li><code>cw</code> -&gt; delete word and enter insert mode</li>
+<li><code>ct{X}</code> -&gt; remove from the cursor until X character</li>
+<li><code>ci{X}</code> -&gt; remove inside X (ex: &#39;asd xx-xx asd&#39; cursor in -, <code>ci&#39;</code> leaves &#39;&#39;</li>
+<li><code>ca{X}</code> -&gt; remove around X (ex: [&#39;asd-asd&#39;], <code>ca&#39;</code> leaves [])</li>
+<li><code>O</code> -&gt; insert blank line before; <code>o</code> -&gt; insert blank line after</li>
+</ul>
+<h2 id="cut-copy-paste">Cut/Copy/Paste</h2>
+<ul>
+<li><code>d</code> -&gt; cut; <code>x</code> -&gt; cut char; <code>X</code> -&gt; cut prev char</li>
+<li><code>p</code> -&gt; paste after cursor; <code>P</code> -&gt; paste before cursor</li>
+<li><code>yw</code> -&gt; copy word; <code>yy</code> -&gt; copy line</li>
+</ul>
+<h2 id="search">Search</h2>
+<ul>
+<li><code>/test</code> -&gt; search &quot;test&quot; word; <code>n</code> -&gt; search the next; <code>N</code> -&gt; previous</li>
+<li><code>?function</code> -&gt; search &quot;function&quot; backword; <code>n</code> -&gt; previous; -&gt; <code>N</code> -&gt; next</li>
+<li><code>:noh</code> -&gt; unhighlight</li>
+<li><code>d/test</code> -&gt; delete until test word</li>
+<li><code>c/test</code> -&gt; delete until test word and insert mode</li>
+</ul>
+<h2 id="replace">Replace</h2>
+<ul>
+<li><code>:%s/Text1/Text2/g</code> -&gt; Changes Text1 with Text2 in the whole file</li>
+</ul>
+<h2 id="macros">Macros</h2>
+<ul>
+<li><code>q{X}</code> -&gt; start recording macro in X register; <code>q</code> again ends the recording</li>
+<li><code>:registers</code> -&gt; show registers</li>
+<li><code>@{X}</code> -&gt; starts X macro registered</li>
+</ul>
+<h2 id="command-line-in-vim">Command line in vim</h2>
+<ul>
+<li><code>:!{X}</code> -&gt; launch command X, for example, <code>:!ls</code> list files</li>
+<li><code>:read !{X}</code> -&gt; put the output of X in your open file<ul>
+<li>ex. <code>:r !curl --silent http://test/file.js</code></li>
+<li>ex. go to visual line mode, select some coffee code, do colon and ! and write coffee -c -s -p, and it will convert the code selected</li>
+</ul>
+</li>
+</ul>
+<h2 id="buffers">Buffers</h2>
+<ul>
+<li><code>:ls</code> -&gt; list buffers oppened</li>
+<li><code>:bn</code> or :bnext -&gt; shows next buffer; <code>:bf</code> or <code>:bprev</code> -&gt; shows previous</li>
+<li><code>:b#</code> -&gt; show last opened, so you can jump between two files with <code>:b#</code></li>
+<li><code>:bf</code> -&gt; jump to first one</li>
+<li><code>:bd{X}</code> -&gt; removes X buffer, the number watched when executing <code>:ls</code></li>
+</ul>
+<h2 id="windows-and-tabs">Windows and tabs</h2>
+<ul>
+<li><code>:vs</code> or <code>:vsplit</code> -&gt; vertical split; <code>:sp</code> or <code>:split</code> -&gt; horizontal split</li>
+<li><code>Ctrl W {hjkl}</code> -&gt; Move cursor to left down up right window</li>
+<li><code>Ctrl W {HJKL}</code> -&gt; Place window to that position</li>
+<li><code>Ctrl W {+-}</code> -&gt; Resizes window height, with Ctrl W 10 +, increases 10px</li>
+<li><code>Ctrl W {&lt;&gt;}</code> -&gt; Resized window width</li>
+<li><code>Ctrl W</code> = -&gt; Resize window equally</li>
+<li><code>:sb{X}</code> -&gt; Split with buffer X</li>
+<li><code>:vert sb{X}</code> -&gt; Split vertically with buffer X</li>
+<li><code>:tabedit {X}</code> -&gt; Open {X} file in a tab</li>
+<li><code>gt</code> -&gt; go to next tab; <code>gT</code> -&gt; go to previous tab</li>
+</ul>
+<h2 id="indents-and-folds">Indents and Folds</h2>
+<ul>
+<li><code>&gt;&gt;</code> -&gt; indent</li>
+<li><code>&lt;&lt;</code> -&gt; indent back</li>
+<li><code>&gt;{X}</code> -&gt; indent X times<ul>
+<li>you can also go to visual mode, select some lines, do <code>&gt;&gt;</code>, and indent all</li>
+<li>or go to visual mode, select some bad indented text, and hit <code>=</code></li>
+</ul>
+</li>
+<li><code>gg=G</code> -&gt; indent everything</li>
+<li>in insert mode: <code>Ctrl+t</code> indents; <code>Ctrl+d</code> indents back</li>
+<li><code>zf{X}{Y}</code> -&gt; folds X times in Y direction. ex. <code>zf5j</code></li>
+<li><code>zo</code> -&gt; open fold; <code>zc</code> -&gt; close fold; <code>zd</code> -&gt; delete fold; <code>zO</code> -&gt; open all</li>
+<li>in a ({ <code>zf%</code> -&gt; fold to closing })</li>
+<li><code>zi</code> -&gt; fold/unfold every fold</li>
+</ul>
+<h2 id="omnicompletion">OmniCompletion</h2>
+<ul>
+<li><code>Ctrl+X, Ctrl+O</code> shows the omnicomplete menu</li>
+<li><code>Ctrl+X, Ctrl+P</code> complete the keyword</li>
+<li><code>Ctrl+X, Ctrl+L</code> complete the line</li>
+</ul>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>

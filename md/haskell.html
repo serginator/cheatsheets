@@ -1,0 +1,502 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="haskell-notes">Haskell notes</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">There aren&#39;t</th>
+<th style="text-align:center">There are</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Assignations</td>
+<td style="text-align:center">Recursion</td>
+</tr>
+<tr>
+<td style="text-align:center">Loops</td>
+<td style="text-align:center">Functions</td>
+</tr>
+<tr>
+<td style="text-align:center">Var declarations</td>
+<td style="text-align:center">Computationally complete</td>
+</tr>
+<tr>
+<td style="text-align:center">Status</td>
+<td style="text-align:center">Easy</td>
+</tr>
+<tr>
+<td style="text-align:center">Von Neuman</td>
+<td style="text-align:center">Reliable</td>
+</tr>
+<tr>
+<td style="text-align:center">Efficency</td>
+<td style="text-align:center">Elegant</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">Verifiable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="theorem">Theorem</h2>
+<p>Any recursive algorythm can be transformed into an iterative one and vice
+versa. Corollary: We haven&#39;t loose calculation power.</p>
+<h2 id="haskell">Haskell</h2>
+<ul>
+<li>Purest functional language. Referential transparency (an expression has the
+same value anywhere in the program).</li>
+<li>Not strict.</li>
+<li>Lazy evaluation.</li>
+<li>Infinite structures<pre><code>HUGS&gt;[1..]
+returns [1,2,3,4... and doesn&#39;t end</code></pre>
+</li>
+<li>Strongly typed. There&#39;s no <code>void</code>. Haskell infers type.</li>
+</ul>
+<h2 id="currying">Currying</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Maths</th>
+<th style="text-align:center">Haskell</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">f(2, 3)</td>
+<td style="text-align:center">f 2 3</td>
+</tr>
+<tr>
+<td style="text-align:center">f(a, b) ± c * d</td>
+<td style="text-align:center">f a b ± c * d</td>
+</tr>
+<tr>
+<td style="text-align:center">g(a) + b</td>
+<td style="text-align:center">g a + b</td>
+</tr>
+<tr>
+<td style="text-align:center">f(a + b, c)</td>
+<td style="text-align:center">f (a + b) c</td>
+</tr>
+<tr>
+<td style="text-align:center">f(x, g(y))</td>
+<td style="text-align:center">f x (g y)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>--</code> is a one line comment (//)</li>
+<li><code>{- whatever -}</code> is a multiline comment (/<em> whatever </em>/)</li>
+<li>A simple function:<pre><code>g::Int -&gt; Int
+g x = x + 1 -- gets an integer and returns one more</code></pre>
+</li>
+<li>Another simple function:<pre><code>f:: Int -&gt; Int -&gt; Int
+f x y = x + y + 1 -- addition of x and y plus 1</code></pre>
+</li>
+<li>Function names and variables must be in lowercase, can&#39;t start with a
+number, accept <code>&#39;</code>, digits, <code>_</code> and <code>-</code>.</li>
+<li>Types start with uppercase.</li>
+<li>More examples:<pre><code>--double::Int-&gt;Int
+double x = x + x
+--quadruple::Int-&gt;Int
+quadruple x = double (double x)
+--We don&#39;t need to ad fn::type-&gt;type, the compilers infers it
+twice f x = f(fx)</code></pre>
+</li>
+</ul>
+<h2 id="hugs">Hugs</h2>
+<p>To load a program with hugs use :l (or :load) program.hs</p>
+<h2 id="redex-reduction-expression">Redex: Reduction expression</h2>
+<p>It is better to evaluate from outside to inside</p>
+<pre><code>square::Int-&gt;Int
+square x = x * x
+
+&gt;2 + square 3 -&gt; 2 + (3 * 3) -&gt; 2 + (9) -&gt; 11
+&gt;square(square 3) -&gt; (square 3)*(square 3) -&gt; (3 * 3) * (square 3) -&gt;
+-&gt; 9 * (square 3) -&gt; 9 * (3 * 3) -&gt; 9 * 9 -&gt; 81</code></pre>
+<ul>
+<li>Impacient evaluation: redex from inside to outside</li>
+<li>Lazy evaluation: redex from outside to inside</li>
+</ul>
+<p>Haskell uses some kind of lazy evaluation with <code>sharing</code>, a graphs structure.
+I&#39;ll try to explain it here:</p>
+<pre><code>square 3 -&gt; · * · -&gt; 9, where · points to 3
+square (square 3) -&gt; · * · where · points to square 3 -&gt;
+  -&gt; · * · where each · points to ~ * ~ where ~ points to 3 -&gt; 
+  -&gt; · * · where · points to 9 -&gt; 81</code></pre>
+<h2 id="comparisions">Comparisions</h2>
+<p>(==), (&lt;), (&gt;), (&lt;=), (&gt;=), (/=)</p>
+<h2 id="types">Types</h2>
+<ul>
+<li>Bool: True False</li>
+<li>Int</li>
+<li>Integer</li>
+<li>Float</li>
+<li>Doble</li>
+<li>Char: &#39;a&#39;, &#39;\n&#39;, &#39;\t&#39;, &#39;\&#39;&#39;</li>
+</ul>
+<p>Example: <code>&gt;True &lt; &#39;a&#39;</code> returns Type Error</p>
+<p>The command <code>&gt;:set +t</code> returns the type used to have more info, like a debug.</p>
+<h3 id="tuple">Tuple</h3>
+<p>Mixed component where the type of each component can be different.</p>
+<ul>
+<li><code>(1, &#39;a&#39;, 3.0, True)::(Int, Char, Float, Bool)</code>.</li>
+<li><code>()</code> is an empty tuple.</li>
+<li>Unitary tuple like (3) has no sense, the compiler understands it as a 3.</li>
+<li>Example:<pre><code>predSuc::Int -&gt; (Int, Int)
+predSuc n = (n - 1, n + 1)</code></pre>
+</li>
+</ul>
+<h3 id="lists">Lists</h3>
+<p>Must be of the same type, but there&#39;s no limit of elements. Lists doesn&#39;t have
+pointers.</p>
+<ul>
+<li><code>[]</code> empty list. []::[a] means type a, anything.</li>
+<li><code>(:)</code> is used to join an element to a list (but not a list to a list).<ul>
+<li><code>1:[]</code>.</li>
+</ul>
+</li>
+<li><code>(:)::a -&gt; [a] -&gt; [a]</code>.</li>
+<li><code>3:1:[]</code> makes [3, 1].</li>
+<li><code>&#39;a&#39;:3:[]</code> throws Type Error.</li>
+<li><code>(1:(2:(3:(4:(5:[])))))</code> joins from the right. The parenthesys aren&#39;t needed.</li>
+<li><code>[1..5]</code> means from 1 to 5 -&gt; `[1, 2, 3, 4, 5]&#39;</li>
+<li>String = [char] -&gt; <code>[&#39;h&#39;, &#39;o&#39;, &#39;m&#39;, &#39;e&#39;] -&gt; &#39;home&#39;</code></li>
+</ul>
+<h2 id="the-arrow-">The arrow (-&gt;)</h2>
+<p>It&#39;s used to construct types.
+Having <code>t1, t2, ..., tn, tr</code> can construct something like
+<code>t1 -&gt; t2 -&gt; ... -&gt; tn -&gt; tr</code> which means that it takes a type <code>t1</code>, type <code>t2</code>,
+..., type <code>tn</code>, and returns a type <code>tr</code>.</p>
+<h2 id="pattern-adjustment">Pattern adjustment</h2>
+<p>Haskell evaluates several functions in order and when it finds a rule that
+works correctly, returns that. Example:</p>
+<pre><code>f::Int -&gt; Bool
+f 1 = True
+f 2 = False
+f x = False
+&gt;f 1 -&gt; True
+&gt;f 2 -&gt; False
+&gt;f 3 -&gt; False -- If we didn&#39;t put &quot;f x = False&quot; this will throw an error.
+
+f:Int -&gt; Bool
+f x = True
+f 2 = False
+&gt;f 2 -&gt; True -- Because it evaluates first &quot;f x&quot; and it matches.</code></pre>
+<h3 id="recursive-examples">Recursive examples</h3>
+<ul>
+<li><p>Factorial</p>
+<pre><code>fact::Int-&gt;Int
+fact 0 = 1                  -- base
+fact n = n * fact (n - 1)   -- recursive
+
+&gt;fact 0 -&gt; 0
+&gt;fact 3 -&gt; 6
+&gt;fact 117 -&gt; 0 out of range</code></pre>
+<p>We can fix this in two ways, one is to declare it as <code>fact::Integer-&gt;Integer</code>
+so in this way it will not run out of range. Another fix could be removing
+the type declaration, in this way the compiler will infer the type and put
+something like <code>fact::Num a =&gt; a -&gt; a</code>, we can see this with <code>hugs</code> putting
+<code>:t fact</code> (or <code>:type</code>).</p>
+</li>
+<li><p>Returns the addition of elements of a list</p>
+<pre><code>sum::[Int]-&gt;Int
+sum [] = 0
+sum (x:xs) = x + sum xs -- x is the first element and xs are the following.</code></pre>
+</li>
+<li><p>Concat two lists of numbers</p>
+<pre><code>conc::[Int]-&gt;[Int]-&gt;[Int]
+conc [] xs = xs
+conc (x:xs) ys = x:(conc xs ys)
+&gt;conc [1,2] [3,4,5] -&gt; [1,2,3,4,5]
+
+-- This is already defined in Haskell with (++)
+&gt;[1,2] ++ [3,4,5] -&gt; [1,2,3,4,5]</code></pre>
+</li>
+</ul>
+<h3 id="more-patterns">More patterns</h3>
+<ul>
+<li>Anonymous pattern or underlined<pre><code>first2::(Int, Int)-&gt;Int
+first2 (x, y) = x -- or we can put &quot;first2 (x, _) = x&quot; because we don&#39;t care
+first3::(Int, Int, Int)-&gt;Int
+frist3 (x, _, _) = x</code></pre>
+</li>
+<li>Arythmetic ones, patherns n+k being k a constant<pre><code>fact::Int-&gt;Int
+fact 0 = 1
+fact (n + 1) = (n + 1) * fact n</code></pre>
+</li>
+<li>Named patterns, it&#39;s like an alias for an expression<pre><code>fact::Int-&gt;Int
+fact 0 = 1
+fact m@(n+1) = m * fact n</code></pre>
+</li>
+</ul>
+<h2 id="definition-of-functions-by-cases">Definition of functions by cases</h2>
+<pre><code>  sign::Int-&gt;Int
+  sign x  | x &gt; 0 = 1 -- These are called guards
+          | x &lt; 0 = -1
+          | otherwise = 0</code></pre>
+<pre><code>  abs::Int-&gt;Int
+  abs x   | x &gt;= 0 = x
+          | otherwise = -x</code></pre>
+<h2 id="conditionals">Conditionals</h2>
+<pre><code>  ifThenElse::Bool-&gt;Int-&gt;Int-&gt;Int
+  ifThenElse True x _ = x
+  ifThenElse False _ y = y</code></pre>
+<h2 id="case-expressions">Case expressions</h2>
+<pre><code>  sum::[Int]-&gt;Int
+  sum xs = case xs of
+            [] = 0
+            (y:ys) -&gt; y + sum ys</code></pre>
+<h2 id="error-function">Error function</h2>
+<pre><code>  head::[Int]-&gt;Int
+  head [] = error &#39;list is empty&#39;
+  head (x:_) = x</code></pre>
+<h2 id="local-definitions">Local definitions</h2>
+<p>For this example we&#39;ll solve the equation <code>ax²+bx+c=0</code> with
+(-b±sqrt(d))/2a being d = b²-4ac</p>
+<pre><code>  roots::(Float, Float, Float) -&gt; (Float, Float)
+  roots (a, b, c)
+    | d &gt;= 0 = ((-b + sqrt d) / (2 * a), (-b - sqrt d) / (2 * a)
+    | otherwise = error &quot;...&quot;
+    where : d = b * b - 4 * a * c
+  {-
+    we could add also in where more local definitions like
+    &quot;rd = sqrt d&quot; and &quot;da = 2 * a&quot; and replace them in the equation.
+  -}</code></pre>
+<p>We could also create a type, for example:</p>
+<pre><code>  type Complex=(Float, Float)
+  roots::(Float, Float, Float) -&gt; (Complex, Complex)</code></pre>
+<h2 id="local-declarations">Local declarations</h2>
+<ul>
+<li>where (we saw it before)</li>
+<li>let: <code>let f x = x * x in f 8 -&gt; 64</code>. So we could rewrite roots like this:<pre><code>  roots (a, b, c) = let
+                      d = b * b - 4 * a * c
+                      da = 2 * a
+                    in
+                      if (d &gt;= 0) then (..., ...)
+                      else error &quot;...&quot;</code></pre>
+</li>
+</ul>
+<p>Important! guards, let, where, of, do... must be correctly indented!!</p>
+<h2 id="operators">Operators</h2>
+<pre><code>  &gt;1 + 2
+  3
+  &gt;(+) 1 3
+  4
+  &gt;mod 10 3
+  1
+  &gt;10 `mod` 3
+  1</code></pre>
+<h3 id="list-of-infix-operators">List of infix operators</h3>
+<p><code>: ! # $ % &amp; * + · / &lt; = &gt; ? @ \ ^ | - ~ &amp;&amp; || /= //</code></p>
+<h3 id="declaring-operators">Declaring operators</h3>
+<pre><code>infix &lt;priority [0..9]&gt; &lt;op-name&gt;
+infixr &lt;priority&gt; &lt;op&gt; -- from right
+infixl &lt;priority&gt; &lt;op&gt; -- from left
+--
+infixr 9 ·
+infixl 9 !!
+infixr 8 ^, ^^, **
+infixr 3 &amp;&amp;
+infixl 2 ||
+--
+infixr 2 ||| --exclusive or
+(|||)::Bool-&gt;Bool-&gt;Bool
+True ||| True = False
+False ||| False = False
+_ ||| _ = True</code></pre>
+<h2 id="superior-order">Superior order</h2>
+<p>An argument is a function or returns a function</p>
+<pre><code>  twice::(Int -&gt; Int) -&gt; Int -&gt; Int
+  twice f x = f (f x)
+
+  dev,inc::Int-&gt;Int
+  inc x = x + 1
+  dec x = x - 1
+
+  twice inc 10 -&gt; inc (inc 10) -&gt; inc (10 + 1) -&gt; inc 11 -&gt; 11 + 1 -&gt; 12</code></pre>
+<h3 id="examples">Examples</h3>
+<ul>
+<li><p>Map with integers</p>
+<pre><code>map:: (Int -&gt; Int) -&gt; [Int] -&gt; [Int]
+map f [] = []
+map f (x:xs) = f x : map f xs
+--
+&gt;map inc [1..5] -&gt; [2..6]
+&gt;:t map
+(a -&gt; b) -&gt; [a] -&gt; [b]</code></pre>
+</li>
+<li><p>Filter (actually defined in Haskell as filter::)</p>
+<pre><code>removeCond::(Int-&gt;Bool)-&gt;[Int]&gt;[Int]
+removeCond p [] = []
+removeCond p (x:xs)   | p x = removCond p xs
+                      | otherwise = x:eliminaCond p xs
+
+removeZero xs = removeCond p xs
+                where p 0 = True
+                      p _ = False</code></pre>
+</li>
+</ul>
+<h2 id="anonymous-functions-lambda-expression-">Anonymous Functions. Lambda-expression. λ</h2>
+<p><code>(λx -&gt; x + 1)::Int-&gt;Int</code>
+In Haskell, lambda is written with <code>\</code> instead of <code>λ</code>.</p>
+<pre><code>  &gt;\x -&gt; x + 1
+  &lt;&lt; function &gt;&gt;::Int-&gt;Int
+  &gt;(\x -&gt; x + 1) 3
+  4</code></pre>
+<h3 id="some-examples">Some examples</h3>
+<ul>
+<li>Bubble pattern<pre><code>bubble::[Int]-&gt;[Int]
+bubble xs = baux xs [] False
+  where
+    baux [] yx False = ys
+    baux [] ys True = baux ys [] False
+    baux [x] ys b = baux [] (ys ++ [x]) b
+    baux (x1:x2:xs) ys b
+      | (odd x1 &amp;&amp; even x2) = baux (x2:xs) (ys++[x1]) True
+      | otherwise = baux (x1:xs) (ys++[x2]) b</code></pre>
+</li>
+<li><p>Reverse</p>
+<pre><code>rev::[a]-&gt;[a]
+rev [] = []
+rev (x:xs) = rev xs ++ [x]
+
+rev2::[a]-&gt;[a]
+rev2 cs = revaux xs[]
+  where
+    revaux [] ys = ys
+    revaux (x:xs) ys = revaux xs (x:ys)</code></pre>
+</li>
+</ul>
+<h2 id="partial-application">Partial application</h2>
+<p><code>f::(t1-&gt;(t2-&gt;...-&gt;(tx-&gt;...-&gt;(tn-&gt;(tr)))))</code></p>
+<p><code>f e1 e2... ek::tk+1 -&gt; ... tn -&gt; tr</code></p>
+<p>Example:</p>
+<pre><code>  f::Int-&gt;Int-&gt;Int-&gt;Int
+  f x y z = x * (2 * y + z)
+  &gt;f
+  &lt;&lt;function&gt;&gt;::Int -&gt; (Int -&gt; (Int -&gt; Int))
+  &gt;f 2
+  &lt;&lt;function&gt;&gt;::Int -&gt; (Int -&gt; Int)
+  &gt;f 2 3
+  &lt;&lt;function&gt;&gt;::Int -&gt; Int
+  &gt;f 2 3 4 -- Total application
+  20</code></pre>
+<h2 id="sections">Sections</h2>
+<p>Binary operators partially applied with recieve only an argument.</p>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="advanced-vim">Advanced VIM</h1>
+<h2 id="text-objects">Text Objects</h2>
+<h3 id="word">word</h3>
+<ul>
+<li><code>viw</code> selects inner word with the cursor on it<ul>
+<li><code>v</code> stands for visual mode</li>
+<li><code>i</code> stands for inner</li>
+<li><code>w</code> stands for word</li>
+</ul>
+</li>
+<li><code>vaw</code> selects a full word with the following space<ul>
+<li><code>a</code> stands for visualize around a word</li>
+</ul>
+</li>
+<li><code>diw</code> deletes inner word; <code>daw</code> deletes a word</li>
+</ul>
+<h3 id="word">WORD</h3>
+<p>The difference between <code>word</code> is that <code>WORD</code> is everything delimited by spaces
+and <code>word</code> can be a piece of chars, a dot, a slash... And has the same commands
+as <code>word</code>.</p>
+<h3 id="paragraph">paragraph</h3>
+<ul>
+<li><code>vip</code> selects a paragraph; <code>vap</code> selects also the next empty line</li>
+</ul>
+<h3 id="sentence">sentence</h3>
+<p>Like paragraph but selects until a dot.</p>
+<ul>
+<li><code>giUs</code> makes a sentence Uppercase</li>
+<li><code>das</code> deletes around a sentence</li>
+</ul>
+<h3 id="tags">tags</h3>
+<ul>
+<li><code>vit</code> selects a tag, what is inside <code>&lt;a&gt;X&lt;/a&gt;</code> for example</li>
+<li><code>vat</code> selects also the tag itself (opening and ending)</li>
+<li><code>vi{X}</code> selects inner X<ul>
+<li><code>vi(</code> selects the arguments of a function for example</li>
+<li><code>vi{</code> selects the content of the function for example.</li>
+</ul>
+</li>
+<li>Also, <code>b</code> refers to <code>(</code> and <code>B</code> to <code>{</code>, so <code>viB</code> selects the content of a
+function</li>
+</ul>
+<h2 id="autocommands">Autocommands</h2>
+<p>It&#39;s a way to launch some commands when an event happens. The format is:</p>
+<p><code>autocmd event pattern command</code></p>
+<p>For example:</p>
+<p><code>autocmd BufRead,BufWritePre *.html normal gg=G</code></p>
+<p>The way to read this is: When BufRead or BufWritePre (when reads a file or
+writes a file) with the pattern <code>*.html</code>, execute a normal command, gg=G, in this
+case it will autoindent all the file from the beginning to the end.</p>
+<p>The list of events is in <code>:help autocmd-events</code></p>
+<p>Another example, this will comment out a line in a html file with <leader>c
+<code>au Filetype html nnoremap &lt;leader&gt;c I&lt;!--&lt;esc&gt;A--&gt;&lt;esc&gt;</code></p>
+<ul>
+<li><p>augroups
+It&#39;s a way to join some autocommands in a group. Ex:</p>
+<pre><code>augroup JavaScript Cmds
+  au Filetype javascript nnoremap &lt;leader&gt;r :!node %&lt;cr&gt;
+  au Filetype javascript nnoremap &lt;leader&gt;c I//&lt;esc&gt;
+augroup END</code></pre>
+</li>
+<li><p><code>autocmd!</code> deactivates the commands inside a group</p>
+</li>
+</ul>
+<h2 id="registers">Registers</h2>
+<ul>
+<li><code>:registers</code> show your registers in the vimrc and the saved ones</li>
+<li><code>&quot;add</code> adds a deleted line in register &quot;a; <code>&quot;ap</code> pastes register a</li>
+<li>Everything you yenk (yy) is copied also in register 0</li>
+<li>You can record a macro and it will be saved in a register, so you can
+edit that register to add or remove anything and save in that register again</li>
+</ul>
+<h2 id="actions-in-insert-mode">Actions in insert mode</h2>
+<ul>
+<li><code>Ctrl+h</code> backspace; <code>Ctrl+w</code> backspace a word; <code>Ctrl+w</code> backspace a line</li>
+<li><code>Ctrl+v{X}</code> writes character X in unicode</li>
+<li><code>Ctrl+o</code> you can move a line with hjkl.</li>
+<li><code>Ctrl+r{X}</code> prints register X</li>
+<li><code>Ctrl+r=</code> to write something that can be evaluated, like a multiplication</li>
+</ul>
+<h2 id="more-in-regexp">More in regexp</h2>
+<ul>
+<li>Useful remappings:<pre><code>nnoremap / /\v
+vnoremap / /\v
+nnoremap ? ?\v
+vnoremap ? ?\v</code></pre>
+</li>
+</ul>
+<h2 id="more-useful-stuff">More useful stuff</h2>
+<ul>
+<li><code>gj</code> and <code>gk</code> moves a visual line, so it&#39;s very useful when you have
+wrapped text</li>
+<li><code>g0</code> and <code>g$</code> moves to the beginning and end of a visual line</li>
+<li><code>gf</code> opens a file if the word where the cursor lays is the name of a file</li>
+<li><code>r</code> replaces a letter; <code>R</code> enters in replace mode</li>
+<li><code>zz</code> moves a line to the middle of the window</li>
+<li>in visual mode, <code>o</code> toggles the cursor in opposite corners;
+<code>O</code> toggles the cursor in the same line</li>
+<li><code>.</code> repeats last change</li>
+<li><code>A;</code> adds ; to the end of the line</li>
+<li><code>fs</code> jumps to the next s; <code>;</code> jumps to the next one; <code>,</code> to the previous</li>
+<li><code>\*</code> search for what is under the cursor; <code>#</code> searchs for the previous</li>
+<li><code>%</code> in a parenthesys jumps to the ending one</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<p>Example of function, call with <code>:call AddHelloToTop()</code>. The <code>!</code> replaces
+the function so you can resource it without errors</p>
+<pre><code>function! AddHelloToTop ()
+    normal HOhello thereA vim user0
+    s/hello there/hi
+    return &quot;we added a message&quot;
+endfunction</code></pre>
+<p>If we add <code>command! Hello call AddHelloToTop()</code> we can use <code>:Hello</code> or also
+do something like <code>nnoremap &lt;leader&gt;h :call AddHelloToTop()&lt;cr&gt;</code> and use <code>h</code></p>
+<h2 id="better-autocompletion-in-vim">Better Autocompletion in VIM</h2>
+<pre><code>function! InsertTabWrapper()
+    let col = col(&quot;.&quot;) - 1
+    if !col || getline(&quot;.&quot;)[col -1] !~ &#39;\k&#39;
+        return &quot;\&lt;tab&gt;&quot;
+    else
+        return &quot;\&lt;c-n&gt;&quot;
+endfunction
+
+inoremap &lt;tab&gt; &lt;c-r&gt;=InsertTabWrapper()&lt;cr&gt;
+inoremap &lt;s-tab&gt; &lt;c-p&gt;</code></pre>
+<h2 id="language-specific-settings">Language-Specific Settings</h2>
+<p>Just create a folder under <code>.vim</code> called <code>ftplugin</code> and, inside this one,
+one called <code>javascript.vim</code>. Put some settings there, and this will be only
+applied to <code>.js</code> files. Same with <code>css.vim</code>, <code>html.vim</code>, etc etc.</p>
+<h2 id="abbreviations">Abbreviations</h2>
+<p>It&#39;s useful to fix some common problems when writting
+<code>:abbrev teh the</code> will fix <code>teh</code> with <code>the</code>
+<code>inoreabbrev teh the</code> will do the same in .vimrc
+<code>:unabbrev the</code> gets rid of it</p>
+<h2 id="status-line">Status line</h2>
+<p><code>:set laststatus=2</code> shows the status line always
+<code>:set statusline=%f\ \ line:%l/%L\ col:%c\ %p%%\ %y</code></p>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>
