@@ -8,6 +8,7 @@
 |      Status      |           Easy           |
 |    Von Neuman    |         Reliable         |
 |     Efficency    |          Elegant         |
+|                  |        Verifiable        |
 |                  |                          |
 
 ## Theorem
