@@ -1,4 +1,5 @@
 .c9revisions
+.grunt/
 .settings
 tmp/
 node_modules/
