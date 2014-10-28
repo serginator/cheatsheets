@@ -1,0 +1,30 @@
+{
+  "name": "cheatsheets",
+  "version": "1.0.0",
+  "description": "Some cheatsheets and notes",
+  "main": "README.md",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/serginator/cheatsheets.git"
+  },
+  "keywords": [
+    "cheatsheet",
+    "vim",
+    "python",
+    "haskell"
+  ],
+  "author": "Sergio Ruiz <serginator@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/serginator/cheatsheets/issues"
+  },
+  "homepage": "https://github.com/serginator/cheatsheets",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-markdown": "^0.6.1"
+  }
+}
