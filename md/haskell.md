@@ -349,3 +349,61 @@ An argument is a function or returns a function
                         p _ = False
   ```
 
+## Anonymous Functions. Lambda-expression. λ
+`(λx -> x + 1)::Int->Int`
+In Haskell, lambda is written with `\` instead of `λ`.
+  ```
+  >\x -> x + 1
+  << function >>::Int->Int
+  >(\x -> x + 1) 3
+  4
+  ```
+
+### Some examples
++ Bubble pattern
+  ```
+  bubble::[Int]->[Int]
+  bubble xs = baux xs [] False
+    where
+      baux [] yx False = ys
+      baux [] ys True = baux ys [] False
+      baux [x] ys b = baux [] (ys ++ [x]) b
+      baux (x1:x2:xs) ys b
+        | (odd x1 && even x2) = baux (x2:xs) (ys++[x1]) True
+        | otherwise = baux (x1:xs) (ys++[x2]) b
+  ```
++ Reverse
+  ```
+  rev::[a]->[a]
+  rev [] = []
+  rev (x:xs) = rev xs ++ [x]
+
+  rev2::[a]->[a]
+  rev2 cs = revaux xs[]
+    where
+      revaux [] ys = ys
+      revaux (x:xs) ys = revaux xs (x:ys)
+  ```
+
+## Partial application
+`f::(t1->(t2->...->(tx->...->(tn->(tr)))))`
+
+`f e1 e2... ek::tk+1 -> ... tn -> tr`
+
+Example:
+```
+  f::Int->Int->Int->Int
+  f x y z = x * (2 * y + z)
+  >f
+  <<function>>::Int -> (Int -> (Int -> Int))
+  >f 2
+  <<function>>::Int -> (Int -> Int)
+  >f 2 3
+  <<function>>::Int -> Int
+  >f 2 3 4 -- Total application
+  20
+```
+
+## Sections
+Binary operators partially applied with recieve only an argument.
+
