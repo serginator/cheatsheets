@@ -9,6 +9,7 @@ List of cheatsheets
 * [Advanced VIM](md/advanced_vimsheet.md)
 * [Python](md/python.md)
 * [Screen Command](md/screen.md)
+* [Haskell](md/haskell.md)
 
 ### Graphical
 
