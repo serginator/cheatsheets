@@ -9,7 +9,6 @@
 |    Von Neuman    |         Reliable         |
 |     Efficency    |          Elegant         |
 |                  |        Verifiable        |
-|                  |                          |
 
 ## Theorem
 Any recursive algorythm can be transformed into an iterative one and vice
@@ -102,6 +101,8 @@ square (square 3) -> · * · where · points to square 3 ->
 
 Example: `>True < 'a'` returns Type Error
 
+The command `>:set +t` returns the type used to have more info, like a debug.
+
 ### Tuple
 Mixed component where the type of each component can be different.
 + `(1, 'a', 3.0, True)::(Int, Char, Float, Bool)`.
@@ -185,6 +186,130 @@ f 2 = False
   >[1,2] ++ [3,4,5] -> [1,2,3,4,5]
   ```
 
+### More patterns
++ Anonymous pattern or underlined
+  ```
+  first2::(Int, Int)->Int
+  first2 (x, y) = x -- or we can put "first2 (x, _) = x" because we don't care
+  first3::(Int, Int, Int)->Int
+  frist3 (x, _, _) = x
+  ```
++ Arythmetic ones, patherns n+k being k a constant
+  ```
+  fact::Int->Int
+  fact 0 = 1
+  fact (n + 1) = (n + 1) * fact n
+  ```
++ Named patterns, it's like an alias for an expression
+  ```
+  fact::Int->Int
+  fact 0 = 1
+  fact m@(n+1) = m * fact n
+  ```
 
+## Definition of functions by cases
+```
+  sign::Int->Int
+  sign x  | x > 0 = 1 -- These are called guards
+          | x < 0 = -1
+          | otherwise = 0
+```
+
+```
+  abs::Int->Int
+  abs x   | x >= 0 = x
+          | otherwise = -x
+```
+
+## Conditionals
+```
+  ifThenElse::Bool->Int->Int->Int
+  ifThenElse True x _ = x
+  ifThenElse False _ y = y
+```
+
+## Case expressions
+```
+  sum::[Int]->Int
+  sum xs = case xs of
+            [] = 0
+            (y:ys) -> y + sum ys
+```
+
+## Error function
+```
+  head::[Int]->Int
+  head [] = error 'list is empty'
+  head (x:_) = x
+```
+
+## Local definitions
+For this example we'll solve the equation `ax²+bx+c=0` with
+(-b±sqrt(d))/2a being d = b²-4ac
+```
+  roots::(Float, Float, Float) -> (Float, Float)
+  roots (a, b, c)
+    | d >= 0 = ((-b + sqrt d) / (2 * a), (-b - sqrt d) / (2 * a)
+    | otherwise = error "..."
+    where : d = b * b - 4 * a * c
+  {-
+    we could add also in where more local definitions like
+    "rd = sqrt d" and "da = 2 * a" and replace them in the equation.
+  -}
+```
+
+We could also create a type, for example:
+```
+  type Complex=(Float, Float)
+  roots::(Float, Float, Float) -> (Complex, Complex)
+```
+
+## Local declarations
++ where (we saw it before)
++ let: `let f x = x * x in f 8 -> 64`. So we could rewrite roots like this:
+  ```
+    roots (a, b, c) = let
+                        d = b * b - 4 * a * c
+                        da = 2 * a
+                      in
+                        if (d >= 0) then (..., ...)
+                        else error "..."
+  ```
+
+Important! guards, let, where, of, do... must be correctly indented!!
+
+## Operators
+```
+  >1 + 2
+  3
+  >(+) 1 3
+  4
+  >mod 10 3
+  1
+  >10 `mod` 3
+  1
+```
+
+### List of infix operators
+`: ! # $ % & * + · / < = > ? @ \ ^ | - ~ && || /= //`
+
+### Declaring operators
+```
+infix <priority [0..9]> <op-name>
+infixr <priority> <op> -- from right
+infixl <priority> <op> -- from left
+--
+infixr 9 ·
+infixl 9 !!
+infixr 8 ^, ^^, **
+infixr 3 &&
+infixl 2 ||
+--
+infixr 2 ||| --exclusive or
+(|||)::Bool->Bool->Bool
+True ||| True = False
+False ||| False = False
+_ ||| _ = True
+```
 
 
