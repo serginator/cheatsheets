@@ -312,4 +312,40 @@ False ||| False = False
 _ ||| _ = True
 ```
 
+## Superior order
+An argument is a function or returns a function
+```
+  twice::(Int -> Int) -> Int -> Int
+  twice f x = f (f x)
+
+  dev,inc::Int->Int
+  inc x = x + 1
+  dec x = x - 1
+
+  twice inc 10 -> inc (inc 10) -> inc (10 + 1) -> inc 11 -> 11 + 1 -> 12
+```
+
+### Examples
++ Map with integers
+  ```
+  map:: (Int -> Int) -> [Int] -> [Int]
+  map f [] = []
+  map f (x:xs) = f x : map f xs
+  --
+  >map inc [1..5] -> [2..6]
+  >:t map
+  (a -> b) -> [a] -> [b]
+  ```
+
++ Filter (actually defined in Haskell as filter::)
+  ```
+  removeCond::(Int->Bool)->[Int]>[Int]
+  removeCond p [] = []
+  removeCond p (x:xs)   | p x = removCond p xs
+                        | otherwise = x:eliminaCond p xs
+
+  removeZero xs = removeCond p xs
+                  where p 0 = True
+                        p _ = False
+  ```
 
