@@ -14,9 +14,19 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', 'Watchs content and launches server.', [
+    grunt.registerTask('build', 'Builds local files', [
         'clean',
-        'markdown',
+        'copy',
+        'markdown'
+    ]);
+
+    grunt.registerTask('pages', 'Uploads content to gh-pages', [
+        'build',
+        'gh-pages'
+    ]);
+
+    grunt.registerTask('default', 'Watchs content and launches server.', [
+        'build',
         'connect',
         'watch'
     ]);
