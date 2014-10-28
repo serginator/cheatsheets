@@ -22,6 +22,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('pages', 'Uploads content to gh-pages', [
         'build',
+        'rename',
         'gh-pages'
     ]);
 
