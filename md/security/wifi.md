@@ -28,7 +28,7 @@ It's really easy to use and will guide you and launch the commands for you.
 
 If you want to know what you are doing, then here are the commands.
 
-First execute what's in [Common](#Common) section.
+First execute what's in [Common](#common) section.
 
 Now we need to associate with the router, execute the following:
 
@@ -67,7 +67,7 @@ WPA keys can be obtained using dictionaries (or bruteforce) against handshakes.
 
 ### Getting handshakes using airodump-ng and aireplay-ng
 
-First execute what's in [Common](#Common) section.
+First execute what's in [Common](#common) section.
 
 Now we need a client to connect to the router. Connect your phone or other device
 and you'll see the handshake on top of airodump-ng. If not, try to deauthenticate
