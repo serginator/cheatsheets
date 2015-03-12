@@ -1,0 +1,287 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="gnupg">GnuPG</h1>
+<p>Some useful commands</p>
+<h2 id="create-and-manage-keys">Create and manage keys</h2>
+<ul>
+<li><code>gpg --gen-key</code> generates a new key</li>
+<li><code>gpg --edit-key &lt;ID&gt;</code> edits that key<ul>
+<li><code>trust</code> handle trustness of that key</li>
+<li><code>&lt;number&gt;</code> selects an uid<ul>
+<li><code>deluid</code> removes it</li>
+<li><code>primary</code> sets it as primary uid</li>
+</ul>
+</li>
+<li><code>key &lt;number&gt;</code> selects a key<ul>
+<li><code>delkey</code> removes it</li>
+</ul>
+</li>
+<li><code>addkey</code> adds a new key</li>
+<li><code>sign</code> signs that key</li>
+<li><code>fpr</code> prints its fingerprint to check by phone for example</li>
+<li><code>addphoto</code> allows you to add a photo to your key</li>
+<li><code>setpref SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed</code> strength hash prefs</li>
+</ul>
+</li>
+<li><code>gpg --gen-revoke &lt;ID&gt;</code> generates a revocation certificate</li>
+</ul>
+<h2 id="sharing-keys">Sharing keys</h2>
+<h3 id="list">List</h3>
+<ul>
+<li><code>gpg --list-keys</code> lists all keys</li>
+<li><code>gpg -k</code> lists all keys too</li>
+<li><code>gpg --list-secret-keys</code> list all secret keys</li>
+<li><code>gpg -K</code> list your private keys</li>
+</ul>
+<h3 id="export">Export</h3>
+<ul>
+<li><code>gpg --export -a &lt;ID&gt; &gt; public.key</code> exports that user&#39;s public key</li>
+<li><code>gpg --export-secret-key -a &lt;ID&gt; &gt; private.key</code> exports the private key<h3 id="import">Import</h3>
+</li>
+<li><code>gpg --import public.key</code> adds the public key to your public key ring<h3 id="delete">Delete</h3>
+</li>
+<li><code>gpg --delete-key &lt;ID&gt;</code> deletes that public key</li>
+<li><code>gpg --delete-secret-key &lt;ID&gt;</code> deletes that secret key</li>
+<li><code>gpg --delete-secret-and-public-keys &lt;ID&gt;</code> deletes both</li>
+</ul>
+<h2 id="encrypt-data">Encrypt data</h2>
+<ul>
+<li><code>gpg -e -u &lt;sender ID&gt; -r &lt;receiver ID&gt; file</code> creates file.gpg encrypted</li>
+</ul>
+<h2 id="decrypt-data">Decrypt data</h2>
+<ul>
+<li><code>gpg -o file -d file.gpg</code> decripts file.gpg into file</li>
+</ul>
+<h2 id="sign-data">Sign data</h2>
+<ul>
+<li><code>gpg -s textfile</code> signs a file with your key, without encrypt it</li>
+</ul>
+<h2 id="subkeys">Subkeys</h2>
+<p>Subkeys are bound to a master key pair, so you can export a stub of your
+keys, use them to sign or encrypt documents, and if they are compromised, your
+master key will not be there, so you can revoke them easily and create new 
+keys. Really useful with security smart cards.</p>
+<p><strong> (data from wiki.debian.org/Subkeys) </strong></p>
+<h3 id="create-a-new-subkey-for-signing">Create a new subkey for signing</h3>
+<p>First of all you should consider to make a backup of your ~/.gnupg folder.</p>
+<pre><code>  $gpg --edit-key YOURID
+  gpg&gt; addkey
+  # Type your passphrase
+  # Choose RSA (sign only)
+  # Choose 4096 (or 2048) bit key size
+  # Choose (or not) expiry date
+  gpg&gt; save
+  # Repeat it for generate a RSA (encrypt only) if you want
+  # Now we need to export subkeys, remove private key and import subkeys back.
+  $gpg --export-secret-subkeys ID &gt; secret-subkeys.txt
+  $gpg --delete-secret-key ID
+  $gpg import secret-subkeys.txt
+  $gpg -K
+  # You will see your master key as &quot;sec#&quot;
+  # Optionally change the passphrase protecting the subkeys
+  $gpg --edit-key ID paswd</code></pre>
+<h2 id="yubikey">Yubikey</h2>
+<p>Now I&#39;m going to show how to install a <code>Yubikey</code> smart card  and generate keys
+for the <code>yubikey</code> smartcard. I&#39;m using the Yubikey NEO.</p>
+<p><strong> (data from <a href="https://www.2realities.com">https://www.2realities.com</a>) </strong></p>
+<h3 id="installation-in-ubuntu">Installation in Ubuntu</h3>
+<pre><code>sudo add-apt-repository ppa:yubico/stable
+sudo apt-get update &amp;&amp; sudo apt-get install yubikey-personalization-guide
+  yubikey-neo-manager yubikey-personalization pcscd scdaemon gnupg2 pcsc-tools
+# I want to use gpg2 so to keep things easier
+sudo ln -s /usr/bin/gpg2 /usr/local/bin/gpg
+# Enable gnupg agents
+echo &quot;use-agent&quot; &gt;&gt; ~/.gnupg/gpg.conf
+echo &quot;enable-ssh-support&quot; &gt;&gt; ~/.gnupg/gpg-agent.conf</code></pre>
+<p>You should enable CCID mode of Yubikey with neo manager.</p>
+<h3 id="creation-of-keys">Creation of keys</h3>
+<pre><code># Lets work on a new .gnupg folder in our encrypted USB for example
+mkdir /media/user/usb/gpghome /media/user/usb/armor-baks
+chmod 700 /media/user/usb/gpghome /media/user/usb/armor-baks
+export GNUPGHOME=/media/user/usb/gpghome
+cat &lt;&lt;EOF &gt; $GNUPGHOME/gpg.conf
+default-preference-list SHA512 SHA384 SHA256
+cert-digest-algo SHA512
+use-agent
+EOF
+
+# generate new master key
+gpg --gen-key # generate a key of 4096 bits
+
+# generate revocation cert
+gpg --output $GNUPGHOME/../armor-backs/revocation-cert --gen-revoke &lt;ID&gt;
+
+# backup of master key
+gpg -a --export-secret-keys &gt; $GNUPGHOME/../armor-baks/masterkeys.txt
+
+# Create subkeys for yubikey
+gpg --expert --edit-key &lt;ID&gt;
+
+gpg&gt; addkey
+# RSA sign only, 2048 bits
+gpg&gt; addkey
+# RSA encrypt only, 2048 bits
+gpg&gt; addkey
+# RSA set your own capabilities (8)
+# Select Sign first, then Encrypt, then Authenticate, to keep
+# only Authenticate as current allowed actions
+# now &quot;q&quot;, 2048
+gpg&gt; save
+
+#backup subkeys
+gpg -a --export-secret-subkeys &gt; $GNUPGHOME/../armor-baks/subkeys.txt
+
+#configure yubikey
+gpg --card-edit
+gpg/card&gt; admin
+# select 3, and change admin pin, by default it is 12345678 I think,
+# and user pin is 123456, after that &quot;q&quot;
+gpg/card&gt; name # sets a name
+gpg/card&gt; lang
+gpg/card&gt; url # of your public.key shared in a keystore like pgp.mit.edu
+gpg/card&gt; sex
+gpg/card&gt; login
+gpg/card&gt; quit
+
+#move subkeys to smartcard
+gpg --edit-key &lt;ID&gt;
+gpg&gt; toggle
+gpg&gt; key 1
+gpg&gt; keytocard #select 1, signature
+gpg&gt; key 1 #to deselect it
+gpg&gt; key 2
+gpg&gt; keytocard #select 2, encryption
+gpg&gt; key 2
+gpg&gt; key 3
+gpg&gt; keytocard #select 3, authentication
+gpg&gt; save
+
+#last backup
+gpg -a --export-secret-keys &gt; $GNUPGHOME/../armor-baks/masterkeys-stubs.txt
+gpg -a --export-secret-subkeys &gt; $GNUPGHOME/../armor-baks/subkeys-stubs.txt
+gpg -a --export &gt; $GNUPGHOME/../armor-baks/publickey.txt
+
+#import the subkeys-stubs in other computers to be able to use them
+gpg --import &lt; subkeys-stubs.txt</code></pre>
+<p>Remember we made everything in an encrypted USB (or it is a good practice) so
+you should go back to your environment with <code>export $GNUPGHOME=~/.gnupg</code> and
+maybe import your subkeys-stubs.txt</p>
+<p>Also, if using gpg 2.1 the authentication key that we&#39;ve created before can
+be used for ssh, so theoretically with <code>ssh-add -L</code> you could see it imported.
+You can add your old keys to gpg key store just with <code>ssh-add $folder/id_rsa</code></p>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>
