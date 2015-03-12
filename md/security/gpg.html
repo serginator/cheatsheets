@@ -148,10 +148,14 @@
 <h3 id="export">Export</h3>
 <ul>
 <li><code>gpg --export -a &lt;ID&gt; &gt; public.key</code> exports that user&#39;s public key</li>
-<li><code>gpg --export-secret-key -a &lt;ID&gt; &gt; private.key</code> exports the private key<h3 id="import">Import</h3>
-</li>
-<li><code>gpg --import public.key</code> adds the public key to your public key ring<h3 id="delete">Delete</h3>
-</li>
+<li><code>gpg --export-secret-key -a &lt;ID&gt; &gt; private.key</code> exports the private key</li>
+</ul>
+<h3 id="import">Import</h3>
+<ul>
+<li><code>gpg --import public.key</code> adds the public key to your public key ring</li>
+</ul>
+<h3 id="delete">Delete</h3>
+<ul>
 <li><code>gpg --delete-key &lt;ID&gt;</code> deletes that public key</li>
 <li><code>gpg --delete-secret-key &lt;ID&gt;</code> deletes that secret key</li>
 <li><code>gpg --delete-secret-and-public-keys &lt;ID&gt;</code> deletes both</li>
@@ -173,7 +177,7 @@
 keys, use them to sign or encrypt documents, and if they are compromised, your
 master key will not be there, so you can revoke them easily and create new 
 keys. Really useful with security smart cards.</p>
-<p><strong> (data from wiki.debian.org/Subkeys) </strong></p>
+<p><strong>(data from wiki.debian.org/Subkeys)</strong></p>
 <h3 id="create-a-new-subkey-for-signing">Create a new subkey for signing</h3>
 <p>First of all you should consider to make a backup of your ~/.gnupg folder.</p>
 <pre><code>  $gpg --edit-key YOURID
@@ -195,7 +199,7 @@ keys. Really useful with security smart cards.</p>
 <h2 id="yubikey">Yubikey</h2>
 <p>Now I&#39;m going to show how to install a <code>Yubikey</code> smart card  and generate keys
 for the <code>yubikey</code> smartcard. I&#39;m using the Yubikey NEO.</p>
-<p><strong> (data from <a href="https://www.2realities.com">https://www.2realities.com</a>) </strong></p>
+<p><strong>(data from <a href="https://www.2realities.com">https://www.2realities.com</a>)</strong></p>
 <h3 id="installation-in-ubuntu">Installation in Ubuntu</h3>
 <pre><code>sudo add-apt-repository ppa:yubico/stable
 sudo apt-get update &amp;&amp; sudo apt-get install yubikey-personalization-guide
