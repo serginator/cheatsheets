@@ -14,6 +14,7 @@ List of cheatsheets
 * [Haskell](md/haskell.md)
 * Security
   * [Wifi](md/security/wifi.md)
+  * [GPG](md/security/gpg.md)
 
 ### Graphical
 
