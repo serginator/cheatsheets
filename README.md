@@ -12,9 +12,10 @@ List of cheatsheets
 * [Python](md/python.md)
 * [Screen Command](md/screen.md)
 * [Haskell](md/haskell.md)
+* [Vagrant](md/vagrant.md)
 * Security
   * [Wifi](md/security/wifi.md)
-* [Vagrant](md/vagrant.md)
+  * [GPG](md/security/gpg.md)
 
 ### Graphical
 
