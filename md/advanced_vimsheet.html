@@ -249,6 +249,18 @@ applied to <code>.js</code> files. Same with <code>css.vim</code>, <code>html.vi
 <h2 id="status-line">Status line</h2>
 <p><code>:set laststatus=2</code> shows the status line always
 <code>:set statusline=%f\ \ line:%l/%L\ col:%c\ %p%%\ %y</code></p>
+<h2 id="node-debugging-in-vim">Node debugging in VIM</h2>
+<p><code>npm install -f vimdebug</code> <a href="https://github.com/sidorares/node-vim-debugger">more info</a>
+After that, you can debug a file with <code>node-vim-inspector file.js</code> and launch
+<code>vim -nb</code> in another term to launch the file.
+Shortcuts are:</p>
+<pre><code>  Ctrl+c -&gt; continue
+  Ctrl+i -&gt; step in
+  Ctrl+o -&gt; step over
+  Ctrl+n -&gt; step next
+  Ctrl+u -&gt; move one stack frame up
+  Ctrl+d -&gt; move one stack frame down
+  Ctrl+p -&gt; set breackpoint at current location</code></pre>
 <script src='http://localhost:35729/livereload.js'></script>
 
   </body>

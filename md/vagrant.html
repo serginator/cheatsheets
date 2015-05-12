@@ -112,26 +112,30 @@
     </style>
   </head>
   <body>  
-    <h1 id="cheatsheets">cheatsheets</h1>
-<p>Content can be viewed <a href="http://serginator.github.io/cheatsheets/">here</a></p>
-<p>List of cheatsheets</p>
-<h3 id="in-markdown">In Markdown</h3>
+    <h1 id="vagrant-command">vagrant command</h1>
+<h2 id="up-and-running">up and running</h2>
+<pre><code>vagrant init ubuntu/trusty64
+vagrant up</code></pre>
+<h2 id="interesting-machines-in-hashicorp">interesting machines in HashiCorp</h2>
+<p><a href="https://atlas.hashicorp.com/boxes/search">full list here</a></p>
 <ul>
-<li><a href="md/vimsheet.html">VIM</a></li>
-<li><a href="md/advanced_vimsheet.html">Advanced VIM</a></li>
-<li><a href="md/python.html">Python</a></li>
-<li><a href="md/screen.html">Screen Command</a></li>
-<li><a href="md/haskell.html">Haskell</a></li>
-<li><a href="md/vagrant.html">Vagrant</a></li>
-<li>Security<ul>
-<li><a href="md/security/wifi.html">Wifi</a></li>
-<li><a href="md/security/gpg.html">GPG</a></li>
+<li><code>ubuntu/trusty32</code> or <code>ubuntu/trusty64</code></li>
+<li><code>hashicorp/precise32</code> or <code>hashicorp/precise64</code></li>
+<li><code>puphet/debian75-x64</code></li>
 </ul>
-</li>
-</ul>
-<h3 id="graphical">Graphical</h3>
+<h2 id="commands">commands</h2>
 <ul>
-<li><a href="graphical/vim.gif">VIM</a></li>
+<li><code>vagrant</code> or <code>vagrant ssh</code> opens a shell</li>
+<li><code>vagrant suspend</code> pauses the vm</li>
+<li><code>vagrant resume</code> resumes the vm</li>
+<li><code>vagrant halt</code> halts the vm (poweroff)</li>
+<li><code>vagrant up</code> starts halted vm</li>
+<li><code>vagrant destroy</code> removes the vm</li>
+<li><code>vagrant provision</code> re-provision the vm</li>
+<li><code>vagrant status</code> shows the status of a vm</li>
+<li><code>vagrant global-status</code> shows status of all VMs with their ids so you can manage them everywhere</li>
+<li><code>vagrant init</code> inits a Vagrantfile in a folder</li>
+<li><code>vagrant box add hashicorp/precise32</code> store a box to be used with init or vagrantfiles</li>
 </ul>
 <script src='http://localhost:35729/livereload.js'></script>
 
