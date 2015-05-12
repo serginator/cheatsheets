@@ -145,3 +145,17 @@ It's useful to fix some common problems when writting
 `:set laststatus=2` shows the status line always
 `:set statusline=%f\ \ line:%l/%L\ col:%c\ %p%%\ %y`
 
+## Node debugging in VIM
+`npm install -f vimdebug` [more info](https://github.com/sidorares/node-vim-debugger)
+After that, you can debug a file with `node-vim-inspector file.js` and launch
+`vim -nb` in another term to launch the file.
+Shortcuts are:
+  ```
+  Ctrl+c -> continue
+  Ctrl+i -> step in
+  Ctrl+o -> step over
+  Ctrl+n -> step next
+  Ctrl+u -> move one stack frame up
+  Ctrl+d -> move one stack frame down
+  Ctrl+p -> set breackpoint at current location
+  ```
