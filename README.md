@@ -13,6 +13,7 @@ List of cheatsheets
 * [Screen Command](md/screen.md)
 * [Haskell](md/haskell.md)
 * [Vagrant](md/vagrant.md)
+* [CoffeeScript](md/coffeescript.md)
 * Security
   * [Wifi](md/security/wifi.md)
   * [GPG](md/security/gpg.md)
