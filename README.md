@@ -14,6 +14,7 @@ List of cheatsheets
 * [Haskell](md/haskell.md)
 * [Vagrant](md/vagrant.md)
 * [CoffeeScript](md/coffeescript.md)
+* [CSS Refresher Notes (by vasanthk)](https://github.com/vasanthk/css-refresher-notes)
 * Security
   * [Wifi](md/security/wifi.md)
   * [GPG](md/security/gpg.md)
@@ -21,3 +22,13 @@ List of cheatsheets
 ### Graphical
 
 * [VIM](graphical/vim.gif)
+
+## Download
+
+```
+#Clone the repo
+git clone git@github.com:serginator/cheatsheets.git
+#Update submodules
+git submodule init && git submodule update
+```
+
