@@ -14,6 +14,7 @@ List of cheatsheets
 * [Haskell](md/haskell.md)
 * [Vagrant](md/vagrant.md)
 * [CoffeeScript](md/coffeescript.md)
+* [ECMAScript6 | ES2015 | ES6](md/ecmascript6.md)
 * [CSS Refresher Notes (by vasanthk)](https://github.com/vasanthk/css-refresher-notes)
 * Security
   * [Wifi](md/security/wifi.md)
