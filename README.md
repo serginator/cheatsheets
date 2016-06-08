@@ -1,6 +1,10 @@
 cheatsheets
 ===========
 
+This is a list of cheatsheets I've made/find that are useful to me. I sometimes
+take notes when I'm studying about something and these are some of those notes
+in markdown format.
+
 Content can be viewed [here](http://serginator.github.io/cheatsheets/)
 
 List of cheatsheets
@@ -19,6 +23,8 @@ List of cheatsheets
 * Security
   * [Wifi](md/security/wifi.md)
   * [GPG](md/security/gpg.md)
+* Neural networks
+  * [neural-style](md/neural-style.md)
 
 ### Graphical
 
