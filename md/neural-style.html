@@ -112,42 +112,34 @@
     </style>
   </head>
   <body>  
-    <h1 id="cheatsheets">cheatsheets</h1>
-<p>This is a list of cheatsheets I&#39;ve made/find that are useful to me. I sometimes
-take notes when I&#39;m studying about something and these are some of those notes
-in markdown format.</p>
-<p>Content can be viewed <a href="http://serginator.github.io/cheatsheets/">here</a></p>
-<p>List of cheatsheets</p>
-<h3 id="in-markdown">In Markdown</h3>
+    <h1 id="instructions">Instructions</h1>
+<p>To generate awesome images applying the style of an image to another image</p>
 <ul>
-<li><a href="md/vimsheet.html">VIM</a></li>
-<li><a href="md/advanced_vimsheet.html">Advanced VIM</a></li>
-<li><a href="md/python.html">Python</a></li>
-<li><a href="md/screen.html">Screen Command</a></li>
-<li><a href="md/haskell.html">Haskell</a></li>
-<li><a href="md/vagrant.html">Vagrant</a></li>
-<li><a href="md/coffeescript.html">CoffeeScript</a></li>
-<li><a href="md/ecmascript6.html">ECMAScript6 | ES2015 | ES6</a></li>
-<li><a href="https://github.com/vasanthk/css-refresher-notes">CSS Refresher Notes (by vasanthk)</a></li>
-<li>Security<ul>
-<li><a href="md/security/wifi.html">Wifi</a></li>
-<li><a href="md/security/gpg.html">GPG</a></li>
-</ul>
+<li><p>Install torch</p>
+<pre><code>git clone https://github.com/torch/distro.git ~/torch --recursive
+cd ~/torch; bash install-deps;
+./install.sh
+source ~/.bashrc # or .zshrc or .profile</code></pre>
 </li>
-<li>Neural networks<ul>
-<li><a href="md/neural-style.html">neural-style</a></li>
-</ul>
+<li><p>Install caffe
+<code>``
+sudo apt-get install libprotobuf-dev protobuf-compiler # for mac</code>brew install protobuf`
+luarocks install loadcaffe</p>
 </li>
 </ul>
-<h3 id="graphical">Graphical</h3>
-<ul>
-<li><a href="graphical/vim.gif">VIM</a></li>
-</ul>
-<h2 id="download">Download</h2>
-<pre><code>#Clone the repo
-git clone git@github.com:serginator/cheatsheets.git
-#Update submodules
-git submodule init &amp;&amp; git submodule update</code></pre>
+<pre><code>
++ Install neural_style and presets</code></pre>
+<p>git clone <a href="https://github.com/jcjohnson/neural-style.git">https://github.com/jcjohnson/neural-style.git</a> ~/neural-style
+cd ~/neural-style &amp;&amp; sh models/download_models.sh</p>
+<pre><code>
++ Usage</code></pre>
+<p>th neural_style.lua -style_image <path-to-style-img> -content_image <path-to-image-to-process> -gpu -1 -output_image <path-to-output-image>.png</p>
+<h1 id="-gpu-1-to-use-just-cpu"><code>-gpu -1</code> to use just CPU</h1>
+<p>```</p>
+<h2 id="examples">Examples</h2>
+<p><img src="../res/jiji1.jpg" width="200">
+<img src="../res/jiji2.jpg" width="200">
+<img src="../res/jiji3.jpg" width="200"></p>
 <script src='http://localhost:35729/livereload.js'></script>
 
   </body>

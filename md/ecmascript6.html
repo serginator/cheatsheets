@@ -112,42 +112,57 @@
     </style>
   </head>
   <body>  
-    <h1 id="cheatsheets">cheatsheets</h1>
-<p>This is a list of cheatsheets I&#39;ve made/find that are useful to me. I sometimes
-take notes when I&#39;m studying about something and these are some of those notes
-in markdown format.</p>
-<p>Content can be viewed <a href="http://serginator.github.io/cheatsheets/">here</a></p>
-<p>List of cheatsheets</p>
-<h3 id="in-markdown">In Markdown</h3>
+    <h1 id="ecmascript-6-es2015-es6">ECMAScript 6 | ES2015 | ES6</h1>
+<h2 id="variables">Variables</h2>
+<h3 id="-let-"><code>let</code></h3>
+<p>It is like <code>var</code> but with blocking (what is inside curly braces) scope.</p>
+<pre><code class="lang-js">if (true) {
+    let test = &#39;hello&#39;;
+}
+console.log(test); // undefined</code></pre>
+<h3 id="-const-"><code>const</code></h3>
+<p>Just like <code>let</code> but it&#39;s read only. Anyway you can modify a property of that const.</p>
+<pre><code class="lang-js">const test = &#39;hello&#39;;
+test = &#39;hi&#39;; // Uncaught TypeError: Assignment to constant variable.
+
+// But this will work correctly
+const test2 = {
+    text = &#39;hello&#39;
+}
+test2.text = &#39;hi&#39;;
+console.log(test2); // {text: &#39;hi&#39;}</code></pre>
+<h3 id="replace-iifes-with-blocks">Replace IIFEs with blocks</h3>
+<pre><code class="lang-js">// Instead of using IIFEs to keep variables local
+(function() {
+    var test = &#39;hello&#39;;
+})()
+console.log(test); // ReferenceError
+// We can now use a block
+{
+    let test = &#39;hello&#39;;
+}
+console.log(test); // ReferenceError</code></pre>
+<h2 id="arrow-functions">Arrow functions</h2>
+<h2 id="strings">Strings</h2>
+<h3 id="template-literal">Template Literal</h3>
+<h3 id="methods">Methods</h3>
+<h2 id="arrays">Arrays</h2>
+<h2 id="math">Math</h2>
+<h2 id="destructuring">Destructuring</h2>
+<h2 id="spread-operator">Spread Operator</h2>
+<h2 id="parameters">Parameters</h2>
+<h3 id="default-values">Default values</h3>
+<h3 id="rest">Rest</h3>
+<h2 id="modules">Modules</h2>
+<h2 id="classes">Classes</h2>
+<h2 id="symbols">Symbols</h2>
+<h1 id="interesting-links">Interesting links</h1>
 <ul>
-<li><a href="md/vimsheet.html">VIM</a></li>
-<li><a href="md/advanced_vimsheet.html">Advanced VIM</a></li>
-<li><a href="md/python.html">Python</a></li>
-<li><a href="md/screen.html">Screen Command</a></li>
-<li><a href="md/haskell.html">Haskell</a></li>
-<li><a href="md/vagrant.html">Vagrant</a></li>
-<li><a href="md/coffeescript.html">CoffeeScript</a></li>
-<li><a href="md/ecmascript6.html">ECMAScript6 | ES2015 | ES6</a></li>
-<li><a href="https://github.com/vasanthk/css-refresher-notes">CSS Refresher Notes (by vasanthk)</a></li>
-<li>Security<ul>
-<li><a href="md/security/wifi.html">Wifi</a></li>
-<li><a href="md/security/gpg.html">GPG</a></li>
+<li><a href="https://leanpub.com/understandinges6/read">Understanding ECMAScript 6 book</a></li>
+<li><a href="https://www.smashingmagazine.com/2015/10/es6-whats-new-next-version-javascript/">ECMAScript 6 (ES6): What’s New In The Next Version Of JavaScript</a></li>
+<li><a href="https://css-tricks.com/lets-learn-es2015/">Let’s Learn ES2015</a></li>
+<li><a href="http://www.2ality.com/2015/08/getting-started-es6.html">Getting started with ECMAScript 6</a></li>
 </ul>
-</li>
-<li>Neural networks<ul>
-<li><a href="md/neural-style.html">neural-style</a></li>
-</ul>
-</li>
-</ul>
-<h3 id="graphical">Graphical</h3>
-<ul>
-<li><a href="graphical/vim.gif">VIM</a></li>
-</ul>
-<h2 id="download">Download</h2>
-<pre><code>#Clone the repo
-git clone git@github.com:serginator/cheatsheets.git
-#Update submodules
-git submodule init &amp;&amp; git submodule update</code></pre>
 <script src='http://localhost:35729/livereload.js'></script>
 
   </body>
