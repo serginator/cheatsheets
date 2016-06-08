@@ -25,6 +25,7 @@ List of cheatsheets
   * [GPG](md/security/gpg.md)
 * Neural networks
   * [neural-style](md/neural-style.md)
+  * [Google's deepdream](md/deepdream.md)
 
 ### Graphical
 
