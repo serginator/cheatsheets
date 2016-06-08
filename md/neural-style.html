@@ -115,27 +115,28 @@
     <h1 id="instructions">Instructions</h1>
 <p>To generate awesome images applying the style of an image to another image</p>
 <ul>
-<li><p>Install torch</p>
+<li>Install torch</li>
+</ul>
 <pre><code>git clone https://github.com/torch/distro.git ~/torch --recursive
 cd ~/torch; bash install-deps;
 ./install.sh
 source ~/.bashrc # or .zshrc or .profile</code></pre>
-</li>
-<li><p>Install caffe
-```
-sudo apt-get install libprotobuf-dev protobuf-compiler # for mac &quot;brew install protobuf&quot;
-luarocks install loadcaffe</p>
+<ul>
+<li>Install caffe</li>
+</ul>
+<pre><code>sudo apt-get install libprotobuf-dev protobuf-compiler # for mac &quot;brew install protobuf&quot;
+luarocks install loadcaffe</code></pre>
+<ul>
+<li>Install neural_style and presets</li>
+</ul>
+<pre><code>git clone https://github.com/jcjohnson/neural-style.git ~/neural-style
+cd ~/neural-style &amp;&amp; sh models/download_models.sh</code></pre>
+<ul>
+<li>Usage
+p<pre><code>th neural_style.lua -style_image &lt;path-to-style-img&gt; -content_image &lt;path-to-image-to-process&gt; -gpu -1 -output_image &lt;path-to-output-image&gt;.png
+# &quot;-gpu -1&quot; to use just CPU</code></pre>
 </li>
 </ul>
-<pre><code>
-+ Install neural_style and presets</code></pre>
-<p>git clone <a href="https://github.com/jcjohnson/neural-style.git">https://github.com/jcjohnson/neural-style.git</a> ~/neural-style
-cd ~/neural-style &amp;&amp; sh models/download_models.sh</p>
-<pre><code>
-+ Usage</code></pre>
-<p>th neural_style.lua -style_image <path-to-style-img> -content_image <path-to-image-to-process> -gpu -1 -output_image <path-to-output-image>.png</p>
-<h1 id="-gpu-1-to-use-just-cpu">&quot;-gpu -1&quot; to use just CPU</h1>
-<p>```</p>
 <h2 id="examples">Examples</h2>
 <p><img src="../res/jiji1.jpg" width="200">
 <img src="../res/jiji2.jpg" width="200">
