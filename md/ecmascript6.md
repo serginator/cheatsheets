@@ -1,5 +1,17 @@
 # ECMAScript 6 | ES2015 | ES6
 
+## Index
+* [Variables](#variables)
+    * [let](#let)
+    * [const](#const)
+    * [Replace IIFEs with blocks](#replace-iifes-with-blocks)
+* [String templates](#string-templates)
+* [Destructuring](#destructuring)
+    * [Spread operator](#spread-operator)
+* [Arrow functions](#arrow-functions)
+
+# Content
+
 ## Variables
 
 ### `let`
@@ -84,9 +96,42 @@ console.log(head, tail, a, rest); // 1, [2,3,4,5], 6, {b:7,c:8}
 console.log(last, init); // 5, [4,3,2,1]
 ```
 
+## Arrow functions
+Cleaner functions
+```js
+let incr = n => n + 1;
+console.log(incr(4)); // 5
+```
+Avoid the usage of `this`, now you can bound a function to the scope it's
+defined in, and avoid using bind or `var that = this`
+```js
+function foo(values) {
+    this.values = values;
+    this.incr = function() {
+        this.values.map(function (n, i) {
+            this.values[i] += 1;
+        }.bind(this));
+        return this.values;
+    };
+};
+var op = new foo([1, 2, 3]);
+op.incr(); // return [2, 3, 4]
+
+// in ES6
+function foo2(values) {
+    this.values = values;
+    this.incr = function() {
+        this.values.map((n, i) => this.values[i] += 1);
+        return this.values;
+    };
+}
+var op2 = new foo2([1, 2, 3]);
+op2.incr(); // return [2, 3, 4]
+```
 
 # Interesting links
 + [Understanding ECMAScript 6 book](https://leanpub.com/understandinges6/read)
 + [ECMAScript 6 (ES6): What’s New In The Next Version Of JavaScript](https://www.smashingmagazine.com/2015/10/es6-whats-new-next-version-javascript/)
 + [Let’s Learn ES2015](https://css-tricks.com/lets-learn-es2015/)
 + [Getting started with ECMAScript 6](http://www.2ality.com/2015/08/getting-started-es6.html)
++ [ES6Cheatsheet.com](https://es6cheatsheet.com)
