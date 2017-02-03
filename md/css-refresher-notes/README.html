@@ -1,0 +1,802 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="css-refresher-notes">CSS Refresher Notes</h1>
+<p>This is a quick refresher of CSS concepts compiled from various articles online. Contributions are always welcome :)</p>
+<p>I have linked to most of the articles used, sorry if I missed any. Huge thanks to the community!  </p>
+<p><strong>Table of Contents</strong></p>
+<ul>
+<li><a href="#positioning">Positioning</a></li>
+<li><a href="#display">Display</a></li>
+<li><a href="#floats">Floats</a></li>
+<li><a href="#css-selectors">CSS Selectors</a></li>
+<li><a href="#selector-efficiency">Selector efficiency</a></li>
+<li><a href="#repaints-and-reflows">Repaints and Reflows</a></li>
+<li><a href="#css3-properties">CSS3 Properties</a></li>
+<li><a href="#css3-media-queries">CSS3 Media queries</a></li>
+<li><a href="#responsive-web-design">Responsive Web Design</a></li>
+<li><a href="#css3-transitions">CSS3 Transitions</a></li>
+<li><a href="#css-animations">CSS Animations</a></li>
+<li><a href="#scalable-vector-graphics-svg">Scalable Vector Graphics (SVG)</a></li>
+</ul>
+<h2 id="positioning">Positioning</h2>
+<p>CSS Position allows up to 5 different values. But essentially only 4 values are commonly used.</p>
+<pre><code class="lang-css">div {
+  position: static; /* default */
+  position: relative;
+  position: absolute;
+  position: fixed;
+  position: inherit; /* Not very common */ 
+}</code></pre>
+<p><strong>Static (default):</strong></p>
+<ul>
+<li>The only reason you would ever set an element to position: static is to forcefully-remove some positioning that got applied to an element outside of your control. This is fairly rare, as positioning doesn&#39;t cascade.</li>
+</ul>
+<p><strong>Relative:</strong></p>
+<ul>
+<li>Allows nudging elements in different directions with top, right, bottom and left values. Its starting point is where it normally lies in the flow of the document, not the top left of the page. </li>
+<li>When set to position relative, elements take up the same amount of space at the same exact position it was supposed to take as if its position was static.</li>
+<li>It introduces the ability to use z-index on that element, which doesn&#39;t really work with statically positioned elements. Even if you don&#39;t set a z-index value, this element will now appear on top of any other statically positioned element. </li>
+<li>It limits the scope of absolutely positioned child elements. Any element that is a child of the relatively positioned element can be absolutely positioned within that block. </li>
+</ul>
+<p><strong>Absolute:</strong></p>
+<ul>
+<li>Position absolute takes the element out of the document flow. This means that it no longer takes up any space like what static and relative does. Think of it as an element with a giant strip of velcro on its back. Just tell it where to stick and it sticks. </li>
+<li>You use the positioning attributes top, left, bottom and right to set the location. Remember that these values will be relative to the next parent element with relative (or absolute) positioning. If there is no such parent, it will default all the way back up to the <html> element itself meaning it will be placed relatively to the page itself.</li>
+<li>The trade-off, and most important thing to remember, about absolute positioning is that these elements are removed from the flow of elements on the page. An element with this type of positioning is not affected by other elements and it doesn&#39;t affect other elements. </li>
+</ul>
+<p><strong>Fixed:</strong></p>
+<ul>
+<li>Similar to position absolute, an element that has fixed position is taken out of the document flow.</li>
+<li>The element is positioned relative to the viewport, or the browser window itself.</li>
+<li>Major difference with position absolute is it always takes its positioning relative to the browser window.</li>
+<li>Since the fixed value behaves similar to the absolute value, we can stretch the width of the element to fit the viewport by setting offset values for left and right to zero.</li>
+</ul>
+<p><strong>Inherits:</strong></p>
+<ul>
+<li>It works as the name implies: The element inherits the value of its parent element. Typically, position property elements do not naturally inherit their parent’s values—the static value is assigned if no position value is given. Ultimately, you can type inherit or the parent element’s value and get the same result.</li>
+</ul>
+<p><strong>Summary</strong></p>
+<ul>
+<li>Relative positioning will allow you to tweak an element’s position relative to its normal starting point. </li>
+<li>Absolute positioning will allow you to tweak an element’s position relative to its first non-statically-positioned ancestor (defaults to page bounds if none is found). </li>
+<li>Both relatively and absolutely positioned items won’t affect the static and fixed items around them (absolutely positioned items are removed from the flow, relatively positioned items occupy their original position).</li>
+</ul>
+<p><strong>Gotchas:</strong></p>
+<ul>
+<li>You can’t apply both the position property and the float property to the same element. Both are conflicting instructions for what positioning scheme to use. If you add both to the same element expect the one that appears last in your css code to be the one that’s used.</li>
+<li>Margins don’t collapse on absolutely positioned elements. Suppose you have a paragraph with a margin-bottom of 20px applied. Right below the paragraph is an image with a margin-top of 30px applied. The space between the paragraph and the image will not be 50px (20px + 30px), but rather 30px (30px &gt; 20px). This is known as collapsing margins. The two margins combine (or collapse) to become one margin. Absolutely positioned elements do not have margins that collapse, which might make them act differently than expected.</li>
+</ul>
+<p><em>More reading:</em></p>
+<p><a href="https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/">https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/</a></p>
+<p><a href="http://alistapart.com/article/css-positioning-101">http://alistapart.com/article/css-positioning-101</a></p>
+<p><a href="http://www.barelyfitz.com/screencast/html-training/css/positioning/">http://www.barelyfitz.com/screencast/html-training/css/positioning/</a></p>
+<h2 id="display">Display</h2>
+<p>Every element on a web page is a rectangular box. The display property in CSS determines just how that rectangular box behaves.</p>
+<pre><code class="lang-css">div {
+    display: inline;
+    display: inline-block;
+    display: block;
+    display: run-in;
+    display: none;
+}</code></pre>
+<ul>
+<li>Default value of all elements is inline. Most &quot;User Agent stylesheets&quot; (the default styles the browser applies to all sites) reset many elements to &quot;block&quot;</li>
+</ul>
+<p><strong>Inline:</strong></p>
+<ul>
+<li>Default value for elements. Think of elements like span, b or em</li>
+<li>Accepts padding and margin, but the element still sits inline. It will only push the elements horizontally away, not vertically.</li>
+<li>Inline element does not accept height and width and will be ignored.</li>
+</ul>
+<p><strong>Inline Block:</strong></p>
+<ul>
+<li>Very similar to inline in that it will set inline with the natural flow of text.</li>
+<li>Difference is that you will be able to set width and height, which will be respected.</li>
+</ul>
+<p><strong>Block:</strong></p>
+<ul>
+<li>A number of elements are set to block by the browser US stylesheet. They are usually container elements such as div, section and ul. Also text &#39;blocks&#39; like p and h1.</li>
+<li>Block level elements do not sit inline, but break past them. By default (without setting a width) they take up as much horizontal space as they can.</li>
+</ul>
+<p><strong>Run-in:</strong></p>
+<ul>
+<li>Not supported in Firefox + spec not well defined yet.</li>
+<li>To begin to understand it though, it&#39;s like if you want a header element to sit inline with the text below it.</li>
+</ul>
+<p><strong>None:</strong></p>
+<ul>
+<li>Totally removes the element from the page.</li>
+<li>While the element is still in the DOM, it is removed visually and in any other conceivable way (you can&#39;t tab to it or it&#39;s children , it is ignored by screen readers etc.)</li>
+</ul>
+<p><strong>Table values:</strong></p>
+<ul>
+<li>There is a whole set of display values that force non-table elements to behave like table-elements.</li>
+<li>It&#39;s rare-ish, but it sometimes allows you to be &quot;more semantic&quot; with your code while utilizing the unique positioning powers of tables.</li>
+</ul>
+<pre><code class="lang-css">div {
+  display: table;
+  display: table-cell;
+  display: table-column;
+  display: table-colgroup;
+  display: table-header-group;
+  display: table-row-group;
+  display: table-footer-group;
+  display: table-row;
+  display: table-caption;
+}</code></pre>
+<ul>
+<li>To use, just mimic normal table structure. Simple example:<pre><code class="lang-html">&lt;div style=&quot;display: table;&quot;&gt;
+&lt;div style=&quot;display: table-row;&quot;&gt;
+  &lt;div style=&quot;display: table-cell;&quot;&gt;
+    Gross but sometimes useful.
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</li>
+</ul>
+<p><strong>Flexbox:</strong></p>
+<ul>
+<li>Aims at providing a more efficient way to lay out, align and distribute space among items in a container, even when their size is unknown and/or dynamic (thus the word &#39;flex&#39;)</li>
+<li>The main idea behind the flex layout is to give the container the ability to alter its items&#39; width/height (and order) to best fill the available space (mostly to accomodate to all kind of display devices and screen sizes).</li>
+<li>A flex container expands items to fill available free space, or shrinks them to prevent overflow.</li>
+<li>Most importantly, the flexbox layout is direction-agnostic as opposed to the regular layouts (block which is vertically-based and inline which is horizontally-based).</li>
+<li>Flexbox layout is most appropriate to the components of an application, and small-scale layouts, while the Grid layout is intended for larger scale layouts.</li>
+</ul>
+<p><strong>Grid:</strong></p>
+<ul>
+<li>The grid property in CSS is the foundation of Grid Layout. It aims at fixing issues with older layout techniques like float and inline-block, which both have issues and weren&#39;t really designed for page layout.</li>
+<li>Method of using a grid concept to lay out content, providing a mechanism for authors to divide available space for lay out into columns and rows using a set of predictable sizing behaviors.</li>
+<li>Along with the fact this method fixes the issues we encounter with older layout techniques, its main benefit is you can display a page in a way which can differ from the flow order.</li>
+<li>Not much support. Currently only IE 10+ (no Chrome/Firefox etc.)</li>
+</ul>
+<p><em>More reading:</em></p>
+<p><a href="https://css-tricks.com/almanac/properties/d/display/">https://css-tricks.com/almanac/properties/d/display/</a></p>
+<p><a href="http://learnlayout.com/display.html">http://learnlayout.com/display.html</a></p>
+<h2 id="floats">Floats</h2>
+<ul>
+<li>Floated elements are first laid out according to the normal flow, then taken out of the normal flow and sent as far to the right or left (depending on which value is applied) of the parent element. 
+In other words, they go from stacking on top of each other to sitting next to each other, given that there is enough room in the parent element for each floated element to sit.</li>
+<li>Generally, a floated element should have an explicitly set width (unless it is a replaced element, like an image). This ensures that the float behaves as expected and helps to avoid issues in certain browsers.</li>
+<li>Non-positioned, non-floated, block-level elements act as if the floated element is not there, since the floated element is out of flow in relation to other block elements. When we use a floated image in a paragraph - the text in the paragraph is inline, so it flows around the floated element. </li>
+<li>The clear property has five values available: left, right, both, inherit, and none. Assigning a value of left says the top edge of this element must sit below any element that has the float: left property applied to it.</li>
+<li>A rule that I have found that works nicely for my layouts is float first. That is, in my HTML, I almost always place my floated elements first in the markup, and before any non-floated elements that my float will interact with, 
+such as the paragraph in the example above. Most of the time, this gives the desired result.</li>
+<li>Collapsing is when a parent element that contains any number of floated elements doesn’t expand to completely surround those elements in the way it would if the elements were not floated.</li>
+<li>There is a method that allows a parent element to clear itself of any floated elements inside it. It uses a CSS property called overflow with a value of hidden. 
+Note that the overflow property was not intended for this type of use, and could cause some issues such as hiding content or causing unwanted scrollbars to appear.</li>
+<li>Trick: For clearning floats adding a ‘overflow:auto’ to the parent element also does the trick. </li>
+<li>Note that overflow: auto doesn&#39;t clear floats — it causes the element to contain its floats by way of establishing a new block formatting context for them so that they don&#39;t intrude to other elements in the parent context.
+That is what forces the parent to stretch to contain them. You can only clear a float if you add a clearing element after the float. A parent element cannot clear its floating children.</li>
+</ul>
+<p><strong>9 Rules governing Floats</strong></p>
+<ol>
+<li><p>Floated elements are pushed to the edge of their containers, no further.</p>
+</li>
+<li><p>Any floated element will either appear next to or below a previous floated element. If the elements are floated left, the second element will appear to the right of the first. If they’re floated right, the second element will appear to the left of the first.</p>
+</li>
+<li><p>A left-floating box can&#39;t be further right than a right-floating box.</p>
+</li>
+<li><p>Floated elements can&#39;t go higher than their container’s top edge (this gets more complicated when collapsing margins are involved, see original rule).</p>
+</li>
+<li><p>A floated element can&#39;t be higher than a previous block level or floated element.</p>
+</li>
+<li><p>A floated element can&#39;t be higher than a previous line of inline elements.</p>
+</li>
+<li><p>One floated element next to another floated element can’t stick out past the edge of its container.</p>
+</li>
+<li><p>A floating box must be placed as high as possible.</p>
+</li>
+<li><p>A left-floating box must be put as far to the left as possible, a right-floating box as far to the right as possible. A higher position is preferred over one that is further to the left/right.</p>
+</li>
+</ol>
+<p><strong>Gotchas</strong></p>
+<pre><code class="lang-html">&lt;img src=&quot;http://lorempixum.com/200/200/&quot;&gt;
+&lt;p&gt;Lorem ipsum...&lt;/p&gt;</code></pre>
+<pre><code class="lang-css">img {
+  float: right;
+  margin: 20px;
+}</code></pre>
+<p>Any margin that we add to the paragraph is being applied way off to the right of the image. This is because the image is actually inside of the paragraph’s box! This is why it doesn’t increase the space between the image and the paragraph.</p>
+<p><em>More reading:</em></p>
+<p><a href="http://designshack.net/articles/css/everything-you-never-knew-about-css-floats/">http://designshack.net/articles/css/everything-you-never-knew-about-css-floats/</a></p>
+<p><a href="http://alistapart.com/article/css-floats-101">http://alistapart.com/article/css-floats-101</a></p>
+<h2 id="css-selectors">CSS Selectors</h2>
+<pre><code class="lang-css">div#container &gt; ul {
+  border: 1px solid black;
+}</code></pre>
+<p>The difference between the standard X Y and X &gt; Y is that the latter will only select direct children.</p>
+<pre><code class="lang-css">ul ~ p {
+   color: red;
+}</code></pre>
+<p>This sibling combinator is similar to X + Y, however, it&#39;s less strict. While an adjacent selector (ul + p) will only select the first element that is immediately preceded by the former selector, this one is more generalized. 
+It will select, referring to our example above, any p elements, as long as they follow a ul.</p>
+<pre><code class="lang-css">a[href*=&quot;google&quot;] {
+  color: #1f6053;
+}</code></pre>
+<p>The star designates that the proceeding value must appear somewhere in the attribute&#39;s value.</p>
+<pre><code class="lang-css">a[href^=&quot;http&quot;] {
+   background: url(path/to/external/icon.png) no-repeat;
+   padding-left: 10px;
+}</code></pre>
+<p>If we want to target all anchor tags that have a href which begins with http, we could use a selector similar to the snippet shown above.</p>
+<pre><code class="lang-css">a[href$=&quot;.jpg&quot;] {
+   color: red;
+}</code></pre>
+<p>Again, we use a regular expressions symbol, $, to refer to the end of a string. In this case, we&#39;re searching for all anchors which link to an image -- or at least a url that ends with .jpg</p>
+<pre><code class="lang-css">a[data-info~=&quot;image&quot;] {
+   border: 1px solid black;
+}</code></pre>
+<p>The tilda (~) symbol allows us to target an attribute which has a spaced-separated list of values.</p>
+<pre><code class="lang-css">div:not(#container) {
+   color: blue;
+}</code></pre>
+<p>This selects all divs, except for the one which has an id of container.</p>
+<pre><code class="lang-css">p::first-line {
+   font-weight: bold;
+   font-size: 1.2em;
+}</code></pre>
+<p>We can use pseudo elements (designated by ::) to style fragments of an element, such as the first line, or the first letter. This works only for <strong>block level elements</strong>.</p>
+<pre><code class="lang-css">li:nth-child(3) {
+   color: red;
+}</code></pre>
+<p>nth child pseudo classes target specific elements in the stack. It accepts an integer as a parameter, however, this is not zero-based. If you wish to target the second list item, use li:nth-child(2).
+We can even use this to select a variable set of children. For example, we could do li:nth-child(4n) to select every fourth list item.</p>
+<pre><code class="lang-css">li:nth-last-child(2) {
+   color: red;
+}</code></pre>
+<p>What if you had a huge list of items in a ul, and only needed to access, say, the 2nd to the last item out of 10? Rather than doing li:nth-child(8), you could instead use the nth-last-child pseudo class.</p>
+<pre><code class="lang-css">li:first-child {
+    border-top: none;
+}
+
+li:last-child {
+   border-bottom: none;
+}</code></pre>
+<p>This is particularly useful when assigning border and padding/margin styles for a table list.</p>
+<p><em>More reading:</em></p>
+<p><a href="http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048">http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048</a></p>
+<h2 id="selector-efficiency">Selector efficiency</h2>
+<p>Below is the order of efficiency for selectors. IDs are the most efficient and pseudo classes and pseudo elements are the least efficient.</p>
+<ul>
+<li>id (#myid)</li>
+<li>class (.myclass)</li>
+<li>tag (div, h1, p)</li>
+<li>adjacent sibling (h1 + p)</li>
+<li>child (ul &gt; li)</li>
+<li>descendent (li a)</li>
+<li>universal (*)</li>
+<li>attribute (a[rel=”external”])</li>
+<li>pseudo-class and pseudo element (a:hover, li:first)</li>
+</ul>
+<p><em>More Reading</em></p>
+<p><a href="http://vanseodesign.com/css/css-selector-performance/">http://vanseodesign.com/css/css-selector-performance/</a></p>
+<h2 id="repaints-and-reflows">Repaints and Reflows</h2>
+<p><strong>Repaint</strong> </p>
+<p>Also known as redraw - is what happens whenever something is made visible when it was not previously visible, or vice versa, without altering the layout of the document. An example would be when adding an outline to an element, changing the background color, or changing the visibility style. Repaint is expensive in terms of performance, as it requires the engine to search through all elements to determine what is visible, and what should be displayed.</p>
+<p><strong>Reflow</strong></p>
+<p>A reflow is a more significant change. This will happen whenever the DOM tree is manipulated, whenever a style is changed that affects the layout, whenever the className property of an element is changed, or whenever the browser window size is changed. The engine must then reflow the relevant element to work out where the various parts of it should now be displayed. Its children will also be reflowed to take the new layout of their parent into account. Elements that appear after the element in the DOM will also be reflowed to calculate their new layout, as they may have been moved by the initial reflows. Ancestor elements will also reflow, to account for the changes in size of their children. Finally, everything is repainted.</p>
+<p>Reflows are very expensive in terms of performance, and is one of the main causes of slow DOM scripts, especially on devices with low processing power, such as phones. In many cases, they are equivalent to laying out the entire page again.</p>
+<p><strong>Minimal reflow</strong></p>
+<p>Normal reflows may affect the whole document. The more of the document that is reflowed, the longer the reflow will take. Elements that are positioned absolutely or fixed, do not affect the layout of the main document, so if they reflow, they are the only thing that reflows. The document behind them will need to repaint to allow for any changes, but this is much less of a problem than an entire reflow.</p>
+<p>So is an animation does not need to be applied to the whole document, it is better if it can be applied only to a positioned element. For most animations, this is all that is needed anyway.</p>
+<p><em>What causes a reflow</em></p>
+<ul>
+<li>Resizing a window.</li>
+<li>Changing the font.</li>
+<li>Adding or removing a stylesheet.</li>
+<li>Content changes, such as a user typing text in an input box.</li>
+<li>Activation of CSS pseudo classes such as :hover (In IE the activation of the pseudo class of a sibling).</li>
+<li>Manipulating the class attribute.</li>
+<li>A script manipulating the DOM</li>
+<li>Calculating offsetWidth and offsetHeight</li>
+<li>Setting a property of the style attribute.</li>
+</ul>
+<p>For a comprehensive list of what forces reflows - check Paul Irish&#39;s gist <a href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a">here</a></p>
+<p><strong>How to minimize the effect of reflows on performance</strong></p>
+<ul>
+<li>Change classes on the element you wish to styles (as low in the DOM tree as possible).</li>
+<li>Avoid setting multiple inline styles.</li>
+<li>Apply animations to elements that are position fixed or absolute.</li>
+<li>Trade smoothness for speed.</li>
+<li>Avoid tables for layout. Even a minor change to a cell will cause reflows on all other nodes of the table.</li>
+<li>Avoid JavaScript expressions in the CSS (IE only).</li>
+</ul>
+<p><strong>Note</strong></p>
+<ul>
+<li>Sweating over the selectors used in modern browsers is futile. Most selection methods are now so fast it’s really not worth spending much time over. Furthermore, there is disparity across browsers of what the slowest selectors are anyway. Look here last to speed up your CSS.</li>
+<li>Excessive unused styles are likely to cost more, performance wise, than any selectors you chose so look to tidy up there second. 3000 lines that are unused or surplus on a page are not even that uncommon. While it’s common to bunch all the styles up into a great big single styles.css, if different areas of your site/web application can have different (additional) stylesheets added (dependency graph style), that may be the better option. </li>
+</ul>
+<p><em>More Reading</em></p>
+<p><a href="http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/">http://www.stubbornella.org/content/2009/03/27/reflows-repaints-css-performance-making-your-javascript-slow/</a></p>
+<p><a href="http://csswizardry.com/2011/09/writing-efficient-css-selectors/">http://csswizardry.com/2011/09/writing-efficient-css-selectors/</a></p>
+<p><a href="http://stackoverflow.com/questions/5797014/why-do-browsers-match-css-selectors-from-right-to-left">http://stackoverflow.com/questions/5797014/why-do-browsers-match-css-selectors-from-right-to-left</a></p>
+<p><a href="http://benfrain.com/css-performance-revisited-selectors-bloat-expensive-styles/">http://benfrain.com/css-performance-revisited-selectors-bloat-expensive-styles/</a></p>
+<h2 id="css3-properties">CSS3 Properties</h2>
+<p><strong>border-radius</strong></p>
+<pre><code class="lang-css">-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;</code></pre>
+<p>Allows rounded corners in elements. Can also be used to create circles.</p>
+<p><em>Support: IE9+</em></p>
+<p><strong>box-shadow</strong></p>
+<pre><code class="lang-css">-webkit-box-shadow: 1px 1px 3px #292929;
+-moz-box-shadow: 1px 1px 3px #292929;
+box-shadow: 1px 1px 3px #292929;</code></pre>
+<p>The box-shadow property allows us to easily implement multiple drop shadows (outer or inner) on box elements, specifying values for color, size, blur and offset.</p>
+<p>box-shadow accepts four parameters: x-offset, y-offset, blur, color of shadow.</p>
+<ul>
+<li>The first value defines the horizontal offset of the shadow, with a positive value offseting the shadow to the right of the element, and a negative value to the left.</li>
+<li>The second value defines the vertifical offset of the shadow, with a positive value offsetting the shadow from the bottom of the element, and a negative value from the top.</li>
+<li>If supplied, an optional third value defines the blur distance of the shadow. Only positive values are allowed, and the larger the value, the more the shadow’s edge is blurred.</li>
+<li>An optional fourth value can be supplied to define the spread distance of the shadow. A positive value will cause the shadow shape to expand in all directions, while a negative value will cause the shadow shape to contract.</li>
+</ul>
+<p>An optional ‘inset’ keyword can be supplied, preceding the length and color values. If present, this keyword causes the shadow to be drawn inside the element.</p>
+<pre><code class="lang-css">-webkit-box-shadow: 0 0 20px #333 inset;
+-moz-box-shadow: 0 0 20px #333 inset;
+box-shadow: 0 0 20px #333 inset;</code></pre>
+<p>text-shadow has the same set of properties as well.</p>
+<p>It allows you to immediately apply depth to your elements. We can apply multiple shadows by using comma as a separator.</p>
+<p><em>Support: IE9+</em></p>
+<p><em>More reading:</em></p>
+<p><a href="http://www.css3.info/preview/box-shadow/">http://www.css3.info/preview/box-shadow/</a></p>
+<p><a href="https://css-tricks.com/almanac/properties/b/box-shadow/">https://css-tricks.com/almanac/properties/b/box-shadow/</a></p>
+<p><strong>text-shadow</strong></p>
+<pre><code class="lang-css">color: #fff /* text color to white */
+text-shadow: 0 0 50px #333;</code></pre>
+<p>Text shadows are like box shadows except that they are shadows for text rather than the whole element. Luckily, there is no vendor prefix necessary for text shadow.</p>
+<p>The options for text shadow are the same as for box-shadow except that there is <em>no inset</em> text shadow support. </p>
+<p>As with box shadows, it is possible to have multiple text shadows just by separating them with commas. Here is an example that creates a flaming text effect.</p>
+<pre><code class="lang-css">text-shadow: 0 0 4px #ccc, 
+             0 -5px 4px #ff3, 
+             2px -10px 6px #fd3, 
+             -2px -15px 11px #f80, 
+             2px -18px 18px #f20;</code></pre>
+<p><em>Support: IE10+</em></p>
+<p><strong>Gradients</strong></p>
+<p>Just as you can declare the background of an element to be a solid color in CSS, you can also declare that background to be a gradient. Using gradients declared in CSS, rather using an actual image file, is better for control and performance.</p>
+<p>Gradients are typically one color that fades into another, but in CSS you can control every aspect of how that happens, from the direction to the colors (as many as you want) to where those color changes happen.</p>
+<pre><code class="lang-css">.gradient {
+  /* can be treated like a fallback */
+  background-color: red;
+
+  /* will be &quot;on top&quot;, if browser supports it */
+  background-image: linear-gradient(red, orange);
+
+  /* these will reset other properties, like background-position, but it does know what you mean */
+  background: red;
+  background: linear-gradient(red, orange);
+}</code></pre>
+<p><em>Support: IE10+</em></p>
+<p><strong><em>Linear Gradient</em></strong></p>
+<p>Perhaps the most common and useful type of gradient is the linear-gradient(). The gradients &quot;axis&quot; can go from left-to-right, top-to-bottom, or at any angle you chose. Not declaring an angle will assume top-to-bottom.
+To make it left-to-right, you pass an additional parameter at the beginning of the linear-gradient() function starting with the word &quot;to&quot;, indicating the direction, like &quot;to right&quot;. This &quot;to&quot; syntax works for corners as well.
+You aren&#39;t limited to just two colors either. In fact you can have as many comma-separated colors as you want.
+You can also declare where you want any particular color to &quot;start&quot;. Those are called &quot;color-stops&quot;. Say you wanted yellow to take up the majority of the space, but red only a little bit in the beginning, you could make the yellow color-stop pretty early:</p>
+<pre><code class="lang-css">.gradient {
+  height: 100px;
+  background-image:
+    linear-gradient(
+      to right,
+      red,
+      yellow 10%
+    );
+}</code></pre>
+<p><strong><em>Gotchas</em></strong></p>
+<ul>
+<li><p>We tend to think of gradients as fading colors, but if you have two color stops that are the same, <a href="http://codepen.io/chriscoyier/pen/csgoD">you can make a solid color instantly change to another solid color</a>. This can be useful for declaring a full-height background that simulates columns.</p>
+</li>
+<li><p>There are three different syntaxes that browsers have supported:</p>
+<ul>
+<li><p>Old: original WebKit-only way, with stuff like from() and color-stop()</p>
+</li>
+<li><p>Tweener: old angle system, e.g. &quot;left&quot;</p>
+</li>
+<li><p>New: new angle system, e.g. &quot;to right&quot;</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>The way degrees work in the OLD vs NEW syntax is a bit different. The OLD (and TWEENER - usually prefixed) way defines 0deg and left-to-right and proceeds counter-clockwise, while the NEW (usually unprefixed) way defines 0deg as bottom-to-top and proceeds clockwise.</p>
+<p>OLD (or TWEENER) = (450 - new) % 360</p>
+<p>or even simpler:</p>
+<p>NEW = 90 - OLD
+OLD = 90 - NEW</p>
+<p>like:</p>
+<p>OLD linear-gradient(135deg, red, blue)
+NEW linear-gradient(315deg, red, blue)</p>
+<p><strong><em>Radial Gradients</em></strong></p>
+<p>Radial gradient differ from linear in that they start at a single point and emanate outwards. Gradients are often used to simulate a lighting, which as we know isn&#39;t always straight, so they can be useful to make a gradient seem even more natural.</p>
+<p>The default is for the first color to start in the (center center) of the element and fade to the end color toward the edge of the element. The fade happens at an equal rate no matter which direction. The default gradient shape is an ellipse.</p>
+<p>The possible values for fade  are: closest-corner, closest-side, farthest-corner, farthest-side. You can think of it like: &quot;I want this radial gradient to fade from the center point to the <strong><strong>__</strong></strong>, and everywhere else fills in to accommodate that.&quot;
+A radial gradient doesn&#39;t have to start at the default center either, you can specify a certain point by using &quot;at <strong>__</strong>&quot; as part of the first parameter.</p>
+<p><strong><em>Gotchas</em></strong></p>
+<ul>
+<li><p>There are again three different syntaxes that browsers have supported:  </p>
+<ul>
+<li><p>Old: Prefixed with -webkit-, stuff like from() and color-stop()</p>
+</li>
+<li><p>Tweener: First param was location of center. That will completely break now in browsers that support new syntax unprefixed, so make sure any tweener syntax is prefixed.</p>
+</li>
+<li><p>New: Verbose first param, like &quot;circle closest-corner at top right&quot;</p>
+</li>
+</ul>
+</li>
+<li><p>It is recommended to used autoprefixers like <a href="https://github.com/postcss/autoprefixer">postcss</a> to handle vendor prefixes to make it work across different browsers consistently.</p>
+</li>
+</ul>
+<p><strong><em>Repeating Gradients</em></strong></p>
+<p>The size of the gradient is determined by the final color stop. If that&#39;s at 20px, the size of the gradient (which then repeats) is a 20px by 20px square.</p>
+<pre><code class="lang-css">.repeat {
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      yellow,
+      yellow 10px,
+      red 10px,
+      red 20px /* determines size */
+    );
+}</code></pre>
+<p>They can be used with both linear and radial varieties. </p>
+<p>There is a trick, with non-repeating gradients, to create the gradient in such a way that if it was a little tiny rectangle, it would line up with other little tiny rectangle versions of itself to create a repeating pattern. So essentially create that gradient and set the background-size to make that little tiny rectangle. That made it easy to make stripes, which you could then rotate or whatever. </p>
+<p><em>More reading:</em></p>
+<p><a href="https://css-tricks.com/css3-gradients/">https://css-tricks.com/css3-gradients/</a></p>
+<h2 id="css3-media-queries">CSS3 Media queries</h2>
+<p>CSS Media Queries are a feature in CSS3 which allows you to specify when certain CSS rules should be applied. This allows you to apply a special CSS for mobile, or adjust a layout for print.</p>
+<p>There are three ways to invoke media-query-dependent styles. </p>
+<ul>
+<li>First of all, as stylesheets in the link element of HTML or XHTML:</li>
+</ul>
+<pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;all and (color)&quot; href=&quot;/style.css&quot;&gt;</code></pre>
+<p>Secondly, in XML:</p>
+<pre><code class="lang-html">&lt;?xml-stylesheet media=&quot;all and (color)&quot; rel=&quot;stylesheet&quot; href=&quot;/style.css&quot; ?&gt;</code></pre>
+<p>And finally, in CSS stylesheets using @import rules:</p>
+<pre><code class="lang-css">@import url(&quot;/style.css&quot;) all and (color);</code></pre>
+<p>Or using @media rules:</p>
+<pre><code class="lang-css">@media all and (color) { /* one or more rule sets... */ }</code></pre>
+<p>There are currently 13 media features catered for in the specification: width, height, device-width, device-height, orientation, aspect-ratio,device-aspect-ratio, color, color-index, monochrome, resolution, scan, and grid. All but orientation, scan, and grid can accept min- and max- prefixes as well.</p>
+<h2 id="responsive-web-design">Responsive Web Design</h2>
+<p><strong><em>Setting the viewport</em></strong></p>
+<pre><code class="lang-html">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</code></pre>
+<p>A <meta> viewport element gives the browser instructions on how to control the page&#39;s dimensions and scaling.</p>
+<p>The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device).</p>
+<p>The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.</p>
+<p><strong><em>Gotchas</em></strong></p>
+<ol>
+<li><p>Do NOT use large fixed width elements - If an image is displayed at a width wider than the viewport it can cause the viewport to scroll horizontally.</p>
+</li>
+<li><p>Do NOT let the content rely on a particular viewport width to render well - Since screen dimensions and width in CSS pixels vary widely between devices, content should not rely on a particular viewport width to render well.</p>
+</li>
+<li><p>Use CSS media queries to apply different styling for small and large screens - Setting large absolute CSS widths for page elements, will cause the element to be too wide for the viewport on a smaller device. Instead, consider using relative width values, such as width: 100%. Also, be careful of using large absolute positioning values. It may cause the element to fall outside the viewport on small devices.</p>
+</li>
+</ol>
+<p><strong><em>Building a Responsive Grid-View</em></strong></p>
+<p>A responsive grid-view often has 12 columns, and has a total width of 100%, and will shrink and expand as you resize the browser window.</p>
+<p>First ensure that all HTML elements have the box-sizing property set to border-box. This makes sure that the padding and border are included in the total width and height of the elements.</p>
+<p>Add the following code in your CSS:</p>
+<pre><code class="lang-css">* {
+    box-sizing: border-box;
+}</code></pre>
+<p><strong><em>Responsive Images</em></strong></p>
+<p>Images will be responsive and scale up and down if the width property is set to 100%. A better option would be to set max-width property to 100%m since the image will scale down if it has to, but never scale up to be larger than its original size.</p>
+<p>Background images can also respond to resizing and scaling.</p>
+<ul>
+<li>If the background-size property is set to &quot;contain&quot;, the background image will scale, and try to fit the content area. However, the image will keep its aspect ratio</li>
+<li>If the background-size property is set to &quot;100% 100%&quot;, the background image will stretch to cover the entire content area.</li>
+<li>If the background-size property is set to &quot;cover&quot;, the background image will scale to cover the entire content area. The &quot;cover&quot; value keeps the aspect ratio, and some part of the background image may be clipped</li>
+</ul>
+<p>A large image can be perfect on a big computer screen, but useless on a small device. To reduce the load, you can use media queries to display different images on different devices.</p>
+<p>You can use the media query min-device-width, instead of min-width, which checks the device width, instead of the browser width. Then the image will not change when you resize the browser window:</p>
+<pre><code class="lang-css">/* For devices smaller than 400px: */
+body {
+    background-image: url(&#39;img_smallflower.jpg&#39;); 
+}
+
+/* For devices 400px and larger: */
+@media only screen and (min-device-width: 400px) {
+    body { 
+        background-image: url(&#39;img_flowers.jpg&#39;); 
+    }
+}</code></pre>
+<p>HTML5 introduced the <picture> element, which lets you define more than one image. (No IE support :(  .. only Edge 13+)</p>
+<p>The <picture> element works similar to the <video> and <audio> elements. You set up different sources, and the first source that fits the preferences is the one being used:</p>
+<pre><code class="lang-css">&lt;picture&gt;
+  &lt;source srcset=&quot;img_smallflower.jpg&quot; media=&quot;(max-width: 400px)&quot;&gt;
+  &lt;source srcset=&quot;img_flowers.jpg&quot;&gt;
+  &lt;img src=&quot;img_flowers.jpg&quot; alt=&quot;Flowers&quot;&gt;
+&lt;/picture&gt;</code></pre>
+<p>The srcset attribute is required, and defines the source of the image. The media attribute is optional, and accepts the media queries you find in CSS @media rule. You should also define an <img> element for browsers that do not support the <picture> element (good fallback option).</p>
+<p><strong><em>Responsive Videos</em></strong></p>
+<ul>
+<li><p>Using The width Property</p>
+<ul>
+<li>If the width property is set to 100%, the video player will be responsive and scale up and down. However, it can be scaled up to be larger than its original size. A better solution, in many cases, will be to use the max-width property instead.</li>
+</ul>
+<pre><code class="lang-css">video {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+</li>
+</ul>
+<p><em>More reading:</em></p>
+<p><a href="http://www.w3schools.com/css/css_rwd_intro.asp">http://www.w3schools.com/css/css_rwd_intro.asp</a></p>
+<p><a href="http://blog.froont.com/9-basic-principles-of-responsive-web-design/">http://blog.froont.com/9-basic-principles-of-responsive-web-design/</a></p>
+<h2 id="css3-transitions">CSS3 Transitions</h2>
+<p>A CSS transition allows you to change the property of an element over a given duration that you set.</p>
+<ul>
+<li>transition-property: The property to be transitioned (in this case, the background property)</li>
+<li>transition-duration: How long the transition should last (0.3 seconds)</li>
+<li>transition-timing-function: How fast the transition happens over time (ease)</li>
+</ul>
+<p>The timing function value allows the speed of the transition to change over time by defining one of six possibilities: <em>ease, linear, ease-in, ease-out, ease-in-out, and cubic-bezier</em> (which allows you to define your own timing curve).</p>
+<p>You may want the transition to also happen on the :focus or :active pseudo-classes of the link as well. Instead of having to add the transition property stack to each of those declarations, the transition instructions are attached to the normal state and therefore declared only once.</p>
+<pre><code class="lang-css">a.foo {
+  padding: 5px 10px;
+  background: #9c3;
+  -webkit-transition: background .3s ease,
+    color 0.2s linear;
+  -moz-transition: background .3s ease,
+    color 0.2s linear;
+  -o-transition: background .3s ease, color 0.2s linear;
+  transition: background .3s ease, color 0.2s linear;
+}
+a.foo:hover,
+a.foo:focus {
+  color: #030;
+  background: #690;
+}</code></pre>
+<p>Let’s say that along with the background color, we also want to change the link’s text color and transition that as well. We can do that by stringing multiple transitions together, separated by a comma. Each can have their varying duration and timing functions. An alternative to listing multiple properties is using the all value. This will transition all available properties.</p>
+<p>Another basic use of changing states is to change the background of an input box on focus.</p>
+<pre><code class="lang-css">input.ourInputBox:focus{ 
+ -webkit-transition:background-color 0.5s linear; 
+ background:#CCC; 
+}</code></pre>
+<p>This time, we put the transition declaration into the hover state, so that we aren’t adding additional unnecessary classes to the CSS. We apply the transition once the input box acquires focus.</p>
+<p><em>More reading:</em></p>
+<p><a href="http://alistapart.com/article/understanding-css3-transitions">http://alistapart.com/article/understanding-css3-transitions</a></p>
+<p><a href="http://code.tutsplus.com/tutorials/css-fundamentals-css3-transitions--pre-10922">http://code.tutsplus.com/tutorials/css-fundamentals-css3-transitions--pre-10922</a></p>
+<h2 id="css-animations">CSS Animations</h2>
+<p>While CSS transitions are all about altering element properties as they move from state to state, CSS animations are dependent on keyframes and animation properties.</p>
+<ul>
+<li>keyframes: Used to define the styles an element will have at various times.</li>
+<li>animation properties: Used to assign @keyframes to a specific element and determine how it is animated. </li>
+</ul>
+<p><strong><em>Keyframes</em></strong></p>
+<p>Keyframes are the foundation of CSS animations. They define what the animation looks like at each stage of the animation timeline. Each @keyframes is composed of:</p>
+<ul>
+<li><p>Name of the animation: A name that describes the animation, for example, bounceIn.</p>
+</li>
+<li><p>Stages of the animation: Each stage of the animation is represented as a percentage. 0% represents the beginning state of the animation. 100% represents the ending state of the animation. Multiple intermediate states can be added in between.</p>
+</li>
+<li><p>CSS Properties: The CSS properties defined for each stage of the animation timeline.</p>
+</li>
+</ul>
+<p>Let’s take a look at a simple @keyframes I’ve named “bounceIn”. This @keyframes has three stages. At the first stage (0%), the element is at opacity 0 and scaled down to 10 percent of its default size, using CSS transform scale. At the second stage (60%) the element fades in to full opacity and grows to 120 percent of its default size. At the final stage (100%), it scales down slightly and returns to its default size.</p>
+<p>The @keyframes are added to your main CSS file.</p>
+<pre><code class="lang-css">@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}</code></pre>
+<p><strong><em>Animation Properties</em></strong></p>
+<p>Once the @keyframes are defined, the animation properties must be added in order for your animation to function.</p>
+<p>Animation properties do two things:</p>
+<ul>
+<li>They assign the @keyframes to the elements you want to animate.</li>
+<li>They define how it is animated.</li>
+</ul>
+<p>The animation properties are added to the CSS selectors(or elements) that you want to animate, You must add the following two animation properties for the animation to take effect.</p>
+<ul>
+<li>animation-name: The name of the animation defined in the @keyframes.</li>
+<li>animation-duration: The duration of the animations, in seconds (eg. 5s) or milliseconds (eg. 200ms).</li>
+</ul>
+<p>Continuing with the above bounceIn example, we’ll add animation-name and animation-duration to the div that we want to animate.</p>
+<pre><code class="lang-css">div {
+  animation-duration: 2s;
+  animation-name: bounceIn;
+}</code></pre>
+<p>Shorthand syntax:</p>
+<pre><code class="lang-css">div {
+  animation: bounceIn 2s;
+}</code></pre>
+<p>By adding both the @keyframes and the animation properties, we have a simple animation!</p>
+<p>In addition to the required animation-name and animation-duration properties, you can further customize and create complex animations using the following properties:</p>
+<ul>
+<li>animation-timing-function – specifies the speed curve of the animation.</li>
+<li>animation-delay – specifies a delay for the start of an animation.</li>
+<li>animation-iteration-count – specifies the number of times an animation should be played.</li>
+<li>animation-direction – specifies whether an animation should play in reverse direction or alternate cycles.</li>
+<li>animation-fill-mode – specifies a style for the element when the animation is not playing. Such as when it is finished or when it has a delay.</li>
+<li>animation-play-state – specifies whether the animation is running or paused.</li>
+</ul>
+<p>Order used in shorthand syntax:</p>
+<p>animation: [animation-name] [animation-duration] [animation-timing-function]
+[animation-delay] [animation-iteration-count] [animation-direction]
+[animation-fill-mode] [animation-play-state];</p>
+<p>To add multiple animations to a selector, you simply separate the values with a comma. Here’s an example:</p>
+<pre><code class="lang-css">.div {
+  animation: slideIn 2s, rotate 1.75s;
+}</code></pre>
+<p><em>More reading:</em></p>
+<p><a href="https://www.elegantthemes.com/blog/tips-tricks/an-introduction-to-css-transitions-animations">https://www.elegantthemes.com/blog/tips-tricks/an-introduction-to-css-transitions-animations</a></p>
+<p><a href="https://robots.thoughtbot.com/css-animation-for-beginners">https://robots.thoughtbot.com/css-animation-for-beginners</a></p>
+<p><a href="http://callmenick.com/post/simple-css3-transitions-transforms-animations-compilation">http://callmenick.com/post/simple-css3-transitions-transforms-animations-compilation</a>  </p>
+<p><a href="http://learn.shayhowe.com/advanced-html-css/performance-organization/">http://learn.shayhowe.com/advanced-html-css/performance-organization/</a></p>
+<h2 id="scalable-vector-graphics-svg-">Scalable Vector Graphics (SVG)</h2>
+<p>SVG stands for scalable vector graphics. It is an XML-based format that supports animation and interactivity.
+In other words, SVG is a technology that allows us to create graphics by writing a code. Moreover, it is scalable. While non-vector graphics like PNG and JPEG have fixed sizes and cannot be scaled without loosing quality, SVG can be mathemagicaly scaled to any size.</p>
+<p>We can use &quot;.svg&quot; file in our code by setting it as an image source just like any other image &quot;&lt; img src=&#39;say_hello.svg&#39;&gt;&quot;. But it&#39;s not so interesting.
+One of the greatest things about SVG is that it is actually text file in XML format. So we can open it, read it and interact with it. We can take our SVG code, put in DOM and play with it - change elements parameters like position, background color or font family using JavaScript and CSS. Moreover, each element of SVG can be animated. And it&#39;s really awesome.</p>
+<p>So, basicaly, we should always use SVG graphics instead of PNG or JPEG, when we are talking about basic shapes, logos and vector graphic.</p>
+<p>Here&#39;s a simple red circle SVG</p>
+<pre><code class="lang-css">&lt;svg width=&quot;100&quot; height=&quot;100&quot;&gt; 
+    &lt;circle cx=&quot;50&quot; cy=&quot;50&quot; r=&quot;40&quot; fill=&quot;red&quot; /&gt; 
+&lt;/svg&gt;</code></pre>
+<p><strong><em>Common element parameters</em></strong></p>
+<p>Usually graphs starts (x,y = 0) from bottom left corner. In SVG start point is top left corner.</p>
+<p>Each SVG shape (element) has some basic parameters:</p>
+<ul>
+<li>X - X coordinate of top left corner of the element</li>
+<li>Y - Y coordinate of top left corner of the element</li>
+<li>Fill - element background color.</li>
+<li>Fill-opacity - opacity of background color</li>
+<li>Stroke - element border color.</li>
+<li>Stroke-width - element border size.</li>
+</ul>
+<p><strong><em>Pros:</em></strong></p>
+<ul>
+<li>Resolution independent: Scalability without changing the image quality. It is widely used for devices with screens Retina and those close to them.</li>
+<li>Small size. SVG image elements take up much less space than their twins created in raster format.</li>
+<li>Flexibility. With CSS, you can quickly change the graphics settings on the site, such as background color or the position of the logo on the page. To do this, you can edit the file in any text editor.</li>
+<li>It’s possible to view the contents of the SVG file in any browser (IE, Chrome, Opera, FireFox, Safari, etc.).</li>
+<li>No unnecessary HTTP requests, unlike using an <img> tag</li>
+<li>SEO friendly: text labels, descriptions can be searched by search engines.</li>
+<li>We have scripting control for custom interactive events and animation.</li>
+</ul>
+<p><strong><em>Cons:</em></strong></p>
+<ul>
+<li>The file size is growing very fast, if the object consists of a large number of small elements.</li>
+<li>It’s impossible to read a part of the graphic object, only the entire object and it slows you down.</li>
+</ul>
+<p><em>Support: IE9+</em></p>
+<p><em>More reading:</em></p>
+<p><a href="http://tonyfreed.com/blog/introduction-to-svg">http://tonyfreed.com/blog/introduction-to-svg</a></p>
+<p><a href="http://engageinteractive.co.uk/blog/an-introduction-to-svg">http://engageinteractive.co.uk/blog/an-introduction-to-svg</a></p>
+<p><a href="http://davidwalsh.name/svg-animation">http://davidwalsh.name/svg-animation</a></p>
+<p><a href="http://www.creativebloq.com/web-design/icon-fonts-vs-svg-101413211">http://www.creativebloq.com/web-design/icon-fonts-vs-svg-101413211</a></p>
+<p><em>Videos:</em></p>
+<p><a href="https://www.youtube.com/watch?v=vvuH6qS2M5Q">Using SVG - Intro</a></p>
+<p><a href="https://www.youtube.com/watch?v=PQxtlY19kto&amp;list=PLL8woMHwr36F2tCFnWTbVBQAGQ6nTcXOO">SVG Tutorials - Playlist</a></p>
+<p><a href="https://www.youtube.com/watch?v=uKNX23lvnPo">Working with SVG, A Primer - Sara Soueidan</a></p>
+<p><a href="https://www.youtube.com/watch?v=SeLOt_BRAqc">You Don&#39;t Know SVG - Dmitry Baranovskiy</a></p>
+<p><a href="https://www.youtube.com/watch?v=w83XRCkMtHQ">SVG is for Everybody - Chris Coyier</a></p>
+<p><a href="https://www.youtube.com/watch?v=lMFfTRiipOQ">Building Better Interfaces With SVG - Sara Soueidan</a></p>
+<p><a href="https://www.youtube.com/watch?v=NkLDuPf5P0A">SVG Lessons I Learned The Hard Way - Sara Soueidan</a></p>
+<hr>
+<p><em>CSS Links</em></p>
+<p><a href="http://designshack.net/articles/css/5-steps-to-drastically-improve-your-css-knowledge-in-24-hours/">http://designshack.net/articles/css/5-steps-to-drastically-improve-your-css-knowledge-in-24-hours/</a></p>
+<p><a href="http://code.tutsplus.com/series/css3-mastery--net-18126">http://code.tutsplus.com/series/css3-mastery--net-18126</a></p>
+<p><a href="http://code.tutsplus.com/tutorials/getting-to-work-with-css3-power-tools--net-13894">http://code.tutsplus.com/tutorials/getting-to-work-with-css3-power-tools--net-13894</a></p>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>
