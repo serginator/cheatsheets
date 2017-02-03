@@ -126,7 +126,10 @@
 <li><a href="#spread-operator">Spread operator</a></li>
 </ul>
 </li>
+<li><a href="#function-parameters">Function parameters</a></li>
 <li><a href="#arrow-functions">Arrow functions</a></li>
+<li><a href="#classes">Classes</a></li>
+<li><a href="#getters-and-setters">Getters and setters</a></li>
 </ul>
 <h1 id="content">Content</h1>
 <h2 id="variables">Variables</h2>
@@ -192,6 +195,17 @@ console.log(first3, third3) // returns 1, 3</code></pre>
     [last, ...init] = arr.reverse();
 console.log(head, tail, a, rest); // 1, [2,3,4,5], 6, {b:7,c:8}
 console.log(last, init); // 5, [4,3,2,1]</code></pre>
+<h2 id="function-parameters">Function parameters</h2>
+<p>Is a new (and needed) way to pass default params or optional ones.</p>
+<pre><code class="lang-js">function sum(a = 0, b = 0) {
+    return a + b;
+}
+console.log(sum(1)); // returns 1</code></pre>
+<p>You can also use spread operator</p>
+<pre><code class="lang-js">function sum (...nums) {
+  return nums.reduce((sum, n) =&gt; sum + n, 0);
+}
+console.log(sum(1, 2, 3)); // returns 7</code></pre>
 <h2 id="arrow-functions">Arrow functions</h2>
 <p>Cleaner functions</p>
 <pre><code class="lang-js">let incr = n =&gt; n + 1;
@@ -220,12 +234,64 @@ function foo2(values) {
 }
 var op2 = new foo2([1, 2, 3]);
 op2.incr(); // return [2, 3, 4]</code></pre>
+<h2 id="classes">Classes</h2>
+<p>We&#39;ve been doing this by using other libraries, or coffeescript, but this way
+makes it easier. Also, inheritance was made using .call, and now we can
+<code>extend</code> our classes and call <code>super</code> to use the parent.</p>
+<pre><code class="lang-js">class Animal {
+  constructor(name, years) {
+    this.name = name;
+    this.years = years;
+  }
+  desc() {
+    return `${this.name} is ${this.years} years old`;
+  }
+}
+
+class Cat extends Animal {
+  constructor (name, years) {
+    super(name, years);
+  }
+  desc() {
+    return `${super.desc()} and says Meow`;
+  }
+}
+
+let cat = new Cat(&#39;Jiji&#39;, &#39;1,7&#39;);
+let cat2 = new Cat(&#39;Yuki&#39;, &#39;0,5&#39;)
+console.log(cat.desc()); // Jiji is 1,7 years old and says Meow
+console.log(cat2.desc()); // Yuki is 0,5 years old and says Meow</code></pre>
+<h2 id="getters-and-setters">Getters and setters</h2>
+<p>Is a way of manipulate data when accessed and to validate data when set.</p>
+<pre><code class="lang-js">class Person {
+    constructor: function(name, gender) {
+        this.name = name;
+        this.gender = gender
+    }
+    get name() {
+        return gender === &#39;male&#39; : `Mr. ${this.name}` : `Mrs. ${this.name}`;
+    }
+    set name(newName) {
+        if (!newName) {
+            console.log(&#39;Name can\&#39;t be empty&#39;);
+        } else {
+            this.name = newName;
+        }
+    }
+}
+let person = new Person(&#39;Mike&#39;, &#39;male&#39;);
+console.log(person.name); // Mr. Mike
+person.name = null; // Name can&#39;t be empty
+person.name = &#39;Mikaela&#39;;
+person.gender = &#39;female&#39;;
+console.log(person.name); // Mrs. Mikaela</code></pre>
 <h1 id="interesting-links">Interesting links</h1>
 <ul>
 <li><a href="https://leanpub.com/understandinges6/read">Understanding ECMAScript 6 book</a></li>
 <li><a href="https://www.smashingmagazine.com/2015/10/es6-whats-new-next-version-javascript/">ECMAScript 6 (ES6): What’s New In The Next Version Of JavaScript</a></li>
 <li><a href="https://css-tricks.com/lets-learn-es2015/">Let’s Learn ES2015</a></li>
 <li><a href="http://www.2ality.com/2015/08/getting-started-es6.html">Getting started with ECMAScript 6</a></li>
+<li><a href="https://es6cheatsheet.com">ES6Cheatsheet.com</a></li>
 </ul>
 <script src='http://localhost:35729/livereload.js'></script>
 
