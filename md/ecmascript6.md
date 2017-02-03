@@ -10,6 +10,7 @@
     * [Spread operator](#spread-operator)
 * [Function parameters](#function-parameters)
 * [Arrow functions](#arrow-functions)
+* [Classes](#classes)
 
 # Content
 
@@ -145,6 +146,37 @@ function foo2(values) {
 var op2 = new foo2([1, 2, 3]);
 op2.incr(); // return [2, 3, 4]
 ```
+
+## Classes
+We've been doing this by using other libraries, or coffeescript, but this way
+makes it easier. Also, inheritance was made using .call, and now we can
+`extend` our classes and call `super` to use the parent.
+```js
+class Animal {
+  constructor(name, years) {
+    this.name = name;
+    this.years = years;
+  }
+  desc() {
+    return `${this.name} is ${this.years} years old`;
+  }
+}
+
+class Cat extends Animal {
+  constructor (name, years) {
+    super(name, years);
+  }
+  desc() {
+    return `${super.desc()} and says Meow`;
+  }
+}
+
+let cat = new Cat('Jiji', '1,7');
+let cat2 = new Cat('Yuki', '0,5')
+console.log(cat.desc()); // Jiji is 1,7 years old and says Meow
+console.log(cat2.desc()); // Yuki is 0,5 years old and says Meow
+```
+
 
 # Interesting links
 + [Understanding ECMAScript 6 book](https://leanpub.com/understandinges6/read)
