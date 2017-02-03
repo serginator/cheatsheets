@@ -39,33 +39,51 @@ console.log(test); // ReferenceError
 console.log(test); // ReferenceError
 ```
 
-## Arrow functions
-
-## Strings
-
-### Template Literal
-
-### Methods
-
-## Arrays
-
-## Math
+## String templates
+Instead of use string concatenation like
+```js
+var a = 'a',
+    b = 'b',
+    c = 'c',
+    msg = 'My string is ' + a + ' and ' + b + ' and ' + c;
+```
+We can use templates
+```js
+let a = 'a',
+    b = 'b',
+    c = 'c',
+    msg = `My string is ${a} and ${b} and ${c} plus javascript ops ${2+3}`
+```
 
 ## Destructuring
+To extract values from objects and arrays
+```js
+// Instead of extract from an array
+var a = [1, 2, 3],
+    first = a[0],
+    second = a[1],
+    third = a[2];
+// we can destructurate it
+let b = [4, 5, 6],
+    [first2, second2, third2] = b;
+// and the same with objects
+let c = { a: 1, b: 2, c: 3 },
+    { first3, second3, third3 } = obj;
+console.log(first3, third3) // returns 1, 3
+```
 
-## Spread Operator
+### Spread operator
+It gets `what remains`
+```js
+let arr = [1, 2, 3, 4, 5]
+    [head, ...tail] = arr,
+    obj = { a: 6, b: 7, c: 8},
+    {a, ...rest}; = obj,
+    [last, ...init] = arr.reverse();
+console.log(head, tail, a, rest); // 1, [2,3,4,5], 6, {b:7,c:8}
+console.log(last, init); // 5, [4,3,2,1]
+```
 
-## Parameters
-
-### Default values
-
-### Rest
-
-## Modules
-
-## Classes
-
-## Symbols
 
 # Interesting links
 + [Understanding ECMAScript 6 book](https://leanpub.com/understandinges6/read)
