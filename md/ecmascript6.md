@@ -8,6 +8,7 @@
 * [String templates](#string-templates)
 * [Destructuring](#destructuring)
     * [Spread operator](#spread-operator)
+* [Function parameters](#function-parameters)
 * [Arrow functions](#arrow-functions)
 
 # Content
@@ -94,6 +95,22 @@ let arr = [1, 2, 3, 4, 5]
     [last, ...init] = arr.reverse();
 console.log(head, tail, a, rest); // 1, [2,3,4,5], 6, {b:7,c:8}
 console.log(last, init); // 5, [4,3,2,1]
+```
+
+## Function parameters
+Is a new (and needed) way to pass default params or optional ones.
+```js
+function sum(a = 0, b = 0) {
+    return a + b;
+}
+console.log(sum(1)); // returns 1
+```
+You can also use spread operator
+```js
+function sum (...nums) {
+  return nums.reduce((sum, n) => sum + n, 0);
+}
+console.log(sum(1, 2, 3)); // returns 7
 ```
 
 ## Arrow functions
