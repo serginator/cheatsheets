@@ -11,6 +11,7 @@
 * [Function parameters](#function-parameters)
 * [Arrow functions](#arrow-functions)
 * [Classes](#classes)
+* [Getters and setters](#getters-and-setters)
 
 # Content
 
@@ -175,6 +176,33 @@ let cat = new Cat('Jiji', '1,7');
 let cat2 = new Cat('Yuki', '0,5')
 console.log(cat.desc()); // Jiji is 1,7 years old and says Meow
 console.log(cat2.desc()); // Yuki is 0,5 years old and says Meow
+```
+
+## Getters and setters
+Is a way of manipulate data when accessed and to validate data when set.
+```js
+class Person {
+    constructor: function(name, gender) {
+        this.name = name;
+        this.gender = gender
+    }
+    get name() {
+        return gender === 'male' : `Mr. ${this.name}` : `Mrs. ${this.name}`;
+    }
+    set name(newName) {
+        if (!newName) {
+            console.log('Name can\'t be empty');
+        } else {
+            this.name = newName;
+        }
+    }
+}
+let person = new Person('Mike', 'male');
+console.log(person.name); // Mr. Mike
+person.name = null; // Name can't be empty
+person.name = 'Mikaela';
+person.gender = 'female';
+console.log(person.name); // Mrs. Mikaela
 ```
 
 
