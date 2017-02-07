@@ -7,7 +7,6 @@
     * [Replace IIFEs with blocks](#replace-iifes-with-blocks)
 * [New Methods](#new-methods)
     * [Arrays](#arrays)
-    * [Math](#math)
 * [String templates](#string-templates)
 * [Destructuring](#destructuring)
     * [Spread operator](#spread-operator)
@@ -19,6 +18,7 @@
 * [Data structures](#data-structures)
 * [Symbols](#symbols)
 * [Iterators](#iterators)
+    * [for-of](#for-of)
 * [Generators](#generators)
 
 # Content
@@ -97,11 +97,6 @@ console.log(helloWorld.values()); // [undefined, 'hello', 'world']
 
 // Fills array with something
 new Array(2).fill(27); // [27, 27]
-```
-
-### Math
-```js
-
 ```
 
 ## String templates
@@ -313,13 +308,39 @@ set.forEach(n => console.log(n)); // 1, 2, 3, 4, 5
 ```
 
 ## Symbols
+They are tokens that serve as unique IDs
 ```js
-
+// You can declare it as
+let sym1 = Symbol();
+// Or with a description
+let sym2 = Symbol('symbol2');
+sym2.toString(); // 'Symbol(symbol2)'
+// it's a primitive
+typeof sym2; // symbol
+let obj = {[Symbol('test')]: 1, test: 2};
+Object.getOwnPropertyNames(obj); // ['test']
+Object.getOwnPropertySymbols(obj); // [Symbol(test)]]
+Reflect.ownKeys(obj); // [Symbol(test), 'test']
 ```
 
 ## Iterators
+Arrays, Strings, Maps, Sets, DOM data structures... are iterable
 ```js
+// Like we saw in arrays section, you can do the following to iterate
+let arr = ['a', 'b'];
+let iter = arr[Symbol.iterator]();
+iter.next(); // { value: 'a', done: false }
+iter.next(); // { value: 'b', done: false }
+iter.next(); // { value: undefined, done: true }
+```
 
+### for-of
+```js
+// new loop in es6
+let arrayLike = { length: 2, 0: 'a', 1: 'b' };
+for (let x of Array.from(arrayLike)) {
+    console.log(x);
+}
 ```
 
 ## Generators
