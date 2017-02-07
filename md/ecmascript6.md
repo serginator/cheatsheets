@@ -344,8 +344,36 @@ for (let x of Array.from(arrayLike)) {
 ```
 
 ## Generators
+These are some kind of processes that can be paused and resumed.
 ```js
+function* generatorTest() {
+    yield 'Hello';
+    yield 'World';
+}
+const testObj = generatorTest();
+testObj.next(); // { value: 'Hello', done: false }
+testObj.next(); // { value: 'World', done: false }
+testObj.next(); // { value: undefined, done: true } // it has finished
 
+// A better and real example
+function* fibonacci() {
+  let current = 0;
+  let next = 1;
+  while(true) {
+      yield current;
+      [current, next] = [next, current + next];
+  }
+}
+var fib = fibonacci();
+fib.next(); // { value: 0, done: false }
+fib.next(); // { value: 1, done: false }
+fib.next(); // { value: 1, done: false }
+fib.next(); // { value: 2, done: false }
+fib.next(); // { value: 3, done: false }
+fib.next(); // { value: 5, done: false }
+fib.next(); // { value: 8, done: false }
+fib.next(); // { value: 13, done: false }
+// ...
 ```
 
 ---
