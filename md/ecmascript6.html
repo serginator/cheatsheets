@@ -123,7 +123,6 @@
 </li>
 <li><a href="#new-methods">New Methods</a><ul>
 <li><a href="#arrays">Arrays</a></li>
-<li><a href="#math">Math</a></li>
 </ul>
 </li>
 <li><a href="#string-templates">String templates</a></li>
@@ -138,7 +137,10 @@
 <li><a href="#modules">Modules</a></li>
 <li><a href="#data-structures">Data structures</a></li>
 <li><a href="#symbols">Symbols</a></li>
-<li><a href="#iterators">Iterators</a></li>
+<li><a href="#iterators">Iterators</a><ul>
+<li><a href="#for-of">for-of</a></li>
+</ul>
+</li>
 <li><a href="#generators">Generators</a></li>
 </ul>
 <h1 id="content">Content</h1>
@@ -204,9 +206,6 @@ console.log(helloWorld.values()); // [undefined, &#39;hello&#39;, &#39;world&#39
 
 // Fills array with something
 new Array(2).fill(27); // [27, 27]</code></pre>
-<h3 id="math">Math</h3>
-<pre><code class="lang-js">
-</code></pre>
 <h2 id="string-templates">String templates</h2>
 <p>Instead of use string concatenation like</p>
 <pre><code class="lang-js">var a = &#39;a&#39;,
@@ -383,14 +382,62 @@ console.log(set.size); // 5
 console.log(set.has(5)); // true
 set.forEach(n =&gt; console.log(n)); // 1, 2, 3, 4, 5</code></pre>
 <h2 id="symbols">Symbols</h2>
-<pre><code class="lang-js">
-</code></pre>
+<p>They are tokens that serve as unique IDs</p>
+<pre><code class="lang-js">// You can declare it as
+let sym1 = Symbol();
+// Or with a description
+let sym2 = Symbol(&#39;symbol2&#39;);
+sym2.toString(); // &#39;Symbol(symbol2)&#39;
+// it&#39;s a primitive
+typeof sym2; // symbol
+let obj = {[Symbol(&#39;test&#39;)]: 1, test: 2};
+Object.getOwnPropertyNames(obj); // [&#39;test&#39;]
+Object.getOwnPropertySymbols(obj); // [Symbol(test)]]
+Reflect.ownKeys(obj); // [Symbol(test), &#39;test&#39;]</code></pre>
 <h2 id="iterators">Iterators</h2>
-<pre><code class="lang-js">
-</code></pre>
+<p>Arrays, Strings, Maps, Sets, DOM data structures... are iterable</p>
+<pre><code class="lang-js">// Like we saw in arrays section, you can do the following to iterate
+let arr = [&#39;a&#39;, &#39;b&#39;];
+let iter = arr[Symbol.iterator]();
+iter.next(); // { value: &#39;a&#39;, done: false }
+iter.next(); // { value: &#39;b&#39;, done: false }
+iter.next(); // { value: undefined, done: true }</code></pre>
+<h3 id="for-of">for-of</h3>
+<pre><code class="lang-js">// new loop in es6
+let arrayLike = { length: 2, 0: &#39;a&#39;, 1: &#39;b&#39; };
+for (let x of Array.from(arrayLike)) {
+    console.log(x);
+}</code></pre>
 <h2 id="generators">Generators</h2>
-<pre><code class="lang-js">
-</code></pre>
+<p>These are some kind of processes that can be paused and resumed.</p>
+<pre><code class="lang-js">function* generatorTest() {
+    yield &#39;Hello&#39;;
+    yield &#39;World&#39;;
+}
+const testObj = generatorTest();
+testObj.next(); // { value: &#39;Hello&#39;, done: false }
+testObj.next(); // { value: &#39;World&#39;, done: false }
+testObj.next(); // { value: undefined, done: true } // it has finished
+
+// A better and real example
+function* fibonacci() {
+  let current = 0;
+  let next = 1;
+  while(true) {
+      yield current;
+      [current, next] = [next, current + next];
+  }
+}
+var fib = fibonacci();
+fib.next(); // { value: 0, done: false }
+fib.next(); // { value: 1, done: false }
+fib.next(); // { value: 1, done: false }
+fib.next(); // { value: 2, done: false }
+fib.next(); // { value: 3, done: false }
+fib.next(); // { value: 5, done: false }
+fib.next(); // { value: 8, done: false }
+fib.next(); // { value: 13, done: false }
+// ...</code></pre>
 <hr>
 <h1 id="interesting-links">Interesting links</h1>
 <ul>
