@@ -5,6 +5,9 @@
     * [let](#let)
     * [const](#const)
     * [Replace IIFEs with blocks](#replace-iifes-with-blocks)
+* [New Methods](#new-methods)
+    * [Arrays](#arrays)
+    * [Math](#math)
 * [String templates](#string-templates)
 * [Destructuring](#destructuring)
     * [Spread operator](#spread-operator)
@@ -14,6 +17,9 @@
 * [Getters and setters](#getters-and-setters)
 * [Modules](#modules)
 * [Data structures](#data-structures)
+* [Symbols](#symbols)
+* [Iterators](#iterators)
+* [Generators](#generators)
 
 # Content
 
@@ -54,6 +60,48 @@ console.log(test); // ReferenceError
     let test = 'hello';
 }
 console.log(test); // ReferenceError
+```
+
+## New Methods
+
+### Arrays
+```js
+// Get first element which equals a condition
+let numbers = [1, 2, 3, 4];
+let firstEven = numbers.find((x) => x % 2 === 0));
+console.log(firstEven); // returns 2
+
+// Get the index of the first element which equals a condition
+let firstEvenIndex = numbers.findIndex((x) => x % 2 === 0));
+console.log(firstEvenIndex); // returns 1
+
+// Get an iterator to loop through an array
+let entries = numbers.entries();
+console.log(entries.next()); // returns [0, 1] where 0 is index and 1 is value
+console.log(entries.next()); // returns [1, 2]
+
+// Create an array from another array-like object
+Array.from('hi'); // ['h', 'i']
+Array.from([1, 2]); // [1, 2]
+// It accepts a second param with a function to do like a '.map()'
+Array.from([2, 3], (x) => x * 2); // [4, 6]
+// Or from an object
+let helloWorld = Array.from({length: 3, 1: 'hello', 2: 'world'}); // [undefined, 'hello', 'world']
+
+// Create an array from params
+Array.of('hello', 'world'); // ['hello', 'world']
+
+// Get keys of values
+console.log(helloWorld.keys()); // [0, 1, 2]
+console.log(helloWorld.values()); // [undefined, 'hello', 'world']
+
+// Fills array with something
+new Array(2).fill(27); // [27, 27]
+```
+
+### Math
+```js
+
 ```
 
 ## String templates
@@ -263,6 +311,22 @@ console.log(set.size); // 5
 console.log(set.has(5)); // true
 set.forEach(n => console.log(n)); // 1, 2, 3, 4, 5
 ```
+
+## Symbols
+```js
+
+```
+
+## Iterators
+```js
+
+```
+
+## Generators
+```js
+
+```
+
 ---
 # Interesting links
 + [Understanding ECMAScript 6 book](https://leanpub.com/understandinges6/read)
