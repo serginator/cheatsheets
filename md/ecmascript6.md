@@ -12,6 +12,8 @@
 * [Arrow functions](#arrow-functions)
 * [Classes](#classes)
 * [Getters and setters](#getters-and-setters)
+* [Modules](#modules)
+* [Data structures](#data-structures)
 
 # Content
 
@@ -110,7 +112,7 @@ console.log(sum(1)); // returns 1
 You can also use spread operator
 ```js
 function sum (...nums) {
-  return nums.reduce((sum, n) => sum + n, 0);
+    return nums.reduce((sum, n) => sum + n, 0);
 }
 console.log(sum(1, 2, 3)); // returns 7
 ```
@@ -154,22 +156,22 @@ makes it easier. Also, inheritance was made using .call, and now we can
 `extend` our classes and call `super` to use the parent.
 ```js
 class Animal {
-  constructor(name, years) {
-    this.name = name;
-    this.years = years;
-  }
-  desc() {
-    return `${this.name} is ${this.years} years old`;
-  }
+    constructor(name, years) {
+        this.name = name;
+        this.years = years;
+    }
+    desc() {
+        return `${this.name} is ${this.years} years old`;
+    }
 }
 
 class Cat extends Animal {
-  constructor (name, years) {
-    super(name, years);
-  }
-  desc() {
-    return `${super.desc()} and says Meow`;
-  }
+    constructor (name, years) {
+        super(name, years);
+    }
+    desc() {
+        return `${super.desc()} and says Meow`;
+    }
 }
 
 let cat = new Cat('Jiji', '1,7');
@@ -205,7 +207,63 @@ person.gender = 'female';
 console.log(person.name); // Mrs. Mikaela
 ```
 
+## Modules
+New way to import export modules without using require or similar tools.
+```js
+// Instead of
+var MyLib = require('MyLib');
+// You can do
+import MyLib from 'MyLib';
+// Or even get just what you need from that library
+import { MyMethod as MyLibMethod } from 'MyLib';
 
+// Instead of
+module.exports = {
+    MainThing: MyLibClass,
+    MyMethod: SuperCoolMethod
+}
+// You can do
+export default MyLibClass;
+export { SuperCoolMethod as MyMethod };
+```
+
+## Data structures
+Now there are real sets and hashmaps
+```js
+// hashmap in ES5
+var hash = {},
+    key2 = 'key2';
+hash['key1'] = 'val1';
+hash[key2] = 'val2';
+hash.key3 = 'val3';
+console.log(hash); // {"key1":"val1","key2":"val2", "key3":"val3"}
+
+// hashmap in ES6
+let key2 = 'key2';
+let hash = new Map([
+    ['key1', 'val1'],
+    [key2, 'val2'],
+    [true, 'yes']
+]);
+//hash.key3 = 'val3';
+console.log(hash.get(true)); // yes
+console.log(hash.has('key3')); // false
+
+for (let [key, val] of hash.entries()) {
+    console.log(key, val);
+    // returns
+    // key1, val1
+    // key2, val2
+    // true, yes
+}
+
+// sets in ES6
+let set = new Set([1, 2, 1, 1, 3, 4, 5, 4, 3]);
+console.log(set.size); // 5
+console.log(set.has(5)); // true
+set.forEach(n => console.log(n)); // 1, 2, 3, 4, 5
+```
+---
 # Interesting links
 + [Understanding ECMAScript 6 book](https://leanpub.com/understandinges6/read)
 + [ECMAScript 6 (ES6): What’s New In The Next Version Of JavaScript](https://www.smashingmagazine.com/2015/10/es6-whats-new-next-version-javascript/)
