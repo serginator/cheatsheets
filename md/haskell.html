@@ -161,8 +161,8 @@ same value anywhere in the program).</li>
 <li>Not strict.</li>
 <li>Lazy evaluation.</li>
 <li>Infinite structures<pre><code>HUGS&gt;[1..]
-returns [1,2,3,4... and doesn&#39;t end</code></pre>
-</li>
+returns [1,2,3,4... and doesn&#39;t end
+</code></pre></li>
 <li>Strongly typed. There&#39;s no <code>void</code>. Haskell infers type.</li>
 </ul>
 <h2 id="currying">Currying</h2>
@@ -200,11 +200,11 @@ returns [1,2,3,4... and doesn&#39;t end</code></pre>
 <li><code>--</code> is a one line comment (//)</li>
 <li><code>{- whatever -}</code> is a multiline comment (/<em> whatever </em>/)</li>
 <li>A simple function:<pre><code>g::Int -&gt; Int
-g x = x + 1 -- gets an integer and returns one more</code></pre>
-</li>
+g x = x + 1 -- gets an integer and returns one more
+</code></pre></li>
 <li>Another simple function:<pre><code>f:: Int -&gt; Int -&gt; Int
-f x y = x + y + 1 -- addition of x and y plus 1</code></pre>
-</li>
+f x y = x + y + 1 -- addition of x and y plus 1
+</code></pre></li>
 <li>Function names and variables must be in lowercase, can&#39;t start with a
 number, accept <code>&#39;</code>, digits, <code>_</code> and <code>-</code>.</li>
 <li>Types start with uppercase.</li>
@@ -213,8 +213,8 @@ double x = x + x
 --quadruple::Int-&gt;Int
 quadruple x = double (double x)
 --We don&#39;t need to ad fn::type-&gt;type, the compilers infers it
-twice f x = f(fx)</code></pre>
-</li>
+twice f x = f(fx)
+</code></pre></li>
 </ul>
 <h2 id="hugs">Hugs</h2>
 <p>To load a program with hugs use :l (or :load) program.hs</p>
@@ -225,8 +225,8 @@ square x = x * x
 
 &gt;2 + square 3 -&gt; 2 + (3 * 3) -&gt; 2 + (9) -&gt; 11
 &gt;square(square 3) -&gt; (square 3)*(square 3) -&gt; (3 * 3) * (square 3) -&gt;
--&gt; 9 * (square 3) -&gt; 9 * (3 * 3) -&gt; 9 * 9 -&gt; 81</code></pre>
-<ul>
+-&gt; 9 * (square 3) -&gt; 9 * (3 * 3) -&gt; 9 * 9 -&gt; 81
+</code></pre><ul>
 <li>Impacient evaluation: redex from inside to outside</li>
 <li>Lazy evaluation: redex from outside to inside</li>
 </ul>
@@ -235,8 +235,8 @@ I&#39;ll try to explain it here:</p>
 <pre><code>square 3 -&gt; · * · -&gt; 9, where · points to 3
 square (square 3) -&gt; · * · where · points to square 3 -&gt;
   -&gt; · * · where each · points to ~ * ~ where ~ points to 3 -&gt; 
-  -&gt; · * · where · points to 9 -&gt; 81</code></pre>
-<h2 id="comparisions">Comparisions</h2>
+  -&gt; · * · where · points to 9 -&gt; 81
+</code></pre><h2 id="comparisions">Comparisions</h2>
 <p>(==), (&lt;), (&gt;), (&lt;=), (&gt;=), (/=)</p>
 <h2 id="types">Types</h2>
 <ul>
@@ -256,8 +256,8 @@ square (square 3) -&gt; · * · where · points to square 3 -&gt;
 <li><code>()</code> is an empty tuple.</li>
 <li>Unitary tuple like (3) has no sense, the compiler understands it as a 3.</li>
 <li>Example:<pre><code>predSuc::Int -&gt; (Int, Int)
-predSuc n = (n - 1, n + 1)</code></pre>
-</li>
+predSuc n = (n - 1, n + 1)
+</code></pre></li>
 </ul>
 <h3 id="lists">Lists</h3>
 <p>Must be of the same type, but there&#39;s no limit of elements. Lists doesn&#39;t have
@@ -294,8 +294,8 @@ f x = False
 f:Int -&gt; Bool
 f x = True
 f 2 = False
-&gt;f 2 -&gt; True -- Because it evaluates first &quot;f x&quot; and it matches.</code></pre>
-<h3 id="recursive-examples">Recursive examples</h3>
+&gt;f 2 -&gt; True -- Because it evaluates first &quot;f x&quot; and it matches.
+</code></pre><h3 id="recursive-examples">Recursive examples</h3>
 <ul>
 <li><p>Factorial</p>
 <pre><code>fact::Int-&gt;Int
@@ -304,8 +304,8 @@ fact n = n * fact (n - 1)   -- recursive
 
 &gt;fact 0 -&gt; 0
 &gt;fact 3 -&gt; 6
-&gt;fact 117 -&gt; 0 out of range</code></pre>
-<p>We can fix this in two ways, one is to declare it as <code>fact::Integer-&gt;Integer</code>
+&gt;fact 117 -&gt; 0 out of range
+</code></pre><p>We can fix this in two ways, one is to declare it as <code>fact::Integer-&gt;Integer</code>
 so in this way it will not run out of range. Another fix could be removing
 the type declaration, in this way the compiler will infer the type and put
 something like <code>fact::Num a =&gt; a -&gt; a</code>, we can see this with <code>hugs</code> putting
@@ -314,8 +314,8 @@ something like <code>fact::Num a =&gt; a -&gt; a</code>, we can see this with <c
 <li><p>Returns the addition of elements of a list</p>
 <pre><code>sum::[Int]-&gt;Int
 sum [] = 0
-sum (x:xs) = x + sum xs -- x is the first element and xs are the following.</code></pre>
-</li>
+sum (x:xs) = x + sum xs -- x is the first element and xs are the following.
+</code></pre></li>
 <li><p>Concat two lists of numbers</p>
 <pre><code>conc::[Int]-&gt;[Int]-&gt;[Int]
 conc [] xs = xs
@@ -323,47 +323,47 @@ conc (x:xs) ys = x:(conc xs ys)
 &gt;conc [1,2] [3,4,5] -&gt; [1,2,3,4,5]
 
 -- This is already defined in Haskell with (++)
-&gt;[1,2] ++ [3,4,5] -&gt; [1,2,3,4,5]</code></pre>
-</li>
+&gt;[1,2] ++ [3,4,5] -&gt; [1,2,3,4,5]
+</code></pre></li>
 </ul>
 <h3 id="more-patterns">More patterns</h3>
 <ul>
 <li>Anonymous pattern or underlined<pre><code>first2::(Int, Int)-&gt;Int
 first2 (x, y) = x -- or we can put &quot;first2 (x, _) = x&quot; because we don&#39;t care
 first3::(Int, Int, Int)-&gt;Int
-frist3 (x, _, _) = x</code></pre>
-</li>
+frist3 (x, _, _) = x
+</code></pre></li>
 <li>Arythmetic ones, patherns n+k being k a constant<pre><code>fact::Int-&gt;Int
 fact 0 = 1
-fact (n + 1) = (n + 1) * fact n</code></pre>
-</li>
+fact (n + 1) = (n + 1) * fact n
+</code></pre></li>
 <li>Named patterns, it&#39;s like an alias for an expression<pre><code>fact::Int-&gt;Int
 fact 0 = 1
-fact m@(n+1) = m * fact n</code></pre>
-</li>
+fact m@(n+1) = m * fact n
+</code></pre></li>
 </ul>
 <h2 id="definition-of-functions-by-cases">Definition of functions by cases</h2>
 <pre><code>  sign::Int-&gt;Int
   sign x  | x &gt; 0 = 1 -- These are called guards
           | x &lt; 0 = -1
-          | otherwise = 0</code></pre>
-<pre><code>  abs::Int-&gt;Int
+          | otherwise = 0
+</code></pre><pre><code>  abs::Int-&gt;Int
   abs x   | x &gt;= 0 = x
-          | otherwise = -x</code></pre>
-<h2 id="conditionals">Conditionals</h2>
+          | otherwise = -x
+</code></pre><h2 id="conditionals">Conditionals</h2>
 <pre><code>  ifThenElse::Bool-&gt;Int-&gt;Int-&gt;Int
   ifThenElse True x _ = x
-  ifThenElse False _ y = y</code></pre>
-<h2 id="case-expressions">Case expressions</h2>
+  ifThenElse False _ y = y
+</code></pre><h2 id="case-expressions">Case expressions</h2>
 <pre><code>  sum::[Int]-&gt;Int
   sum xs = case xs of
             [] = 0
-            (y:ys) -&gt; y + sum ys</code></pre>
-<h2 id="error-function">Error function</h2>
+            (y:ys) -&gt; y + sum ys
+</code></pre><h2 id="error-function">Error function</h2>
 <pre><code>  head::[Int]-&gt;Int
   head [] = error &#39;list is empty&#39;
-  head (x:_) = x</code></pre>
-<h2 id="local-definitions">Local definitions</h2>
+  head (x:_) = x
+</code></pre><h2 id="local-definitions">Local definitions</h2>
 <p>For this example we&#39;ll solve the equation <code>ax²+bx+c=0</code> with
 (-b±sqrt(d))/2a being d = b²-4ac</p>
 <pre><code>  roots::(Float, Float, Float) -&gt; (Float, Float)
@@ -374,11 +374,11 @@ fact m@(n+1) = m * fact n</code></pre>
   {-
     we could add also in where more local definitions like
     &quot;rd = sqrt d&quot; and &quot;da = 2 * a&quot; and replace them in the equation.
-  -}</code></pre>
-<p>We could also create a type, for example:</p>
+  -}
+</code></pre><p>We could also create a type, for example:</p>
 <pre><code>  type Complex=(Float, Float)
-  roots::(Float, Float, Float) -&gt; (Complex, Complex)</code></pre>
-<h2 id="local-declarations">Local declarations</h2>
+  roots::(Float, Float, Float) -&gt; (Complex, Complex)
+</code></pre><h2 id="local-declarations">Local declarations</h2>
 <ul>
 <li>where (we saw it before)</li>
 <li>let: <code>let f x = x * x in f 8 -&gt; 64</code>. So we could rewrite roots like this:<pre><code>  roots (a, b, c) = let
@@ -386,8 +386,8 @@ fact m@(n+1) = m * fact n</code></pre>
                       da = 2 * a
                     in
                       if (d &gt;= 0) then (..., ...)
-                      else error &quot;...&quot;</code></pre>
-</li>
+                      else error &quot;...&quot;
+</code></pre></li>
 </ul>
 <p>Important! guards, let, where, of, do... must be correctly indented!!</p>
 <h2 id="operators">Operators</h2>
@@ -398,8 +398,8 @@ fact m@(n+1) = m * fact n</code></pre>
   &gt;mod 10 3
   1
   &gt;10 `mod` 3
-  1</code></pre>
-<h3 id="list-of-infix-operators">List of infix operators</h3>
+  1
+</code></pre><h3 id="list-of-infix-operators">List of infix operators</h3>
 <p><code>: ! # $ % &amp; * + · / &lt; = &gt; ? @ \ ^ | - ~ &amp;&amp; || /= //</code></p>
 <h3 id="declaring-operators">Declaring operators</h3>
 <pre><code>infix &lt;priority [0..9]&gt; &lt;op-name&gt;
@@ -416,8 +416,8 @@ infixr 2 ||| --exclusive or
 (|||)::Bool-&gt;Bool-&gt;Bool
 True ||| True = False
 False ||| False = False
-_ ||| _ = True</code></pre>
-<h2 id="superior-order">Superior order</h2>
+_ ||| _ = True
+</code></pre><h2 id="superior-order">Superior order</h2>
 <p>An argument is a function or returns a function</p>
 <pre><code>  twice::(Int -&gt; Int) -&gt; Int -&gt; Int
   twice f x = f (f x)
@@ -426,8 +426,8 @@ _ ||| _ = True</code></pre>
   inc x = x + 1
   dec x = x - 1
 
-  twice inc 10 -&gt; inc (inc 10) -&gt; inc (10 + 1) -&gt; inc 11 -&gt; 11 + 1 -&gt; 12</code></pre>
-<h3 id="examples">Examples</h3>
+  twice inc 10 -&gt; inc (inc 10) -&gt; inc (10 + 1) -&gt; inc 11 -&gt; 11 + 1 -&gt; 12
+</code></pre><h3 id="examples">Examples</h3>
 <ul>
 <li><p>Map with integers</p>
 <pre><code>map:: (Int -&gt; Int) -&gt; [Int] -&gt; [Int]
@@ -436,8 +436,8 @@ map f (x:xs) = f x : map f xs
 --
 &gt;map inc [1..5] -&gt; [2..6]
 &gt;:t map
-(a -&gt; b) -&gt; [a] -&gt; [b]</code></pre>
-</li>
+(a -&gt; b) -&gt; [a] -&gt; [b]
+</code></pre></li>
 <li><p>Filter (actually defined in Haskell as filter::)</p>
 <pre><code>removeCond::(Int-&gt;Bool)-&gt;[Int]&gt;[Int]
 removeCond p [] = []
@@ -446,8 +446,8 @@ removeCond p (x:xs)   | p x = removCond p xs
 
 removeZero xs = removeCond p xs
                 where p 0 = True
-                      p _ = False</code></pre>
-</li>
+                      p _ = False
+</code></pre></li>
 </ul>
 <h2 id="anonymous-functions-lambda-expression-">Anonymous Functions. Lambda-expression. λ</h2>
 <p><code>(λx -&gt; x + 1)::Int-&gt;Int</code>
@@ -455,8 +455,8 @@ In Haskell, lambda is written with <code>\</code> instead of <code>λ</code>.</p
 <pre><code>  &gt;\x -&gt; x + 1
   &lt;&lt; function &gt;&gt;::Int-&gt;Int
   &gt;(\x -&gt; x + 1) 3
-  4</code></pre>
-<h3 id="some-examples">Some examples</h3>
+  4
+</code></pre><h3 id="some-examples">Some examples</h3>
 <ul>
 <li>Bubble pattern<pre><code>bubble::[Int]-&gt;[Int]
 bubble xs = baux xs [] False
@@ -466,8 +466,8 @@ bubble xs = baux xs [] False
     baux [x] ys b = baux [] (ys ++ [x]) b
     baux (x1:x2:xs) ys b
       | (odd x1 &amp;&amp; even x2) = baux (x2:xs) (ys++[x1]) True
-      | otherwise = baux (x1:xs) (ys++[x2]) b</code></pre>
-</li>
+      | otherwise = baux (x1:xs) (ys++[x2]) b
+</code></pre></li>
 <li><p>Reverse</p>
 <pre><code>rev::[a]-&gt;[a]
 rev [] = []
@@ -477,8 +477,8 @@ rev2::[a]-&gt;[a]
 rev2 cs = revaux xs[]
   where
     revaux [] ys = ys
-    revaux (x:xs) ys = revaux xs (x:ys)</code></pre>
-</li>
+    revaux (x:xs) ys = revaux xs (x:ys)
+</code></pre></li>
 </ul>
 <h2 id="partial-application">Partial application</h2>
 <p><code>f::(t1-&gt;(t2-&gt;...-&gt;(tx-&gt;...-&gt;(tn-&gt;(tr)))))</code></p>
@@ -493,8 +493,8 @@ rev2 cs = revaux xs[]
   &gt;f 2 3
   &lt;&lt;function&gt;&gt;::Int -&gt; Int
   &gt;f 2 3 4 -- Total application
-  20</code></pre>
-<h2 id="sections">Sections</h2>
+  20
+</code></pre><h2 id="sections">Sections</h2>
 <p>Binary operators partially applied with recieve only an argument.</p>
 <script src='http://localhost:35729/livereload.js'></script>
 

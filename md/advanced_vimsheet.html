@@ -171,8 +171,8 @@ It&#39;s a way to join some autocommands in a group. Ex:</p>
 <pre><code>augroup JavaScript Cmds
   au Filetype javascript nnoremap &lt;leader&gt;r :!node %&lt;cr&gt;
   au Filetype javascript nnoremap &lt;leader&gt;c I//&lt;esc&gt;
-augroup END</code></pre>
-</li>
+augroup END
+</code></pre></li>
 <li><p><code>autocmd!</code> deactivates the commands inside a group</p>
 </li>
 </ul>
@@ -197,8 +197,8 @@ edit that register to add or remove anything and save in that register again</li
 <li>Useful remappings:<pre><code>nnoremap / /\v
 vnoremap / /\v
 nnoremap ? ?\v
-vnoremap ? ?\v</code></pre>
-</li>
+vnoremap ? ?\v
+</code></pre></li>
 </ul>
 <h2 id="more-useful-stuff">More useful stuff</h2>
 <ul>
@@ -223,8 +223,8 @@ the function so you can resource it without errors</p>
     normal HOhello thereA vim user0
     s/hello there/hi
     return &quot;we added a message&quot;
-endfunction</code></pre>
-<p>If we add <code>command! Hello call AddHelloToTop()</code> we can use <code>:Hello</code> or also
+endfunction
+</code></pre><p>If we add <code>command! Hello call AddHelloToTop()</code> we can use <code>:Hello</code> or also
 do something like <code>nnoremap &lt;leader&gt;h :call AddHelloToTop()&lt;cr&gt;</code> and use <code>h</code></p>
 <h2 id="better-autocompletion-in-vim">Better Autocompletion in VIM</h2>
 <pre><code>function! InsertTabWrapper()
@@ -236,8 +236,8 @@ do something like <code>nnoremap &lt;leader&gt;h :call AddHelloToTop()&lt;cr&gt;
 endfunction
 
 inoremap &lt;tab&gt; &lt;c-r&gt;=InsertTabWrapper()&lt;cr&gt;
-inoremap &lt;s-tab&gt; &lt;c-p&gt;</code></pre>
-<h2 id="language-specific-settings">Language-Specific Settings</h2>
+inoremap &lt;s-tab&gt; &lt;c-p&gt;
+</code></pre><h2 id="language-specific-settings">Language-Specific Settings</h2>
 <p>Just create a folder under <code>.vim</code> called <code>ftplugin</code> and, inside this one,
 one called <code>javascript.vim</code>. Put some settings there, and this will be only
 applied to <code>.js</code> files. Same with <code>css.vim</code>, <code>html.vim</code>, etc etc.</p>
@@ -260,8 +260,8 @@ Shortcuts are:</p>
   Ctrl+n -&gt; step next
   Ctrl+u -&gt; move one stack frame up
   Ctrl+d -&gt; move one stack frame down
-  Ctrl+p -&gt; set breackpoint at current location</code></pre>
-<script src='http://localhost:35729/livereload.js'></script>
+  Ctrl+p -&gt; set breackpoint at current location
+</code></pre><script src='http://localhost:35729/livereload.js'></script>
 
   </body>
 </html>

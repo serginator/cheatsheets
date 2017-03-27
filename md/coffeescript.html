@@ -116,28 +116,34 @@
 <h2 id="vars">Vars</h2>
 <p>There&#39;s no need to worry about global scope, hoisting and similar, CS handles that moving vars to the top of the scope.</p>
 <pre><code class="lang-coffeescript">name = &quot;Sergio&quot;
-year = 2013</code></pre>
+year = 2013
+</code></pre>
 <h2 id="strings">Strings</h2>
 <p>It omits returns</p>
 <pre><code class="lang-coffeescript">text = &quot;This is a
     test&quot;
-console.log text # &#39;This is a test&#39;</code></pre>
+console.log text # &#39;This is a test&#39;
+</code></pre>
 <p>If we want returns, we must use <code>&quot;&quot;&quot;</code></p>
 <pre><code class="lang-coffeescript">text = &quot;&quot;&quot;
   This is a
   test&quot;&quot;&quot;
 console.log text # &#39;This is a
-test&#39;</code></pre>
+test&#39;
+</code></pre>
 <h2 id="comments">Comments</h2>
-<pre><code class="lang-coffeescript"># This is a comment</code></pre>
+<pre><code class="lang-coffeescript"># This is a comment
+</code></pre>
 <p>Same as with Strings, we can make them multiline with <code>###</code></p>
 <pre><code class="lang-coffeescript">###
 This is a
 multiline comment
-###</code></pre>
+###
+</code></pre>
 <h2 id="string-interpolation">String interpolation</h2>
 <pre><code class="lang-coffeescript">name = &quot;Sergio&quot;
-text = &quot;My name is #{name}&quot;</code></pre>
+text = &quot;My name is #{name}&quot;
+</code></pre>
 <h2 id="ifs">IFs</h2>
 <pre><code class="lang-coffeescript">if name === &quot;Sergio&quot;
   me = true
@@ -148,7 +154,8 @@ if name is &quot;Sergio&quot; then me = true else me = false
 me = (if name is &quot;Sergio&quot; then true else false)
 me = true if name is &quot;Sergio&quot;
 me = false if name isnt &quot;Sergio&quot;
-me = false unless name is &quot;Sergio&quot;</code></pre>
+me = false unless name is &quot;Sergio&quot;
+</code></pre>
 <h2 id="loops">Loops</h2>
 <h3 id="while-until">While / Until</h3>
 <pre><code class="lang-coffeescript">count = 0
@@ -156,7 +163,8 @@ while count &lt;= 10
   count++
 
 while count &lt;= 10 then count++
-unless count is 10 then count++</code></pre>
+unless count is 10 then count++
+</code></pre>
 <h3 id="for">For</h3>
 <pre><code class="lang-coffeescript">animals = [&quot;dog&quot;, &quot;cat&quot;, &quot;cow&quot;]
 for animal in animals
@@ -170,12 +178,14 @@ for animal in animals by 2
 console.log animal for animal in animals by 2
 
 # con condicionales
-console.log animal for animal in animal when animal[0] is &quot;c&quot; #&quot;cat&quot;,&quot;cow&quot;</code></pre>
+console.log animal for animal in animal when animal[0] is &quot;c&quot; #&quot;cat&quot;,&quot;cow&quot;
+</code></pre>
 <h3 id="loop">Loop</h3>
 <pre><code class="lang-coffeescript">count = 0
 loop
   break if count is 10
-  count++</code></pre>
+  count++
+</code></pre>
 <h2 id="aliases-and-operators">Aliases and operators</h2>
 <p><code>=== is</code>
 <code>!== isnt</code>
@@ -184,7 +194,8 @@ loop
 <code>! not</code>
 <code>?</code> operator of existence, to make stuff like:</p>
 <pre><code class="lang-coffeescript">name = names[0] ? &quot;Sergio&quot; #by default
-player?.fire?() # if player exists and fire method exists, executes it</code></pre>
+player?.fire?() # if player exists and fire method exists, executes it
+</code></pre>
 <p>@ this
 <code>@name = &quot;Sergio&quot; # this.name = &quot;Sergio&quot;</code>
 :: prototype
@@ -214,7 +225,8 @@ sum = (numbers...) -&gt;
   numbers.forEach (number) -&gt; result = result + number
   resultB
 miSuma = sum 1, 2, 3, 4, 5
-alert sum 1, 2, 3, 4, 5 #alert(sum(1,2,3,4,5))</code></pre>
+alert sum 1, 2, 3, 4, 5 #alert(sum(1,2,3,4,5))
+</code></pre>
 <h3 id="scope">Scope</h3>
 <p>It&#39;s defined with the first assign of a var</p>
 <h3 id="context">Context</h3>
@@ -231,7 +243,8 @@ If it isn&#39;t any of those, the context is global</p>
     occupation: &quot;Doctor&quot;
   sergio:
     age: 27
-    occupation: &quot;Developer&quot;</code></pre>
+    occupation: &quot;Developer&quot;
+</code></pre>
 <p>Another oneliner example
 <code>fellowship = wizard: &#39;Gandalf&#39;, hobbits: [&#39;Frodo&#39;, &#39;Pippin&#39;, &#39;Sam&#39;]</code>
 Knowing if a property exists in an object:
@@ -254,7 +267,8 @@ Hero = (@power) -&gt;
   @number = Hero.count
   @says()
 Hero.count = 0
-Hero::says = -&gt; console.log &quot;#{@number}. My superpower is #{@power}!&quot;</code></pre>
+Hero::says = -&gt; console.log &quot;#{@number}. My superpower is #{@power}!&quot;
+</code></pre>
 <h3 id="classes">Classes</h3>
 <pre><code class="lang-coffeescript">class Hero
   #static private
@@ -273,7 +287,8 @@ Hero::says = -&gt; console.log &quot;#{@number}. My superpower is #{@power}!&quo
 
 superman = new Hero &quot;fly&quot;
 batman = new Hero &quot;a belt with gadgets&quot;
-Hero.count() # &#39;Number of instances 2&#39;</code></pre>
+Hero.count() # &#39;Number of instances 2&#39;
+</code></pre>
 <h3 id="inheritance">Inheritance</h3>
 <pre><code class="lang-coffeescript">class Vehicle
   fuel: 100
@@ -298,7 +313,8 @@ class BatPod extends Vehicle
 batpod = new BatPod()
 batpod.use() # &#39;Upps!! No fuel in the tank of BatPod&#39;
 batpod.refuel()
-batpod.use() # &#39;Robin is using a moto&#39;</code></pre>
+batpod.use() # &#39;Robin is using a moto&#39;
+</code></pre>
 <h3 id="polimorfism">Polimorfism</h3>
 <p>Different behaviours for one function</p>
 <pre><code class="lang-coffeescript">class Vehicle
@@ -314,7 +330,8 @@ class BatMobile extends Vehicle
 
 class BatPod extends Vehicle
   burnout: -&gt;
-    console.log @fuel / 8</code></pre>
+    console.log @fuel / 8
+</code></pre>
 <h2 id="modularization">Modularization</h2>
 <h3 id="namespaces">Namespaces</h3>
 <p>A way to solve it is declaring a global var and puting inside what we need, this way we can work with several works and all of them will have that global object</p>
@@ -329,7 +346,8 @@ libjs.CONST =
   MIN: 10
   MAX: 50
 #classes.coffee
-class jibjs.Hero</code></pre>
+class jibjs.Hero
+</code></pre>
 <h3 id="mixins">Mixins</h3>
 <pre><code class="lang-coffeescript">extend = (obj, mixin) -&gt;
   obj[name] = method for name, method of mixin obj
@@ -338,7 +356,8 @@ include = (class_reference ,mixin) -&gt;
   extend class_reference.prototype, mixin
 
 include Hero ,film: true
-(new Hero).film</code></pre>
+(new Hero).film
+</code></pre>
 <script src='http://localhost:35729/livereload.js'></script>
 
   </body>

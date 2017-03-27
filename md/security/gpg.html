@@ -195,8 +195,8 @@ keys. Really useful with security smart cards.</p>
   $gpg -K
   # You will see your master key as &quot;sec#&quot;
   # Optionally change the passphrase protecting the subkeys
-  $gpg --edit-key ID paswd</code></pre>
-<h2 id="yubikey">Yubikey</h2>
+  $gpg --edit-key ID paswd
+</code></pre><h2 id="yubikey">Yubikey</h2>
 <p>Now I&#39;m going to show how to install a <code>Yubikey</code> smart card  and generate keys
 for the <code>yubikey</code> smartcard. I&#39;m using the Yubikey NEO.</p>
 <p><strong>(data from <a href="https://www.2realities.com">https://www.2realities.com</a>)</strong></p>
@@ -208,8 +208,8 @@ sudo apt-get update &amp;&amp; sudo apt-get install yubikey-personalization-guid
 sudo ln -s /usr/bin/gpg2 /usr/local/bin/gpg
 # Enable gnupg agents
 echo &quot;use-agent&quot; &gt;&gt; ~/.gnupg/gpg.conf
-echo &quot;enable-ssh-support&quot; &gt;&gt; ~/.gnupg/gpg-agent.conf</code></pre>
-<p>You should enable CCID mode of Yubikey with neo manager.</p>
+echo &quot;enable-ssh-support&quot; &gt;&gt; ~/.gnupg/gpg-agent.conf
+</code></pre><p>You should enable CCID mode of Yubikey with neo manager.</p>
 <h3 id="creation-of-keys">Creation of keys</h3>
 <pre><code># Lets work on a new .gnupg folder in our encrypted USB for example
 mkdir /media/user/usb/gpghome /media/user/usb/armor-baks
@@ -278,8 +278,8 @@ gpg -a --export-secret-subkeys &gt; $GNUPGHOME/../armor-baks/subkeys-stubs.txt
 gpg -a --export &gt; $GNUPGHOME/../armor-baks/publickey.txt
 
 #import the subkeys-stubs in other computers to be able to use them
-gpg --import &lt; subkeys-stubs.txt</code></pre>
-<p>Remember we made everything in an encrypted USB (or it is a good practice) so
+gpg --import &lt; subkeys-stubs.txt
+</code></pre><p>Remember we made everything in an encrypted USB (or it is a good practice) so
 you should go back to your environment with <code>export $GNUPGHOME=~/.gnupg</code> and
 maybe import your subkeys-stubs.txt</p>
 <p>Also, if using gpg 2.1 the authentication key that we&#39;ve created before can

@@ -150,7 +150,8 @@
 <pre><code class="lang-js">if (true) {
     let test = &#39;hello&#39;;
 }
-console.log(test); // undefined</code></pre>
+console.log(test); // undefined
+</code></pre>
 <h3 id="-const-"><code>const</code></h3>
 <p>Just like <code>let</code> but it&#39;s read only. Anyway you can modify a property of that const.</p>
 <pre><code class="lang-js">const test = &#39;hello&#39;;
@@ -161,7 +162,8 @@ const test2 = {
     text = &#39;hello&#39;
 }
 test2.text = &#39;hi&#39;;
-console.log(test2); // {text: &#39;hi&#39;}</code></pre>
+console.log(test2); // {text: &#39;hi&#39;}
+</code></pre>
 <h3 id="replace-iifes-with-blocks">Replace IIFEs with blocks</h3>
 <pre><code class="lang-js">// Instead of using IIFEs to keep variables local
 (function() {
@@ -172,7 +174,8 @@ console.log(test); // ReferenceError
 {
     let test = &#39;hello&#39;;
 }
-console.log(test); // ReferenceError</code></pre>
+console.log(test); // ReferenceError
+</code></pre>
 <h2 id="new-methods">New Methods</h2>
 <h3 id="arrays">Arrays</h3>
 <pre><code class="lang-js">// Get first element which equals a condition
@@ -205,18 +208,21 @@ console.log(helloWorld.keys()); // [0, 1, 2]
 console.log(helloWorld.values()); // [undefined, &#39;hello&#39;, &#39;world&#39;]
 
 // Fills array with something
-new Array(2).fill(27); // [27, 27]</code></pre>
+new Array(2).fill(27); // [27, 27]
+</code></pre>
 <h2 id="string-templates">String templates</h2>
 <p>Instead of use string concatenation like</p>
 <pre><code class="lang-js">var a = &#39;a&#39;,
     b = &#39;b&#39;,
     c = &#39;c&#39;,
-    msg = &#39;My string is &#39; + a + &#39; and &#39; + b + &#39; and &#39; + c;</code></pre>
+    msg = &#39;My string is &#39; + a + &#39; and &#39; + b + &#39; and &#39; + c;
+</code></pre>
 <p>We can use templates</p>
 <pre><code class="lang-js">let a = &#39;a&#39;,
     b = &#39;b&#39;,
     c = &#39;c&#39;,
-    msg = `My string is ${a} and ${b} and ${c} plus javascript ops ${2+3}`</code></pre>
+    msg = `My string is ${a} and ${b} and ${c} plus javascript ops ${2+3}`
+</code></pre>
 <h2 id="destructuring">Destructuring</h2>
 <p>To extract values from objects and arrays</p>
 <pre><code class="lang-js">// Instead of extract from an array
@@ -230,7 +236,8 @@ let b = [4, 5, 6],
 // and the same with objects
 let c = { a: 1, b: 2, c: 3 },
     { first3, second3, third3 } = obj;
-console.log(first3, third3) // returns 1, 3</code></pre>
+console.log(first3, third3) // returns 1, 3
+</code></pre>
 <h3 id="spread-operator">Spread operator</h3>
 <p>It gets <code>what remains</code></p>
 <pre><code class="lang-js">let arr = [1, 2, 3, 4, 5]
@@ -239,22 +246,26 @@ console.log(first3, third3) // returns 1, 3</code></pre>
     {a, ...rest}; = obj,
     [last, ...init] = arr.reverse();
 console.log(head, tail, a, rest); // 1, [2,3,4,5], 6, {b:7,c:8}
-console.log(last, init); // 5, [4,3,2,1]</code></pre>
+console.log(last, init); // 5, [4,3,2,1]
+</code></pre>
 <h2 id="function-parameters">Function parameters</h2>
 <p>Is a new (and needed) way to pass default params or optional ones.</p>
 <pre><code class="lang-js">function sum(a = 0, b = 0) {
     return a + b;
 }
-console.log(sum(1)); // returns 1</code></pre>
+console.log(sum(1)); // returns 1
+</code></pre>
 <p>You can also use spread operator</p>
 <pre><code class="lang-js">function sum (...nums) {
     return nums.reduce((sum, n) =&gt; sum + n, 0);
 }
-console.log(sum(1, 2, 3)); // returns 7</code></pre>
+console.log(sum(1, 2, 3)); // returns 7
+</code></pre>
 <h2 id="arrow-functions">Arrow functions</h2>
 <p>Cleaner functions</p>
 <pre><code class="lang-js">let incr = n =&gt; n + 1;
-console.log(incr(4)); // 5</code></pre>
+console.log(incr(4)); // 5
+</code></pre>
 <p>Avoid the usage of <code>this</code>, now you can bound a function to the scope it&#39;s
 defined in, and avoid using bind or <code>var that = this</code></p>
 <pre><code class="lang-js">function foo(values) {
@@ -278,7 +289,8 @@ function foo2(values) {
     };
 }
 var op2 = new foo2([1, 2, 3]);
-op2.incr(); // return [2, 3, 4]</code></pre>
+op2.incr(); // return [2, 3, 4]
+</code></pre>
 <h2 id="classes">Classes</h2>
 <p>We&#39;ve been doing this by using other libraries, or coffeescript, but this way
 makes it easier. Also, inheritance was made using .call, and now we can
@@ -305,7 +317,8 @@ class Cat extends Animal {
 let cat = new Cat(&#39;Jiji&#39;, &#39;1,7&#39;);
 let cat2 = new Cat(&#39;Yuki&#39;, &#39;0,5&#39;)
 console.log(cat.desc()); // Jiji is 1,7 years old and says Meow
-console.log(cat2.desc()); // Yuki is 0,5 years old and says Meow</code></pre>
+console.log(cat2.desc()); // Yuki is 0,5 years old and says Meow
+</code></pre>
 <h2 id="getters-and-setters">Getters and setters</h2>
 <p>Is a way of manipulate data when accessed and to validate data when set.</p>
 <pre><code class="lang-js">class Person {
@@ -329,7 +342,8 @@ console.log(person.name); // Mr. Mike
 person.name = null; // Name can&#39;t be empty
 person.name = &#39;Mikaela&#39;;
 person.gender = &#39;female&#39;;
-console.log(person.name); // Mrs. Mikaela</code></pre>
+console.log(person.name); // Mrs. Mikaela
+</code></pre>
 <h2 id="modules">Modules</h2>
 <p>New way to import export modules without using require or similar tools.</p>
 <pre><code class="lang-js">// Instead of
@@ -346,7 +360,8 @@ module.exports = {
 }
 // You can do
 export default MyLibClass;
-export { SuperCoolMethod as MyMethod };</code></pre>
+export { SuperCoolMethod as MyMethod };
+</code></pre>
 <h2 id="data-structures">Data structures</h2>
 <p>Now there are real sets and hashmaps</p>
 <pre><code class="lang-js">// hashmap in ES5
@@ -380,7 +395,8 @@ for (let [key, val] of hash.entries()) {
 let set = new Set([1, 2, 1, 1, 3, 4, 5, 4, 3]);
 console.log(set.size); // 5
 console.log(set.has(5)); // true
-set.forEach(n =&gt; console.log(n)); // 1, 2, 3, 4, 5</code></pre>
+set.forEach(n =&gt; console.log(n)); // 1, 2, 3, 4, 5
+</code></pre>
 <h2 id="symbols">Symbols</h2>
 <p>They are tokens that serve as unique IDs</p>
 <pre><code class="lang-js">// You can declare it as
@@ -393,7 +409,8 @@ typeof sym2; // symbol
 let obj = {[Symbol(&#39;test&#39;)]: 1, test: 2};
 Object.getOwnPropertyNames(obj); // [&#39;test&#39;]
 Object.getOwnPropertySymbols(obj); // [Symbol(test)]]
-Reflect.ownKeys(obj); // [Symbol(test), &#39;test&#39;]</code></pre>
+Reflect.ownKeys(obj); // [Symbol(test), &#39;test&#39;]
+</code></pre>
 <h2 id="iterators">Iterators</h2>
 <p>Arrays, Strings, Maps, Sets, DOM data structures... are iterable</p>
 <pre><code class="lang-js">// Like we saw in arrays section, you can do the following to iterate
@@ -401,13 +418,15 @@ let arr = [&#39;a&#39;, &#39;b&#39;];
 let iter = arr[Symbol.iterator]();
 iter.next(); // { value: &#39;a&#39;, done: false }
 iter.next(); // { value: &#39;b&#39;, done: false }
-iter.next(); // { value: undefined, done: true }</code></pre>
+iter.next(); // { value: undefined, done: true }
+</code></pre>
 <h3 id="for-of">for-of</h3>
 <pre><code class="lang-js">// new loop in es6
 let arrayLike = { length: 2, 0: &#39;a&#39;, 1: &#39;b&#39; };
 for (let x of Array.from(arrayLike)) {
     console.log(x);
-}</code></pre>
+}
+</code></pre>
 <h2 id="generators">Generators</h2>
 <p>These are some kind of processes that can be paused and resumed.</p>
 <pre><code class="lang-js">function* generatorTest() {
@@ -437,7 +456,8 @@ fib.next(); // { value: 3, done: false }
 fib.next(); // { value: 5, done: false }
 fib.next(); // { value: 8, done: false }
 fib.next(); // { value: 13, done: false }
-// ...</code></pre>
+// ...
+</code></pre>
 <hr>
 <h1 id="interesting-links">Interesting links</h1>
 <ul>

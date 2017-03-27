@@ -122,23 +122,23 @@ for learning how to use the tool.</p>
 <pre><code>git clone https://github.com/torch/distro.git ~/torch --recursive
 cd ~/torch; bash install-deps;
 ./install.sh
-source ~/.bashrc # or .zshrc or .profile</code></pre>
-<ul>
+source ~/.bashrc # or .zshrc or .profile
+</code></pre><ul>
 <li>Install caffe</li>
 </ul>
 <pre><code>sudo apt-get install libprotobuf-dev protobuf-compiler # for mac &quot;brew install protobuf&quot;
-luarocks install loadcaffe</code></pre>
-<ul>
+luarocks install loadcaffe
+</code></pre><ul>
 <li>Install neural_style and presets</li>
 </ul>
 <pre><code>git clone https://github.com/jcjohnson/neural-style.git ~/neural-style
-cd ~/neural-style &amp;&amp; sh models/download_models.sh</code></pre>
-<ul>
+cd ~/neural-style &amp;&amp; sh models/download_models.sh
+</code></pre><ul>
 <li>Usage</li>
 </ul>
 <pre><code>th neural_style.lua -style_image &lt;path-to-style-img&gt; -content_image &lt;path-to-image-to-process&gt; -gpu -1 -output_image &lt;path-to-output-image&gt;.png
-# &quot;-gpu -1&quot; to use just CPU</code></pre>
-<h2 id="examples">Examples</h2>
+# &quot;-gpu -1&quot; to use just CPU
+</code></pre><h2 id="examples">Examples</h2>
 <p><img src="../res/jiji1.jpg" width="200">
 <img src="../res/jiji2.jpg" width="200">
 <img src="../res/jiji3.jpg" width="200"></p>

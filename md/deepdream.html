@@ -120,8 +120,8 @@
 already prepared. Some of this informations has been read at <a href="https://medium.com/google-cloud/deep-dream-with-containers-d28a26e4c8a3#.506kqcbfj">medium</a> or <a href="https://github.com/VISIONAI/clouddream">github</a>.</p>
 <pre><code>git clone https://github.com/saturnism/deepdream-cli-docker.git
 cd deepdream-cli-docker
-docker build -t deepdream-cli .</code></pre>
-<h2 id="usage">Usage</h2>
+docker build -t deepdream-cli .
+</code></pre><h2 id="usage">Usage</h2>
 <pre><code># view arguments
 docker run deepdream-cli -h
 
@@ -129,14 +129,14 @@ docker run deepdream-cli -h
 cat jiji.jpg | docker run -i deepdream-cli &gt; output.jpg
 
 # more options
-cat jiji.jpg | docker run -i deepdream-cli -l conv2/norm2 -o 6 &gt; output.jpg</code></pre>
-<h2 id="multi-core">Multi-core</h2>
+cat jiji.jpg | docker run -i deepdream-cli -l conv2/norm2 -o 6 &gt; output.jpg
+</code></pre><h2 id="multi-core">Multi-core</h2>
 <p>The process is single threaded, but you can process several images at a time
 to use all cores, for example</p>
 <pre><code>for f in *.jpg; \
   do { cat $f | docker run -i deepdream-cli &gt; out_$f; } &amp; \
-done;</code></pre>
-<h2 id="examples">Examples</h2>
+done;
+</code></pre><h2 id="examples">Examples</h2>
 <p><img src="../res/jiji-dream.jpg" width="200">
 <img src="../res/pepa-dream.jpg" width="200">
 <img src="../res/dc-dream.jpg" width="200"></p>
