@@ -145,14 +145,14 @@
 </ul>
 <h1 id="content">Content</h1>
 <h2 id="variables">Variables</h2>
-<h3 id="-let-"><code>let</code></h3>
+<h3 id="let"><code>let</code></h3>
 <p>It is like <code>var</code> but with blocking (what is inside curly braces) scope.</p>
 <pre><code class="lang-js">if (true) {
     let test = &#39;hello&#39;;
 }
 console.log(test); // undefined
 </code></pre>
-<h3 id="-const-"><code>const</code></h3>
+<h3 id="const"><code>const</code></h3>
 <p>Just like <code>let</code> but it&#39;s read only. Anyway you can modify a property of that const.</p>
 <pre><code class="lang-js">const test = &#39;hello&#39;;
 test = &#39;hi&#39;; // Uncaught TypeError: Assignment to constant variable.
