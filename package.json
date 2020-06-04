@@ -29,9 +29,9 @@
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-rename": "0.0.3",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-gh-pages": "^2.0.0",
+    "grunt-gh-pages": "^4.0.0",
     "grunt-markdown": "^0.7.0",
-    "load-grunt-config": "^0.19.2",
+    "load-grunt-config": "^3.0.1",
     "load-grunt-tasks": "^3.5.2"
   }
 }
