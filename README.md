@@ -23,7 +23,7 @@ List of cheatsheets
 * Security
   * [Wifi](md/security/wifi.md)
   * [GPG](md/security/gpg.md)
-  * [Kali LIVE on Mac](mc/kali-live-on-mac.md)
+  * [Kali LIVE on Mac](md/kali-live-on-mac.md)
   * [WiFiDuck/USBRubberDucky Payloads](md/security/ducky-payloads.md)
 * Neural networks
   * [neural-style](md/neural-style.md)
