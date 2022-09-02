@@ -25,14 +25,14 @@
   "homepage": "https://github.com/serginator/cheatsheets",
   "devDependencies": {
     "grunt": "^1.5.3",
-    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-connect": "^3.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-rename": "0.2.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-gh-pages": "^4.0.0",
     "grunt-markdown": "^0.7.0",
-    "load-grunt-config": "^4.0.0",
+    "load-grunt-config": "^4.0.1",
     "load-grunt-tasks": "^5.1.0"
   }
 }
