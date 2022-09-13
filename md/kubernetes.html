@@ -1,0 +1,196 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="kubernetes-1-17-">Kubernetes (1.17)</h1>
+<h2 id="installing">Installing</h2>
+<h3 id="mac">Mac</h3>
+<pre><code class="lang-bash">brew install kubernetes-cli
+</code></pre>
+<h3 id="linux">Linux</h3>
+<pre><code class="lang-bash">curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+# create a kubeconfig.yaml file (by downloading it or whatever) and export it
+export KUBECONFIG=kubeconfig.yaml
+</code></pre>
+<h2 id="usage">Usage</h2>
+<ul>
+<li>Get all nodes: <code>kubectl get nodes</code></li>
+<li>Get cluster info: <code>kubectl cluster-info</code></li>
+<li>Get all pods (like containers): <code>kubectl get pods</code></li>
+<li>Get mmore verbose info about pods: <code>kubectl get pods -o wide</code></li>
+<li>Create a pod with nginx image and expose port 80: <code>kubectl run myNginx --image=nginx --port=80</code></li>
+<li>Get pods info: <code>kubectl describe pods</code></li>
+<li>Get info about one pod: <code>kubectl describe pod myNginx</code></li>
+<li>Delete a pod: <code>kubectl delete pod myNginx</code></li>
+</ul>
+<h1 id="example-of-a-deployment-yaml-file-to-deploy-3-pods-with-nginx-image-and-expose-port-80">Example of a Deployment yaml file to deploy 3 pods with nginx image and expose port 80</h1>
+<pre><code class="lang-yaml">    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+        name: myNginx
+    spec:
+        replicas: 3
+        selector:
+            matchLabels:
+                app: myNginx
+        template:
+            metadata:
+                labels:
+                    app: myNginx
+            spec:
+                containers:
+                - name: myNginx
+                    image: nginx
+                    ports:
+                        - containerPort: 80
+</code></pre>
+<ul>
+<li>Create a deployment: <code>kubectl create -f myNginx.yaml</code></li>
+<li>Get deployments: <code>kubectl get deployments</code></li>
+<li>Get info about one deployment: <code>kubectl describe deployment myNginx</code></li>
+<li>Edit a deployment: <code>kubectl edit deployment myNginx</code></li>
+<li>Delete a deployment: <code>kubectl delete deployment myNginx</code></li>
+</ul>
+<h2 id="exposing-our-service-to-the-outside-world">Exposing our service to the outside world</h2>
+<ul>
+<li>Expose a service: <code>kubectl expose deployment myNginx --type=LoadBalancer --port=80</code></li>
+<li>Get services: <code>kubectl get services</code></li>
+<li>Get info about one service: <code>kubectl describe service myNginx</code></li>
+<li>Delete a service: <code>kubectl delete service myNginx</code></li>
+</ul>
+<h2 id="other-way-to-export-our-service-make-a-service-yaml-file">Other way to export our service, make a service yaml file</h2>
+<pre><code class="lang-yaml">    apiVersion: v1
+    kind: Service
+    metadata:
+        name: myNginx
+        labels:
+            app: myNginx
+    spec:
+        type: LoadBalancer
+        ports:
+            - port: 80
+        selector:
+            app: myNginx
+</code></pre>
+<ul>
+<li>Create a service: <code>kubectl create -f myNginxService.yaml</code></li>
+<li>Get services: <code>kubectl get services</code></li>
+<li>Get info about one service: <code>kubectl describe service myNginx</code></li>
+<li>Delete a service: <code>kubectl delete service myNginx</code></li>
+</ul>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>
