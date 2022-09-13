@@ -17,6 +17,8 @@ List of cheatsheets
 * [Screen Command](md/screen.md)
 * [Haskell](md/haskell.md)
 * [Vagrant](md/vagrant.md)
+* [Docker](md/docker.md)
+* [Kubernetes](md/kubernetes.md)
 * [CoffeeScript](md/coffeescript.md)
 * [ECMAScript6 | ES2015 | ES6](md/ecmascript6.md)
 * [CSS Refresher Notes (by vasanthk)](https://github.com/vasanthk/css-refresher-notes)
