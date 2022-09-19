@@ -1,0 +1,340 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h1 id="typescript">TypeScript</h1>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="#types">Types</a><ul>
+<li><a href="#boolean">Boolean</a></li>
+<li><a href="#number">Number</a></li>
+<li><a href="#string">String</a></li>
+<li><a href="#array">Array</a></li>
+<li><a href="#tuple">Tuple</a></li>
+<li><a href="#enum">Enum</a></li>
+<li><a href="#any">Any</a></li>
+<li><a href="#void">Void</a></li>
+<li><a href="#null-and-undefined">Null and Undefined</a></li>
+<li><a href="#never">Never</a></li>
+</ul>
+</li>
+<li><a href="#interfaces">Interfaces</a></li>
+<li><a href="#classes">Classes</a></li>
+<li><a href="#generics">Generics</a></li>
+<li><a href="#modules">Modules</a></li>
+<li><a href="#decorators">Decorators</a></li>
+<li><a href="#type-assertions">Type assertions</a></li>
+<li><a href="#type-inference">Type inference</a></li>
+<li><a href="#type-compatibility">Type compatibility</a></li>
+<li><a href="#type-guards">Type guards</a></li>
+<li><a href="#type-aliases">Type aliases</a></li>
+<li><a href="#type-parameters">Type parameters</a></li>
+<li><a href="#type-inference">Type inference</a></li>
+<li><a href="#type-compatibility">Type compatibility</a></li>
+<li><a href="#type-guards">Type guards</a></li>
+<li><a href="#type-aliases">Type aliases</a></li>
+<li><a href="#type-parameters">Type parameters</a></li>
+</ul>
+<h1 id="content">Content</h1>
+<h2 id="types">Types</h2>
+<h3 id="boolean">Boolean</h3>
+<pre><code class="lang-ts">let isDone: boolean = false;
+</code></pre>
+<h3 id="number">Number</h3>
+<pre><code class="lang-ts">let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o744;
+</code></pre>
+<h3 id="string">String</h3>
+<pre><code class="lang-ts">let color: string = &quot;blue&quot;;
+color = &#39;red&#39;;
+</code></pre>
+<h3 id="array">Array</h3>
+<pre><code class="lang-ts">let list: number[] = [1, 2, 3];
+let list: Array&lt;number&gt; = [1, 2, 3];
+</code></pre>
+<h3 id="tuple">Tuple</h3>
+<pre><code class="lang-ts">// Declare a tuple type
+let x: [string, number];
+// Initialize it
+x = [&quot;hello&quot;, 10]; // OK
+// Initialize it incorrectly
+x = [10, &quot;hello&quot;]; // Error
+</code></pre>
+<h3 id="enum">Enum</h3>
+<pre><code class="lang-ts">enum Color {Red, Green, Blue}
+let c: Color = Color.Green;
+</code></pre>
+<h3 id="any">Any</h3>
+<pre><code class="lang-ts">let notSure: any = 4;
+notSure = &quot;maybe a string instead&quot;;
+notSure = false; // okay, definitely a boolean
+</code></pre>
+<h3 id="void">Void</h3>
+<pre><code class="lang-ts">function warnUser(): void {
+    alert(&quot;This is my warning message&quot;);
+}
+</code></pre>
+<h3 id="null-and-undefined">Null and Undefined</h3>
+<pre><code class="lang-ts">// Not much else we can assign to these variables!
+let u: undefined = undefined;
+let n: null = null;
+</code></pre>
+<h3 id="never">Never</h3>
+<pre><code class="lang-ts">// Function returning never must have unreachable end point
+function error(message: string): never {
+    throw new Error(message);
+}
+// Inferred return type is never
+function fail() {
+    return error(&quot;Something failed&quot;);
+}
+// Function returning never must have unreachable end point
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+</code></pre>
+<h2 id="interfaces">Interfaces</h2>
+<pre><code class="lang-ts">interface LabelledValue {
+    label: string;
+}
+function printLabel(labelledObj: LabelledValue) {
+    console.log(labelledObj.label);
+}
+let myObj = {size: 10, label: &quot;Size 10 Object&quot;};
+printLabel(myObj);
+</code></pre>
+<h2 id="classes">Classes</h2>
+<pre><code class="lang-ts">class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return &quot;Hello, &quot; + this.greeting;
+    }
+}
+let greeter = new Greeter(&quot;world&quot;);
+</code></pre>
+<h2 id="generics">Generics</h2>
+<pre><code class="lang-ts">function identity&lt;T&gt;(arg: T): T {
+    return arg;
+}
+let output = identity&lt;string&gt;(&quot;myString&quot;);  // type of output will be &#39;string&#39;
+let output = identity(&quot;myString&quot;);  // type of output will be &#39;string&#39;
+</code></pre>
+<h2 id="modules">Modules</h2>
+<pre><code class="lang-ts">// file1.ts
+export interface StringValidator {
+    isAcceptable(s: string): boolean;
+}
+// file2.ts
+import { StringValidator } from &quot;./StringValidator&quot;;
+export const numberRegexp = /^[0-9]+$/;
+export class ZipCodeValidator implements StringValidator {
+    isAcceptable(s: string) {
+        return s.length === 5 &amp;&amp; numberRegexp.test(s);
+    }
+}
+// file3.ts
+import { ZipCodeValidator } from &quot;./ZipCodeValidator&quot;;
+let myValidator = new ZipCodeValidator();
+// Some samples to try
+console.log(myValidator.isAcceptable(&quot;...&quot;)); // false
+console.log(myValidator.isAcceptable(&quot;98052&quot;)); // true
+console.log(myValidator.isAcceptable(&quot;101&quot;)); // false
+</code></pre>
+<h2 id="decorators">Decorators</h2>
+<pre><code class="lang-ts">function sealed(constructor: Function) {
+    Object.seal(constructor);
+    Object.seal(constructor.prototype);
+}
+@sealed
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return &quot;Hello, &quot; + this.greeting;
+    }
+}
+</code></pre>
+<h3 id="type-assertions">Type assertions</h3>
+<pre><code class="lang-ts">let someValue: any = &quot;this is a string&quot;;
+let strLength: number = (&lt;string&gt;someValue).length;
+let strLength: number = (someValue as string).length;
+</code></pre>
+<h2 id="type-inference">Type inference</h2>
+<pre><code class="lang-ts">let x = 3;
+</code></pre>
+<h2 id="type-compatibility">Type compatibility</h2>
+<pre><code class="lang-ts">interface Named {
+    name: string;
+}
+class Person {
+    name: string;
+}
+let p: Named;
+// OK, because of structural typing
+p = new Person();
+</code></pre>
+<h2 id="type-guards">Type guards</h2>
+<pre><code class="lang-ts">function isNumber(x: any): x is number {
+    return typeof x === &quot;number&quot;;
+}
+function isString(x: any): x is string {
+    return typeof x === &quot;string&quot;;
+}
+function padLeft(value: string, padding: string | number) {
+    if (isNumber(padding)) {
+        return Array(padding + 1).join(&quot; &quot;) + value;
+    }
+    if (isString(padding)) {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got &#39;${padding}&#39;.`);
+}
+</code></pre>
+<h2 id="type-aliases">Type aliases</h2>
+<pre><code class="lang-ts">type Name = string;
+type NameResolver = () =&gt; string;
+type NameOrResolver = Name | NameResolver;
+function getName(n: NameOrResolver): Name {
+    if (typeof n === &quot;string&quot;) {
+        return n;
+    }
+    else {
+        return n();
+    }
+}
+</code></pre>
+<h2 id="type-parameters">Type parameters</h2>
+<pre><code class="lang-ts">function identity&lt;T&gt;(arg: T): T {
+    return arg;
+}
+let myIdentity: &lt;T&gt;(arg: T) =&gt; T = identity;
+</code></pre>
+<h1 id="resources">Resources</h1>
+<ul>
+<li><a href="https://www.typescriptlang.org/">TypeScript</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html">TypeScript Handbook</a></li>
+<li><a href="https://www.typescriptlang.org/play/index.html">TypeScript Playground</a></li>
+<li><a href="https://basarat.gitbooks.io/typescript/content/docs/getting-started.html">TypeScript Deep Dive</a></li>
+</ul>
+<script src='http://localhost:35729/livereload.js'></script>
+
+  </body>
+</html>
