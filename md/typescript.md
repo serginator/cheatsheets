@@ -1,6 +1,7 @@
 # TypeScript
 
 ## Index
+* [Installing](#installing)
 * [Types](#types)
     * [Boolean](#boolean)
     * [Number](#number)
@@ -30,6 +31,16 @@
 * [Type parameters](#type-parameters)
 
 # Content
+
+## Installing
+
+    ```bash
+    # start a new react project with typescript
+    npx create-react-app my-app --template typescript
+
+    # install typescript in an existing react project
+    npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+    ```
 
 ## Types
 
