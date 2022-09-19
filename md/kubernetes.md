@@ -1,6 +1,6 @@
-# Kubernetes (1.17)
+# Kubernetes (1.17)
 
-## Installing
+## Installing
 
 ### Mac
 
@@ -59,14 +59,14 @@ export KUBECONFIG=kubeconfig.yaml
 * Edit a deployment: `kubectl edit deployment myNginx`
 * Delete a deployment: `kubectl delete deployment myNginx`
 
-## Exposing our service to the outside world
+## Exposing our service to the outside world
 
 * Expose a service: `kubectl expose deployment myNginx --type=LoadBalancer --port=80`
 * Get services: `kubectl get services`
 * Get info about one service: `kubectl describe service myNginx`
 * Delete a service: `kubectl delete service myNginx`
 
-## Other way to export our service, make a service yaml file
+## Other way to export our service, make a service yaml file
 
 ```yaml
     apiVersion: v1

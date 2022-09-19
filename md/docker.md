@@ -32,14 +32,14 @@ sh get-docker.sh
 * Download an image with a specific tag: `docker pull nginx:1.15.8`
 * Download an image with a specific tag and save it with a different name: `docker pull nginx:1.15.8 --tag myNginx:1.15.8`
 
-## Running a container
+## Running a container
 
 * Run a container with nginx image and expose port 80: `docker run -t -d -p 80:80 --name myNginx myNginx:1.15.8`
 * Run a container and remove it when it stops: `docker run --rm -t -d -p 80:80 --name myNginx myNginx:1.15.8` (look at the --rm)
 * Launch shell in a container: `docker exec -it myNginx /bin/bash`
 * Stop a container: `docker stop myNginx`
 
-## Docker networking
+## Docker networking
 
 * List networks: `docker network ls`
 * Create a network: `docker network create myNetwork`
@@ -49,7 +49,7 @@ sh get-docker.sh
 * Create a none network: `docker network create --driver none myNetwork`. This will not create any interface and the containers will not be able to communicate with the host or other containers.
 * Run a container with a specific network: `docker run -t -d -p 80:80 --name myNginx --network myNetwork myNginx:1.15.8`
 
-## Docker volumes
+## Docker volumes
 
 * Create a volume: `docker volume create myVolume`
 * Create a volume with a specific driver: `docker volume create --driver local --name myVolume`
