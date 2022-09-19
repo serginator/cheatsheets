@@ -4,7 +4,7 @@
   "description": "Some cheatsheets and notes",
   "main": "README.md",
   "scripts": {
-    "deploy": "grunt build",
+    "deploy": "grunt build && grunt pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
