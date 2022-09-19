@@ -21,6 +21,7 @@ List of cheatsheets
 * [Kubernetes](md/kubernetes.md)
 * [CoffeeScript](md/coffeescript.md)
 * [ECMAScript6 | ES2015 | ES6](md/ecmascript6.md)
+* [TypeScript](md/typescript.md)
 * [CSS Refresher Notes (by vasanthk)](https://github.com/vasanthk/css-refresher-notes)
 * Security
   * [Wifi](md/security/wifi.md)
