@@ -15,6 +15,7 @@ List of cheatsheets
 * [Advanced VIM](md/advanced_vimsheet.md)
 * [Python](md/python.md)
 * [Screen Command](md/screen.md)
+* [TMux Command](md/tmux.md)
 * [Haskell](md/haskell.md)
 * [Vagrant](md/vagrant.md)
 * [Docker](md/docker.md)
