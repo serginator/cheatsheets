@@ -112,50 +112,53 @@
     </style>
   </head>
   <body>  
-    <h1 id="cheatsheets">cheatsheets</h1>
-<p>This is a list of cheatsheets I&#39;ve made/find that are useful to me. I sometimes
-take notes when I&#39;m studying about something and these are some of those notes
-in markdown format.</p>
-<p>Content can be viewed <a href="http://serginator.github.io/cheatsheets/">here</a></p>
-<p>List of cheatsheets</p>
-<h3 id="in-markdown">In Markdown</h3>
+    <h1 id="tmux-command">tmux command</h1>
+<h2 id="without-tmux">Without tmux</h2>
 <ul>
-<li><a href="md/vimsheet.html">VIM</a></li>
-<li><a href="md/advanced_vimsheet.html">Advanced VIM</a></li>
-<li><a href="md/python.html">Python</a></li>
-<li><a href="md/screen.html">Screen Command</a></li>
-<li><a href="md/tmux.html">TMux Command</a></li>
-<li><a href="md/haskell.html">Haskell</a></li>
-<li><a href="md/vagrant.html">Vagrant</a></li>
-<li><a href="md/docker.html">Docker</a></li>
-<li><a href="md/kubernetes.html">Kubernetes</a></li>
-<li><a href="md/coffeescript.html">CoffeeScript</a></li>
-<li><a href="md/ecmascript6.html">ECMAScript6 | ES2015 | ES6</a></li>
-<li><a href="md/typescript.html">TypeScript</a></li>
-<li><a href="https://github.com/vasanthk/css-refresher-notes">CSS Refresher Notes (by vasanthk)</a></li>
-<li>Security<ul>
-<li><a href="md/security/wifi.html">Wifi</a></li>
-<li><a href="md/security/gpg.html">GPG</a></li>
-<li><a href="md/kali-live-on-mac.html">Kali LIVE on Mac</a></li>
-<li><a href="md/security/ducky-payloads.html">WiFiDuck/USBRubberDucky Payloads</a></li>
+<li><code>tmux</code> -&gt; start tmux cmd</li>
+<li><code>tmux new -s &lt;name&gt;</code> -&gt; start new session called <name></li>
+<li><code>tmux a</code> -&gt; attach to last session</li>
+<li><code>tmux a -t &lt;name&gt;</code> -&gt; attach to <name> session</li>
+<li><code>tmux ls</code> -&gt; list sessions</li>
+<li><code>tmux kill-session -t &lt;name&gt;</code> -&gt; kills <name> session</li>
+<li><code>tmux kill-session -a</code> -&gt; kills all sessions but current</li>
+</ul>
+<h2 id="with-tmux-started">With tmux started</h2>
+<ul>
+<li><code>C-b $</code> -&gt; rename session</li>
+<li><code>C-b d</code> -&gt; detach from session</li>
+<li><code>C-b w</code> -&gt; session/window preview</li>
+<li><code>C-b (</code> or <code>C-b )</code> -&gt; move to previous or next session</li>
+<li><code>C-b c</code> -&gt; create window</li>
+<li><code>C-b ,</code> -&gt; rename current window</li>
+<li><code>C-b &amp;</code> -&gt; close current window</li>
+<li><code>C-b p</code> or <code>C-b n</code> -&gt; move to previous or next window</li>
+<li><code>C-b 0..9</code> -&gt; switch window by number</li>
+</ul>
+<h3 id="panes">Panes</h3>
+<ul>
+<li><code>C-b ;</code> -&gt; toggle last active pane</li>
+<li><code>C-b %</code> -&gt; split vertically</li>
+<li><code>C-b &quot;</code> -&gt; split horizontally</li>
+<li><code>C-b {</code> or <code>C-b }</code> -&gt; move current pane left or right</li>
+<li><code>C-b &lt;arrow&gt;</code> -&gt; switch panes to that direction</li>
+<li><code>C-b q</code> -&gt; show pane numbers</li>
+<li><code>C-b q 0..9</code> -&gt; select pane</li>
+<li><code>C-b x</code> -&gt; close current pane</li>
+<li><code>C-b &lt;spacebar&gt;</code> -&gt; toggle between pane layouts</li>
+<li><code>C-b C-&lt;arrow&gt;</code> -&gt; resize current pane</li>
+</ul>
+<h3 id="copy-mode">Copy mode</h3>
+<ul>
+<li><code>C-b [</code> -&gt; enter copy mode<ul>
+<li><spacebar> start selection</li>
+<li><esc> cancel selection</li>
+<li><enter> copy selection</li>
 </ul>
 </li>
-<li>Neural networks<ul>
-<li><a href="md/neural-style.html">neural-style</a></li>
-<li><a href="md/deepdream.html">Google&#39;s deepdream</a></li>
+<li><code>C-b ]</code> -&gt; paste contents on buffer_0</li>
 </ul>
-</li>
-</ul>
-<h3 id="graphical">Graphical</h3>
-<ul>
-<li><a href="graphical/vim.gif">VIM</a></li>
-</ul>
-<h2 id="download">Download</h2>
-<pre><code>#Clone the repo
-git clone git@github.com:serginator/cheatsheets.git
-#Update submodules
-git submodule init &amp;&amp; git submodule update
-</code></pre><script src='http://localhost:35729/livereload.js'></script>
+<script src='http://localhost:35729/livereload.js'></script>
 
   </body>
 </html>
